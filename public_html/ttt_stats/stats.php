@@ -11,6 +11,8 @@
 | 	   by Handy_man       |
 \------------------------*/
 
+/*SQL connection/ configuration goes here */
+
 $connect = mysql_connect("127.0.0.1", "handyman_ttt", "3213560921*+*");
 $db_select = mysql_select_db('handyman_ttt_stats');
 if (!connect) {
@@ -18,6 +20,10 @@ if (!connect) {
 	die('ERROR, Contact Handy_man immediately' . mysql_error());
 	
 }
+
+/*SQL connection/ configuration end here */
+
+/*Stats SQL queries all go here */
 
 $var1 = mysql_query('SELECT * FROM `ttt_stats');
 $uniqueusers = mysql_num_rows($var1);
@@ -50,6 +56,15 @@ $time = mysql_query('SELECT SUM(playtime) FROM ttt_stats');
 $timearray = mysql_fetch_array($time);
 $timetotal = array_sum($timearray);
 
+$topscore = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 1");
+$topscorearray = mysql_fetch_array ( $topscore );
+$topscorefinal = $topscorearray['maxfrags'];
+$topscorenick = $topscorearray['nickname'];
+
+/*Stats SQL queries end here */
+
+/*Maths for any functions go here */
+
 $seconds = $timetotal;
 			//start of math for hourse, minues and seconds
 				$hours = floor($seconds / (60 * 60));
@@ -63,13 +78,9 @@ $seconds = $timetotal;
 				$seconds = ceil($divisor_for_seconds);
 				
 				
-$topscore = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 1");
+/*Maths for functions end here */
 
-$topscorearray = mysql_fetch_array ( $topscore );
-$topscorefinal = $topscorearray['maxfrags'];
-$topscorenick = $topscorearray['nickname'];
-
-
+/*print statements */
 
 echo "Number of unique users : " . $uniqueusers . "</br>";
 echo "Total number of kills : " . $killstotal . "</br>";
@@ -81,14 +92,5 @@ echo "Total number of kills: " . $killstotal . "</br>";
 
 echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds. </br>";
 echo "The highest score on the server is: " . $topscorefinal . " This is held by " . $topscorenick . " think you can beat him? </br>";
-
-
-
-
-
-
-
-
-
 
 ?>
