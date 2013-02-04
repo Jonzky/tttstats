@@ -178,14 +178,14 @@ function getPlayTime(ply)
 end
 
 function PrintStats(ply, cmd, arg )
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Play time " .. (math.Round(getPlayTime(ply)/60)) );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Rounds played " .. ply.roundsplayed );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Inno times " .. ply.timesInno );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Detective Times " .. ply.timesDetective );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Traitor Times " .. ply.timesTraitor );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Deaths " .. ply.deaths );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Kills " .. ply.murders );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "High Score " .. ply.maxfrags );
+	ply:PrintMessage( HUD_PRINTCONSOLE, "Play time: " .. (math.Round(getPlayTime(ply)/60)) );
+	ply:PrintMessage( HUD_PRINTCONSOLE, "Rounds played: " .. ply.roundsplayed );
+	ply:PrintMessage( HUD_PRINTCONSOLE, "Inno times: " .. ply.timesInno );
+	ply:PrintMessage( HUD_PRINTCONSOLE, "Detective Times: " .. ply.timesDetective );
+	ply:PrintMessage( HUD_PRINTCONSOLE, "Traitor Times: " .. ply.timesTraitor );
+	ply:PrintMessage( HUD_PRINTCONSOLE, "Deaths: " .. ply.deaths );
+	ply:PrintMessage( HUD_PRINTCONSOLE, "Kills: " .. ply.murders );
+	ply:PrintMessage( HUD_PRINTCONSOLE, "High Score: " .. ply.maxfrags );
 end
 concommand.Add( "printStats", PrintStats )
 
