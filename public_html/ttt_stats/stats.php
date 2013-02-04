@@ -61,6 +61,15 @@ $seconds = $timetotal;
 			// extract the remaining seconds
 				$divisor_for_seconds = $divisor_for_minutes % 60;
 				$seconds = ceil($divisor_for_seconds);
+				
+				
+$topscore = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 1");
+
+$topscorearray = mysql_fetch_array ( $topscore );
+$topscorefinal = $topscorearray['maxfrags'];
+$topscorenick = $topscorearray['nickname'];
+
+
 
 echo "Number of unique users : " . $uniqueusers . "</br>";
 echo "Total number of kills : " . $killstotal . "</br>";
@@ -71,6 +80,8 @@ echo "Total number of deaths : " . $deathtotal . "</br>";
 echo "Total number of kills: " . $killstotal . "</br>";
 
 echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds. </br>";
+echo "The highest score on the server is: " . $topscorefinal . " This is held by " . $topscorenick . " think you can beat him? </br>";
+
 
 
 
