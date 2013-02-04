@@ -83,6 +83,7 @@ $seconds = $playerPlaytime;
 						<th>Highest Score</th>
 						<th>First seen in the server</th>
 						</tr>
+
 <?
 echo "<tr>";
 echo "<td>" . $playerSteamid . "</td>";
@@ -97,6 +98,6 @@ echo "<td>" . $playerKills . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
 echo "</tr>";
-
+echo "</table>";
 
 ?>
