@@ -89,7 +89,6 @@ echo "Total number of innocents : " . $innocenttotal . "</br>";
 echo "Total number of detectives : " . $detectivetotal . "</br>";
 echo "Total number of traitors : " . $traitortotal . "</br>";
 echo "Total number of deaths : " . $deathtotal . "</br>";
-echo "Total number of kills: " . $killstotal . "</br>";
 
 echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds. </br>";
 echo "The highest score on the server is: " . $topscorefinal . " This is held by " . $topscorenick . " think you can beat him? </br>";
