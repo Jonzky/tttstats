@@ -62,6 +62,10 @@ $topscorearray = mysql_fetch_array ( $topscore );
 $topscorefinal = $topscorearray['maxfrags'];
 $topscorenick = $topscorearray['nickname'];
 
+$rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
+$roundsarray = mysql_fetch_array($rounds);
+$roundstotal = array_sum($roundsarray);
+
 /*Stats SQL queries end here */
 
 /*Maths for any functions go here */
@@ -89,6 +93,7 @@ echo "Total number of innocents : " . $innocenttotal . "</br>";
 echo "Total number of detectives : " . $detectivetotal . "</br>";
 echo "Total number of traitors : " . $traitortotal . "</br>";
 echo "Total number of deaths : " . $deathtotal . "</br>";
+echo "Total number of rounds played : " . $roundstotal . "</br>";
 
 echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds. </br>";
 echo "The highest score on the server is: " . $topscorefinal . " This is held by " . $topscorenick . " think you can beat him? </br>";
