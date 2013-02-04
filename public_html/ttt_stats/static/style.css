@@ -1,0 +1,106 @@
+/*General - on every page*/
+
+body{
+	background-image:url('scare.jpg');
+	margin: -75px;
+	padding: 0;
+}
+/*Scroll*/
+#panel,#flip
+{
+padding:5px;
+width:190px;
+text-align:center;
+background-color:#e5eecc;
+border:solid 1px #c3c3c3;
+}
+#panel
+{
+width:190px;
+padding:0;
+display:none;
+}
+
+/*Login page*/
+
+#login-container{
+	width: 250px;
+	height: 250px;
+	padding: 5px;
+	margin: 0 auto;
+	background-color:#C0C0C0;
+	border: 2px solid #000000;
+	-moz-border-radius:6px;
+	border-radius:6px 5px;
+
+
+}
+/*Rest of pages*/
+
+#container{
+	margin: 0 auto;
+	padding:15px;
+ 	width: 800px;
+ 	height:400px;
+	background-color:#C0C0C0;
+	border: 1px solid #000;
+	-moz-border-radius:6px;
+	border-radius:6px 5px;
+}
+/*TABLE*/
+/*Top menu*/
+#container-menu{
+ 	width: 825px;
+ 	height:40;
+ 	margin:0 auto;
+	background-color:#000;
+	-moz-border-radius:6px;
+	border-radius:6px 5px;
+}
+ul{	
+	width:825px;
+	height:40px;
+	margin: 0 auto;
+	padding:0;
+	float:left;
+	background: url("1.gif") repeat-x center;
+
+}
+li{
+	float:left;
+	display:inline;
+}
+
+ul, ul li{
+	display: block;
+	list-style: none;
+}
+ul li.logout{
+	float:right;
+	height:40px;
+	
+}
+ul a:link, ul a:visited {
+	text-decoration: none;
+	display: block;
+	font-weight: bold;
+	background: #000 url("1.gif") repeat-x center;
+	color: #fff;
+	padding: 11px 20px;
+	
+	
+}		
+ul a:hover {
+	background-color: #800;
+	background-image: url("2.gif");
+}
+
+/*Footer*/
+
+#footer{
+	width: 450px;
+	margin: 20px auto;
+	text-align: center;
+	color:#C0C0C0;
+	font-size:12px;
+}

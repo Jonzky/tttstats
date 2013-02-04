@@ -10,6 +10,7 @@
 | 	   beta testing       |
 | 	   by Handy_man       |
 \------------------------*/
+//include("/includes/header.php");
 
 /*SQL connection/ configuration goes here */
 
