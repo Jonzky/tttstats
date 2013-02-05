@@ -62,6 +62,8 @@ $topscorearray = mysql_fetch_array ( $topscore );
 $topscorefinal = $topscorearray['maxfrags'];
 $topscorenick = $topscorearray['nickname'];
 
+$top10Time = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`playtime` DESC LIMIT 0, 10 ");
+
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
 $roundstotal = array_sum($roundsarray);
@@ -97,5 +99,40 @@ echo "Total number of deaths : " . $deathtotal . "</br>";
 
 echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds. </br>";
 echo "The highest score on the server is: " . $topscorefinal . " This is held by " . $topscorenick . " think you can beat him? </br>";
+
+?>
+<h3>Top 10 play time</h3>
+<table border ="1">
+						<tr>
+						<th>Nickname</th>
+						<th>Playtime(hours, minutes, seconds)</th>
+						</tr>
+
+<?
+while($row1 = mysql_fetch_array( $top10Time )) {
+		$seconds1 = $row1['playtime'];
+			//start of math for hourse, minues and seconds
+				$hours1 = floor($seconds1 / (60 * 60));
+ 
+			// extract minutes
+				$divisor_for_minutes1 = $seconds1 % (60 * 60);
+				$minutes1 = floor($divisor_for_minutes1 / 60);
+ 
+			// extract the remaining seconds
+				$divisor_for_seconds1 = $divisor_for_minutes1 % 60;
+				$seconds1 = ceil($divisor_for_seconds1);
+	
+	
+	
+	
+	echo "<tr><td>"; 
+	echo $row1['nickname']; 
+	echo "<td> H:" . $hours1 . " M:" . $minutes1 . " S:" . $seconds1 . "</td>";
+} 
+
+
+
+
+
 
 ?>
