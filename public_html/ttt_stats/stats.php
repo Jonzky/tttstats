@@ -130,10 +130,12 @@ while($row1 = mysql_fetch_array( $top10Time )) {
 	
 	echo "<tr><td>"; 
 	echo $row1['nickname']; 
-	echo "</td>";
-	echo "<td> H:" . $hours1 . " M:" . $minutes1 . " S:" . $seconds1 . "</td>";
-	echo "</table>";
+	echo "</td><td>";
+	echo "H:" . $hours1 . " M:" . $minutes1 . " S:" . $seconds1 . "";
+	echo "</td></tr>";
+	
 } 
+echo "</table>";
 ?>
 
 <h3>Top 10 Score</h3>
@@ -149,11 +151,12 @@ while($row2 = mysql_fetch_array( $top10Score )) {
 	echo "<tr><td>"; 
 	echo $row2['nickname']; 
 	echo "<td> " . $row2['maxfrags'] . "</td>";
-	echo "</table>";
+	
 } 
+echo "</table>";
 ?>
 
-<h3>Top 10 Sore</h3>
+<h3>Top 10 Deaths</h3>
 <table border ="1">
 						<tr>
 						<th>Nickname</th>
@@ -165,12 +168,15 @@ while($row3 = mysql_fetch_array( $top10Deaths )) {
 		
 	echo "<tr><td>"; 
 	echo $row3['nickname']; 
-	echo "<td> " . $row3['deaths'] . "</td>";
-	echo "</table>";
+	echo "</td><td>";
+	echo "" . $row3['deaths'] . "";
+	echo "</td></tr>";
+	
 } 
+echo "</table>";
 ?>
 
-<h3>Top 10 Sore</h3>
+<h3>Top 10 Kills</h3>
 <table border ="1">
 						<tr>
 						<th>Nickname</th>
@@ -183,6 +189,7 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 	echo "<tr><td>"; 
 	echo $row4['nickname']; 
 	echo "<td> " . $row4['kills'] . "</td>";
-	echo "</table>";
+	
 } 
+echo "</table>";
 ?>
