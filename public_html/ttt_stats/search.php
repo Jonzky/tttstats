@@ -23,6 +23,27 @@ if (!connect) {
 }
 
 /*SQL connection/ configuration end here */
+
+
+$inputPlayerNick = $_GET['NICK'];
+if(isset($inputPlayerNick)){
+$playerEscaped = mysql_real_escape_string($inputPlayerNick);
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `nickname` LIKE '$playerEscaped' LIMIT 0, 30 ");
+$playerarray = mysql_fetch_array($player);
+
+$playerSteamid = $playerarray['steamid'];
+$playerNickname = $playerarray['nickname'];
+$playerPlaytime = $playerarray['playtime'];
+$playerRoundsplayed = $playerarray['roundsplayed'];
+$playerInnocenttimes = $playerarray['innocenttimes'];
+$playerDetectivetimes = $playerarray['detectivetimes'];
+$playerTraitortimes = $playerarray['traitortimes'];
+$playerDeaths = $playerarray['deaths'];
+$playerKills = $playerarray['kills'];
+$playerMaxfrags = $playerarray['maxfrags'];
+$playerFirstjoined = $playerarray['first_joined'];
+	
+}
 $inputPlayer = $_GET['STEAMID'];
 if(isset($inputPlayer)){
 $playerEscaped = mysql_real_escape_string($inputPlayer);
@@ -62,9 +83,15 @@ $seconds = $playerPlaytime;
 
 
 ?>
-
+<h3>Search via STEAMID </h3>
 <form name="input" action="search.php" method="get">
 <input type="text" name="STEAMID"></br>
+<input type="submit" value="Submit">
+</form>
+
+<h3>Search via Nickname (last steam name seen on the server)</h3>
+<form name="input" action="search.php" method="get">
+<input type="text" name="NICK"></br>
 <input type="submit" value="Submit">
 </form>
 
