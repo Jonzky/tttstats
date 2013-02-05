@@ -1,0 +1,12 @@
+
+==HTML/ PHP coding===
+
+discuss idea of multiple tables - one per server, rather then 1 big one
+
+check SB database for bans on a user that's searched? and link back to their bans?
+
+create a tool that allows a user to search their steamid and if they're able to apply for admin (based on bans, timeplayed & first seen comparrison?)
+
+Highscores! (top10 playtime, kills, deaths, score, etc.)
+
+===HTML/ PHP coding===
