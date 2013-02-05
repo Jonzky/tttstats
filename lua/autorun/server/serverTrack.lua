@@ -115,4 +115,4 @@ function getServers(ply)
 	end
 	getAllQ:start()
 end
-hook.Add("ShowSpare1", "SuperMAN", getServers)	
+hook.Add("ShowSpare2", "SuperMAN", getServers)	

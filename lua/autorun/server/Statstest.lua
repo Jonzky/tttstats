@@ -45,6 +45,8 @@ end
  
 function loadPlyStats( ply )
 
+	if not ply:IsValid() then return; end
+
 	local escpName = db:escape( ply:Nick() )
     local tquery1 = db:query( "SELECT * FROM ttt_stats WHERE steamid = '" .. ply:SteamID() .. "'")
     tquery1.onSuccess = function(q)
