@@ -9,4 +9,6 @@ create a tool that allows a user to search their steamid and if they're able to 
 
 Highscores! (top10 playtime, kills, deaths, score, etc.)
 
+look into the idea of a loading page that grabs steamid from the gmod client and then uses that in the SQL query (personal loading url)
+
 ===HTML/ PHP coding===
