@@ -1,22 +1,25 @@
-<?php
+<?php 
 /*------------------------\
 |        TTT STATS        |
 |	       Beta           |
 |=========================|
-|Â© 2013 SNGaming.org      |
+|© 2013 SNGaming.org      |
 |	All Rights Reserved   |
 |=========================|
 | 	Website printout      |
 | 	   beta testing       |
 | 	   by Handy_man       |
 \------------------------*/				
+
+include("./includes/header.php");
 ?>
-				
-				</div>
-				<div class="clearfooter"></div>
-				<div id="content_box_bottom">
-				<p id="lastmodified"> Copyright 2013 SNGaming.org</p><p>
-  </p>
-				</div>
-		</body>
-</html>
+	<div id="primary_content">
+	
+	<?php
+
+?>
+
+	
+							
+	</div>
+<?PHP include("./includes/footer.php");?>
