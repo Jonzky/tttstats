@@ -42,5 +42,4 @@
 						</div>
 					<div id="navigation">
 					<a href="index.php">Home</a>	<a href="about.php">About</a>	
-</div>
 					</div>
