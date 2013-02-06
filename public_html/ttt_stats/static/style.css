@@ -1,7 +1,7 @@
 /*General - on every page*/
 
 body{
-	background-image:url('scare.jpg');
+	--background-image:url('scare.jpg');
 	margin: -75px;
 	padding: 0;
 }
