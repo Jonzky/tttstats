@@ -1,0 +1,235 @@
+/**
+copyright 2012 thehiddennation.com (nah14@aber.ac.uk)
+*/
+
+/* GLOBAL VARIABLES SUCH AS BODY, HTML CHANGES */
+html{
+height: 100%;
+}
+
+body
+{
+	font-family: "Arial", "Helvetica", "Helvetica Neue";
+	font-size: 14px;
+	color: #333;
+	text-align: left;
+	background-image: url('../images/background.png');
+	margin: 0px 0 0 0;
+	height: 100%;
+}
+body a
+{
+	color: #ca4a0f;
+}
+body a:hover
+{
+	color: #d50b0b;
+}
+h1
+{
+	font-size: 30px;
+	line-height: 5px;
+	color: black;
+}
+h2
+{
+	font-size: 24px;
+	line-height: 10px;
+	color: black;
+}
+p#disclaimer	{
+font-style: italic;
+}
+p#centerhead	{
+text-align: center;
+font-size: 28px
+}
+
+.center	{
+text-align: center;
+font-size: 18px
+}
+.center1	{
+text-align: center;
+}
+.subsection	{
+text-align: left;
+font-size: 18px
+}
+.fleft	{
+float: left;
+}
+.fright	{
+float: right;
+}
+
+/* LAYOUT */
+div#page /*Sets entire page contents to be 80% use 100% inside of this div*/
+{
+	margin: 0 auto 0 auto;
+	width: 90%;
+	margin-bottom:-30px;
+	min-height: 100%; /*forces footer to the bottom of the page*/
+}
+div#site_title/*Website title could change to image?*/
+{
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 21px;
+	line-height: 15px;
+	margin: 10px 0 0 0;
+	float:left;
+	clear:right;
+	
+}
+div#navigation
+{
+	margin: 40px 30% 35px 30%;
+	text-align: center;
+	font-size: 18px;
+	/* ROUNDED CORNERS */
+	-moz-border-radius: 24px;
+	-webkit-border-radius: 24px;
+	border-radius: 24px;
+	/* DROP SHADOW */
+	-moz-box-shadow: 0px 0px 14px #000000;
+	-webkit-box-shadow: 0px 0px 14px #000000;
+	box-shadow: 0px 0px 14px #000000;
+	/* OTHER */
+	background-color: white;
+	padding: 5px;
+	opacity: 0.9;
+
+
+}
+
+div#logo
+{
+text-align: center;
+}
+
+div#total-right
+{
+text-align: right;
+float: right;
+}
+
+div#login
+{
+	text-align: left;
+	font-size: 16px;
+	margin-top: 42px;
+	margin-bottom: 35px;
+	/* ROUNDED CORNERS */
+	-moz-border-radius: 24px;
+	-webkit-border-radius: 24px;
+	border-radius: 24px;
+	/* DROP SHADOW */
+	-moz-box-shadow: 0px 0px 14px #000000;
+	-webkit-box-shadow: 0px 0px 14px #000000;
+	box-shadow: 0px 0px 14px #000000;
+	/* OTHER */
+	background-color: white;
+	padding: 5px;
+	opacity: 0.9;
+	float:right;
+	
+}
+
+div#primary_content
+{
+margin: auto auto auto auto;
+
+	/* ROUNDED CORNERS */
+	-moz-border-radius: 24px;
+	-webkit-border-radius: 24px;
+	border-radius: 24px;
+	/* DROP SHADOW */
+	-moz-box-shadow: 0px 0px 14px #000000;
+	-webkit-box-shadow: 0px 0px 14px #000000;
+	box-shadow: 0px 0px 14px #000000;
+	/* OTHER */
+	background-color: white;
+	padding: 20px;
+	opacity: 0.9;
+
+}
+
+div#checkout-left
+{
+float: left;
+text-align: left;
+}
+
+div#checkout-right
+{
+text-align: right;
+}
+
+div#primary_content_basket
+{
+margin: auto auto auto auto;
+
+	/* ROUNDED CORNERS */
+	-moz-border-radius: 24px;
+	-webkit-border-radius: 24px;
+	border-radius: 24px;
+	/* DROP SHADOW */
+	-moz-box-shadow: 0px 0px 14px #000000;
+	-webkit-box-shadow: 0px 0px 14px #000000;
+	box-shadow: 0px 0px 14px #000000;
+	/* OTHER */
+	background-color: white;
+	padding: 20px;
+	opacity: 0.9;
+	text-align: center;
+}
+
+/* FOOTER LAYOUT */
+#content_box_bottom /*footer of the page*/ 
+{
+				
+			/* ROUNDED CORNERS */
+			-moz-border-radius: 9px;
+			-webkit-border-radius: 9px;
+			border-radius: 9px;
+			/* DROP SHADOW */
+			-moz-box-shadow: 0px 0px 14px #000000;
+			-webkit-box-shadow: 0px 0px 14px #000000;
+			box-shadow: 0px 0px 14px #000000;
+			/* OTHER */
+			background-color: #000000;
+			padding: 2px;
+			width: 90%;
+			color: #ffffff;
+			text-align: center;
+			margin: auto auto auto auto;
+}
+
+table{
+width: 100%;
+}
+h2
+{
+text-align: center;
+}
+tr:nth-child(even) {
+background: #CCC
+}
+tr:nth-child(odd) {
+background: #FFF
+}
+
+#container {
+min-height: 100%;
+margin-bottom: -20px;
+position: relative;
+}
+
+.clearfooter {
+height: 30px;
+clear: both;
+}
+
+

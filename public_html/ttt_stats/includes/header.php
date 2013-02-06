@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link href="css/main.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="static/main.css" media="screen" rel="stylesheet" type="text/css" />
 		<?php
 		echo "<script type='text/javascript' src='scripts/script.js'></script>";
 		?>
