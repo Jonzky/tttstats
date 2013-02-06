@@ -19,9 +19,6 @@ include("./includes/config.php");
 	<head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link href="static/main.css" media="screen" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="/static/jquerycssmenu.css" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-	<script type="text/javascript" src="jquerycssmenu.js"></script>
 		<title>[Awesome Stats!] Trouble in Terrorist Town</title>
 	</head>
 			<body>
