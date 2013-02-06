@@ -1,5 +1,5 @@
 /**
-copyright 2012 thehiddennation.com (nah14@aber.ac.uk)
+copyright 2013 thehiddennation.com (Handy_man - administrator@thehiddennation.com)
 */
 
 /* GLOBAL VARIABLES SUCH AS BODY, HTML CHANGES */
@@ -13,7 +13,7 @@ body
 	font-size: 14px;
 	color: #333;
 	text-align: left;
-	background-image: url('../images/background.png');
+	background-image: url('../static/images/background.png');
 	margin: 0px 0 0 0;
 	height: 100%;
 }
