@@ -79,7 +79,7 @@ $seconds = $timetotal;
 /*Maths for functions end here */
 
 /*print statements */
-
+echo "<div id='primary_content'>";
 echo "Number of unique users : " . $uniqueusers . "</br>";
 echo "Total number of kills : " . $killstotal . "</br>";
 echo "Total number of innocents : " . $innocenttotal . "</br>";
@@ -180,6 +180,6 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 	
 } 
 echo "</table>";
-
+echo "</div>";
 include("./includes/footer.php");
 ?>

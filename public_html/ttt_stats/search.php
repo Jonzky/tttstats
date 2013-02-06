@@ -72,6 +72,7 @@ $seconds = $playerPlaytime;
 
 
 ?>
+<div id="primary_content">
 <h3>Search via STEAMID </h3>
 <form name="input" action="search.php" method="get">
 <input type="text" name="STEAMID"></br>
@@ -115,7 +116,7 @@ echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
 echo "</tr>";
 echo "</table>";
-
+echo "</div>";
 
 include("./includes/footer.php");
 ?>
