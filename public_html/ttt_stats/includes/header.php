@@ -39,5 +39,5 @@ include("./includes/config.php");
 							
 						</div>
 					<div id="navigation">
-					<a href="index.php">Home</a>	<a href="about.php">About</a>	
+					<a href="index.php">Home</a>	<a href="about.php">About</a>	<a href="stats.php">Stats</a>	<a href="search.php">search</a>		
 					</div>
