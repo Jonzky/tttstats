@@ -180,4 +180,6 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 	
 } 
 echo "</table>";
+
+include("./includes/footer.php");
 ?>

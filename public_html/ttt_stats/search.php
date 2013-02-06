@@ -10,20 +10,9 @@
 | 	   beta testing       |
 | 	   by Handy_man       |
 \------------------------*/
-//include("/includes/header.php");
+include("./includes/header.php");
 
-/*SQL connection/ configuration goes here */
-
-$connect = mysql_connect("127.0.0.1", "handyman_ttt", "3213560921*+*");
-$db_select = mysql_select_db('handyman_ttt_stats');
-if (!connect) {
-
-	die('ERROR, Contact Handy_man immediately' . mysql_error());
-	
-}
-
-/*SQL connection/ configuration end here */
-
+/*Search variable go here */
 
 $inputPlayerNick = $_GET['NICK'];
 if(isset($inputPlayerNick)){
@@ -63,7 +52,7 @@ $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
 	
 }
-
+/*Search variable end here */
 	
 /*Maths for any functions go here */
 
@@ -127,4 +116,6 @@ echo "<td>" . $playerFirstjoined . "</td>";
 echo "</tr>";
 echo "</table>";
 
+
+include("./includes/footer.php");
 ?>
