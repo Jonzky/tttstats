@@ -38,6 +38,11 @@ if(isset($inputPlayer)){
 $playerEscaped = mysql_real_escape_string($inputPlayer);
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
 $playerarray = mysql_fetch_array($player);
+mysql_close($connect);
+include("./includes/config_sb.php");
+
+$banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerEscaped'");
+$bannedTotal = mysql_num_rows($banned);
 
 $playerSteamid = $playerarray['steamid'];
 $playerNickname = $playerarray['nickname'];
@@ -99,6 +104,7 @@ $seconds = $playerPlaytime;
 						<th>Total Kills</th>
 						<th>Highest Score</th>
 						<th>First seen in the server</th>
+						<th>Number of Bans</th>
 						</tr>
 
 <?
@@ -114,6 +120,7 @@ echo "<td>" . $playerDeaths . "</td>";
 echo "<td>" . $playerKills . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
+echo "<td>" . $bannedTotal . "</td>";
 echo "</tr>";
 echo "</table>";
 echo "</div>";

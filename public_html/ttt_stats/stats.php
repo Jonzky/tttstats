@@ -156,10 +156,7 @@ while($row3 = mysql_fetch_array( $top10Deaths )) {
 		
 	echo "<tr><td>"; 
 	echo $row3['nickname']; 
-	echo "</td><td>";
-	echo "" . $row3['deaths'] . "";
-	echo "</td></tr>";
-	
+	echo "<td> " . $row3['deaths'] . "</td>";
 } 
 echo "</table>";
 ?>
