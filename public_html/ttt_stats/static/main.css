@@ -115,11 +115,11 @@ text-align: right;
 float: right;
 }
 
-div#login
+div#search
 {
 	text-align: left;
 	font-size: 16px;
-	margin-top: 42px;
+	margin-top: 35px;
 	margin-bottom: 35px;
 	/* ROUNDED CORNERS */
 	-moz-border-radius: 24px;
@@ -134,6 +134,28 @@ div#login
 	padding: 5px;
 	opacity: 0.9;
 	float:right;
+	
+}
+
+div#icons
+{
+	text-align: left;
+	font-size: 16px;
+	margin-top: 35px;
+	margin-bottom: 35px;
+	/* ROUNDED CORNERS */
+	-moz-border-radius: 24px;
+	-webkit-border-radius: 24px;
+	border-radius: 24px;
+	/* DROP SHADOW */
+	-moz-box-shadow: 0px 0px 14px #000000;
+	-webkit-box-shadow: 0px 0px 14px #000000;
+	box-shadow: 0px 0px 14px #000000;
+	/* OTHER */
+	background-color: white;
+	padding: 5px;
+	opacity: 0.9;
+	float:left;
 	
 }
 

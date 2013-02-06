@@ -14,8 +14,6 @@
 include("./includes/header.php");
 ?>
 							<div id="primary_content">
-							<?php 
-							
-							?>
+							<p>Welcome to Handy_man's and Jonzky's Trouble in Terrorist Town Stat tracking website!</p>
 						</div>
 				<?PHP include("./includes/footer.php");?>
