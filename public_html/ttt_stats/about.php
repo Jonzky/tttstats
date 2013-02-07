@@ -1,14 +1,14 @@
 <?php 
 /*------------------------\
 |        TTT STATS        |
-|	       Beta           |
+|          Beta           |
 |=========================|
 |© 2013 SNGaming.org      |
-|	All Rights Reserved   |
+|   All Rights Reserved   |
 |=========================|
-| 	Website printout      |
-| 	   beta testing       |
-| 	   by Handy_man       |
+|   Website printout      |
+|      beta testing       |
+|      by Handy_man       |
 \------------------------*/				
 
 include("./includes/header.php");
