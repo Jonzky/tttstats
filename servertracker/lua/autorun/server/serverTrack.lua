@@ -99,4 +99,27 @@ function getServers(ply)
 	end
 	getAllQ:start()
 end
-hook.Add("ShowSpare2", "SuperMANBroswer", getServers)	
+
+local adverts = {
+"To view the server browser type /servers in chat!",
+"Want to play a different gamemode? Type /servers in chat!"
+}
+
+function superAd()
+	for k,v in pairs(player.GetAll()) do
+		v:ChatPrint(tostring(table.Random(adverts)))
+	end
+end
+timer.Create( "SuperADD", 120, 0, superAd)
+
+local function chatCom( ply, text, toall )
+
+    local tab = string.Explode( " ", text );
+    if tab[1] == "!servers" or tab[1] == "/servers" then
+     
+        getServers(ply)
+     
+    end
+ 
+end
+hook.Add( "PlayerSay", "JonZChatCommands", chatCom)

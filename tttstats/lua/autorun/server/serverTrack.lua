@@ -112,8 +112,8 @@ function getServers(ply)
 end
 
 local adverts = {
-"To view the server browser type /servers in chat",
-"Want to play a different gamemode? Type /servers in chat"
+"To view the server browser type /servers in chat!",
+"Want to play a different gamemode? Type /servers in chat!"
 }
 
 function superAd()
