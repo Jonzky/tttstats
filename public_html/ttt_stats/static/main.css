@@ -236,6 +236,11 @@ h2
 {
 text-align: center;
 }
+
+h3
+{
+text-align: center;
+}
 tr:nth-child(even) {
 background: #CCC
 }

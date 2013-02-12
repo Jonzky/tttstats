@@ -22,8 +22,6 @@ $authid = (bcsub($communityid, '76561197960265728')-$authserver)/2;
 //Concatenate the STEAM_ prefix and the first number, which is always 0, as well as colons with the other two numbers
 $steamid = "STEAM_0:$authserver:$authid";
 
-$mapname = $_GET["mapname"];
-
 /*Getting our player data!*/
 $inputPlayer = $steamid;
 if(isset($inputPlayer)){
@@ -70,30 +68,7 @@ $seconds = $playerPlaytime;
 
 ?>
 <div id="primary_content">
-<h2>This should be getting your SteamID via $_GET data, will only work while in garry's mod</h2>
-
-<?
-echo $communityid;
-echo "</br>";
-echo $steamid;
-echo "</br>";
-echo $authserver;
-echo "</br>";
-
-
-
-$a = '1.234';
-$b = '5';
-
-echo bcsub($a, $b);     // -3
-echo "</br>";
-echo bcsub($a, $b, 4);  // -3.7660
-echo "</br>";
-echo "map name";
-echo $mapname;
-
-
-?>
+<h3>This is a test loadingurl outputting your personal TTT stats that you've accumulated over www.sngaming.org's TTT servers.</h3>
 
 <table border ="1">
 						<tr>
