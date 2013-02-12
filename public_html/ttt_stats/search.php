@@ -54,6 +54,7 @@ $playerDetectivetimes = $playerarray['detectivetimes'];
 $playerTraitortimes = $playerarray['traitortimes'];
 $playerDeaths = $playerarray['deaths'];
 $playerKills = $playerarray['kills'];
+$playerHeadshots = $playerarray['headshots'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
 	
