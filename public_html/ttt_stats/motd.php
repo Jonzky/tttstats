@@ -10,6 +10,12 @@
 | 	   beta testing       |
 | 	   by Handy_man       |
 \------------------------*/
+//When you're refferencing this page for a loadingurl you need to add: ?steamid=%s
+//an example of this would be: http://thehiddennation.com/ttt_stats/motd.php?steamid=%s
+//so for a loadingurl in the server.cfg your example would be:
+//sv_loadingurl "http://thehiddennation.com/ttt_stats/motd.php?steamid=%s"
+
+
 include("./includes/header.php");
 
 /*SteamID getting from _get data*/
