@@ -41,6 +41,10 @@ $kills = mysql_query('SELECT SUM(kills) FROM ttt_stats');
 $killsarray = mysql_fetch_array($kills);
 $killstotal = array_sum($killsarray);
 
+$head = mysql_query('SELECT SUM(headshots) FROM ttt_stats');
+$headarray = mysql_fetch_array($head);
+$headtotal = array_sum($headarray);
+
 $time = mysql_query('SELECT SUM(playtime) FROM ttt_stats');
 $timearray = mysql_fetch_array($time);
 $timetotal = array_sum($timearray);
@@ -86,6 +90,7 @@ echo "Total number of innocents : " . $innocenttotal . "</br>";
 echo "Total number of detectives : " . $detectivetotal . "</br>";
 echo "Total number of traitors : " . $traitortotal . "</br>";
 echo "Total number of deaths : " . $deathtotal . "</br>";
+echo "Total number of Headshots : " . $headtotal . "</br>";
 //echo "Total number of rounds played : " . $roundstotal . "</br>"; //bad stat, multiple players can play the same round thus it's untrue.
 
 echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds. </br>";
