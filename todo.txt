@@ -3,12 +3,10 @@
 
 discuss idea of multiple tables - one per server, rather then 1 big one
 
-check SB database for bans on a user that's searched? and link back to their bans?
+check SB database for bans on a user that's searched? and link back to their bans? -Done but on test database currently
 
 create a tool that allows a user to search their steamid and if they're able to apply for admin (based on bans, timeplayed & first seen comparrison?)
 
-Highscores! (top10 playtime, kills, deaths, score, etc.)
 
-look into the idea of a loading page that grabs steamid from the gmod client and then uses that in the SQL query (personal loading url)
 
 ===HTML/ PHP coding===
