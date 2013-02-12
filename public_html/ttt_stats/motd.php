@@ -69,7 +69,7 @@ $seconds = $playerPlaytime;
 
 ?>
 <div id="primary_content">
-<h1>This should be getting your SteamID via $_GET data, will only work while in garry's mod</h1>
+<h2>This should be getting your SteamID via $_GET data, will only work while in garry's mod</h2>
 
 <table border ="1">
 						<tr>
