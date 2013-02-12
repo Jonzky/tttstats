@@ -58,6 +58,8 @@ $top10Time = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`playti
 $top10Score = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 10 ");
 $top10Deaths = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
 $top10Kills = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
+$top10Head = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
+
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
@@ -179,6 +181,23 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 	echo "<tr><td>"; 
 	echo $row4['nickname']; 
 	echo "<td> " . $row4['kills'] . "</td>";
+	
+} 
+echo "</table>";
+?>
+<h3>Top 10 Headshots</h3>
+<table border ="1">
+						<tr>
+						<th>Nickname</th>
+						<th>Headshots</th>
+						</tr>
+
+<?
+while($row5 = mysql_fetch_array( $top10Head )) {
+		
+	echo "<tr><td>"; 
+	echo $row5['nickname']; 
+	echo "<td> " . $row5['headshots'] . "</td>";
 	
 } 
 echo "</table>";
