@@ -44,6 +44,7 @@ $playerTraitortimes = $playerarray['traitortimes'];
 $playerDeaths = $playerarray['deaths'];
 $playerKills = $playerarray['kills'];
 $playerMaxfrags = $playerarray['maxfrags'];
+$playerHeadshots = $playerarray['headshots'];
 $playerFirstjoined = $playerarray['first_joined'];
 	
 }
@@ -69,6 +70,8 @@ $seconds = $playerPlaytime;
 ?>
 <div id="primary_content">
 <h3>This is a test loadingurl outputting your personal TTT stats that you've accumulated over www.sngaming.org's TTT servers.</h3>
+</br>
+<h3>All "bans" are loaded from a test database, not SNGaming.org's current ban database</h3>
 
 <table border ="1">
 						<tr>
@@ -81,6 +84,7 @@ $seconds = $playerPlaytime;
 						<th>Times traitor</th>
 						<th>Total Deaths</th>
 						<th>Total Kills</th>
+						<th>Total Headshots</th>
 						<th>Highest Score</th>
 						<th>First seen in the server</th>
 						<th>Number of Bans</th>
@@ -97,6 +101,7 @@ echo "<td>" . $playerDetectivetimes . "</td>";
 echo "<td>" . $playerTraitortimes . "</td>";
 echo "<td>" . $playerDeaths . "</td>";
 echo "<td>" . $playerKills . "</td>";
+echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td>" . $bannedTotal . "</td>";

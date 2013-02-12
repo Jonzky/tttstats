@@ -29,6 +29,7 @@ $playerDetectivetimes = $playerarray['detectivetimes'];
 $playerTraitortimes = $playerarray['traitortimes'];
 $playerDeaths = $playerarray['deaths'];
 $playerKills = $playerarray['kills'];
+$playerHeadshots = $playerarray['headshots'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
 	
@@ -102,6 +103,7 @@ $seconds = $playerPlaytime;
 						<th>Times traitor</th>
 						<th>Total Deaths</th>
 						<th>Total Kills</th>
+						<th>Total Headshots</th>
 						<th>Highest Score</th>
 						<th>First seen in the server</th>
 						<th>Number of Bans</th>
@@ -118,6 +120,7 @@ echo "<td>" . $playerDetectivetimes . "</td>";
 echo "<td>" . $playerTraitortimes . "</td>";
 echo "<td>" . $playerDeaths . "</td>";
 echo "<td>" . $playerKills . "</td>";
+echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td>" . $bannedTotal . "</td>";
