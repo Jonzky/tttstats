@@ -11,7 +11,8 @@
 | 	   by Handy_man       |
 \------------------------*/
 
-/*SQL connection/ configuration goes here */
+/*SQL connection/ configuration goes here 
+change file name to config.php or change the include commands in every php file where required */
 
 $connect = mysql_connect("hostname/url", "username", "password");
 $db_select = mysql_select_db('databasename');
