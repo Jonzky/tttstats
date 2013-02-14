@@ -220,21 +220,28 @@ function getPlayTime(ply)
 end
 
 function PrintStats(ply, cmd, arg )
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Time played: " .. (math.Round(getPlayTime(ply)/60)) );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Rounds played: " .. ply.roundsplayed );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Innocent times: " .. ply.timesInno );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Detective Times: " .. ply.timesDetective );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Traitor Times: " .. ply.timesTraitor );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Deaths: " .. ply.deaths );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Kills: " .. ply.murders );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Headshots: " .. ply.headshots );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "High Score: " .. ply.maxfrags );
+	if ply.dbReady then
+	
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Time played: " .. (math.Round(getPlayTime(ply)/60)) );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Rounds played: " .. ply.roundsplayed );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Innocent times: " .. ply.timesInno );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Detective Times: " .. ply.timesDetective );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Traitor Times: " .. ply.timesTraitor );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Deaths: " .. ply.deaths );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Kills: " .. ply.murders );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Headshots: " .. ply.headshots );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "High Score: " .. ply.maxfrags );
+	else
+		ply:PrintMessage( HUD_PRINTCONSOLE, "An error has occured please rejoin in order to be tracked" );
+
+	end
 end
 concommand.Add( "printStats", PrintStats )
 
 local function pGone( ply )
-	savePlyStats(ply);
-	
+	if ply.dbReady then
+		savePlyStats(ply);
+	end	
 end
 
 local function pCome( ply )
