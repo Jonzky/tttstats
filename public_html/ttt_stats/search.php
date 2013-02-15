@@ -32,7 +32,7 @@ $playerKills = $playerarray['kills'];
 $playerHeadshots = $playerarray['headshots'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
-	
+
 }
 $inputPlayer = $_GET['STEAMID'];
 if(isset($inputPlayer)){
@@ -57,7 +57,7 @@ $playerKills = $playerarray['kills'];
 $playerHeadshots = $playerarray['headshots'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
-	
+$sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
 }
 /*Search variable end here */
 	
@@ -124,9 +124,10 @@ echo "<td>" . $playerKills . "</td>";
 echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
-echo "<td>" . $bannedTotal . "</td>";
+echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
 echo "</tr>";
 echo "</table>";
+echo $sb_search_string;
 echo "</div>";
 
 include("./includes/footer.php");
