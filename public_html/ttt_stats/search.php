@@ -127,7 +127,6 @@ echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
 echo "</tr>";
 echo "</table>";
-echo $sb_search_string;
 echo "</div>";
 
 include("./includes/footer.php");
