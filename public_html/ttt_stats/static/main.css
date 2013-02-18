@@ -173,7 +173,7 @@ margin: auto auto auto auto;
 	box-shadow: 0px 0px 14px #000000;
 	/* OTHER */
 	background-color: white;
-	padding: 20px;
+	padding: 10px;
 	opacity: 0.9;
 
 }
@@ -230,8 +230,31 @@ margin: auto auto auto auto;
 }
 
 table{
-width: 100%;
+    width: 100%;
+    border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0; 
 }
+td{
+width: 50%;
+}
+th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+
+th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
 h2
 {
 text-align: center;

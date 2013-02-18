@@ -145,7 +145,7 @@ while($row2 = mysql_fetch_array( $top10Score )) {
 		
 	echo "<tr><td>"; 
 	echo $row2['nickname']; 
-	echo "<td> " . $row2['maxfrags'] . "</td>";
+	echo "</td><td> " . $row2['maxfrags'] . "</td> </tr>";
 	
 } 
 echo "</table>";
@@ -163,7 +163,7 @@ while($row3 = mysql_fetch_array( $top10Deaths )) {
 		
 	echo "<tr><td>"; 
 	echo $row3['nickname']; 
-	echo "<td> " . $row3['deaths'] . "</td>";
+	echo "</td><td> " . $row3['deaths'] . "</td> </tr>";
 } 
 echo "</table>";
 ?>
@@ -180,7 +180,7 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 		
 	echo "<tr><td>"; 
 	echo $row4['nickname']; 
-	echo "<td> " . $row4['kills'] . "</td>";
+	echo "</td><td> " . $row4['kills'] . "</td></tr>";
 	
 } 
 echo "</table>";
@@ -197,7 +197,7 @@ while($row5 = mysql_fetch_array( $top10Head )) {
 		
 	echo "<tr><td>"; 
 	echo $row5['nickname']; 
-	echo "<td> " . $row5['headshots'] . "</td>";
+	echo "</td><td> " . $row5['headshots'] . "</td></tr>";
 	
 } 
 echo "</table>";
