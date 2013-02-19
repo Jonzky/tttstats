@@ -41,6 +41,10 @@ $kills = mysql_query('SELECT SUM(kills) FROM ttt_stats');
 $killsarray = mysql_fetch_array($kills);
 $killstotal = array_sum($killsarray);
 
+$head = mysql_query('SELECT SUM(headshots) FROM ttt_stats');
+$headarray = mysql_fetch_array($head);
+$headtotal = array_sum($headarray);
+
 $time = mysql_query('SELECT SUM(playtime) FROM ttt_stats');
 $timearray = mysql_fetch_array($time);
 $timetotal = array_sum($timearray);
@@ -54,6 +58,8 @@ $top10Time = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`playti
 $top10Score = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 10 ");
 $top10Deaths = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
 $top10Kills = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
+$top10Head = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
+
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
@@ -86,6 +92,7 @@ echo "Total number of innocents : " . $innocenttotal . "</br>";
 echo "Total number of detectives : " . $detectivetotal . "</br>";
 echo "Total number of traitors : " . $traitortotal . "</br>";
 echo "Total number of deaths : " . $deathtotal . "</br>";
+echo "Total number of Headshots : " . $headtotal . "</br>";
 //echo "Total number of rounds played : " . $roundstotal . "</br>"; //bad stat, multiple players can play the same round thus it's untrue.
 
 echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds. </br>";
@@ -138,7 +145,7 @@ while($row2 = mysql_fetch_array( $top10Score )) {
 		
 	echo "<tr><td>"; 
 	echo $row2['nickname']; 
-	echo "<td> " . $row2['maxfrags'] . "</td>";
+	echo "</td><td> " . $row2['maxfrags'] . "</td> </tr>";
 	
 } 
 echo "</table>";
@@ -156,7 +163,7 @@ while($row3 = mysql_fetch_array( $top10Deaths )) {
 		
 	echo "<tr><td>"; 
 	echo $row3['nickname']; 
-	echo "<td> " . $row3['deaths'] . "</td>";
+	echo "</td><td> " . $row3['deaths'] . "</td> </tr>";
 } 
 echo "</table>";
 ?>
@@ -173,7 +180,24 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 		
 	echo "<tr><td>"; 
 	echo $row4['nickname']; 
-	echo "<td> " . $row4['kills'] . "</td>";
+	echo "</td><td> " . $row4['kills'] . "</td></tr>";
+	
+} 
+echo "</table>";
+?>
+<h3>Top 10 Headshots</h3>
+<table border ="1">
+						<tr>
+						<th>Nickname</th>
+						<th>Headshots</th>
+						</tr>
+
+<?
+while($row5 = mysql_fetch_array( $top10Head )) {
+		
+	echo "<tr><td>"; 
+	echo $row5['nickname']; 
+	echo "</td><td> " . $row5['headshots'] . "</td></tr>";
 	
 } 
 echo "</table>";

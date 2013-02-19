@@ -1,40 +1,35 @@
 <?php
 /*------------------------\
 |        TTT STATS        |
-|	   Beta           |
+|	       Beta           |
 |=========================|
 |© 2013 SNGaming.org      |
-|   All Rights Reserved   |
+|	All Rights Reserved   |
 |=========================|
-|   Website printout      |
-|      beta testing       |
-|      by Handy_man       |
+| 	Website printout      |
+| 	   beta testing       |
+| 	   by Handy_man       |
 \------------------------*/
+//When you're refferencing this page for a loadingurl you need to add: ?steamid=%s
+//an example of this would be: http://thehiddennation.com/ttt_stats/motd.php?steamid=%s
+//so for a loadingurl in the server.cfg your example would be:
+//sv_loadingurl "http://thehiddennation.com/ttt_stats/motd.php?steamid=%s"
+
+
 include("./includes/header.php");
 
-/*Search variable go here */
+/*SteamID getting from _get data*/
+//Get the steamid (really the community id)
+$communityid = $_GET["steamid"];
+//See if the second number in the steamid (the auth server) is 0 or 1. Odd is 1, even is 0
+$authserver = bcsub($communityid, '76561197960265728') & 1;
+//Get the third number of the steamid
+$authid = (bcsub($communityid, '76561197960265728')-$authserver)/2;
+//Concatenate the STEAM_ prefix and the first number, which is always 0, as well as colons with the other two numbers
+$steamid = "STEAM_0:$authserver:$authid";
 
-$inputPlayerNick = $_GET['NICK'];
-if(isset($inputPlayerNick)){
-$playerEscaped = mysql_real_escape_string($inputPlayerNick);
-$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `nickname` LIKE '$playerEscaped' LIMIT 0, 30 ");
-$playerarray = mysql_fetch_array($player);
-
-$playerSteamid = $playerarray['steamid'];
-$playerNickname = $playerarray['nickname'];
-$playerPlaytime = $playerarray['playtime'];
-$playerRoundsplayed = $playerarray['roundsplayed'];
-$playerInnocenttimes = $playerarray['innocenttimes'];
-$playerDetectivetimes = $playerarray['detectivetimes'];
-$playerTraitortimes = $playerarray['traitortimes'];
-$playerDeaths = $playerarray['deaths'];
-$playerKills = $playerarray['kills'];
-$playerHeadshots = $playerarray['headshots'];
-$playerMaxfrags = $playerarray['maxfrags'];
-$playerFirstjoined = $playerarray['first_joined'];
-
-}
-$inputPlayer = $_GET['STEAMID'];
+/*Getting our player data!*/
+$inputPlayer = $steamid;
 if(isset($inputPlayer)){
 $playerEscaped = mysql_real_escape_string($inputPlayer);
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
@@ -54,14 +49,10 @@ $playerDetectivetimes = $playerarray['detectivetimes'];
 $playerTraitortimes = $playerarray['traitortimes'];
 $playerDeaths = $playerarray['deaths'];
 $playerKills = $playerarray['kills'];
-$playerHeadshots = $playerarray['headshots'];
 $playerMaxfrags = $playerarray['maxfrags'];
+$playerHeadshots = $playerarray['headshots'];
 $playerFirstjoined = $playerarray['first_joined'];
-<<<<<<< HEAD
- $playerKills / $playerDeaths = $playerKDR;
-=======
-$sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
->>>>>>> 8817aa38d829a545086e6bf1e56bc9d8abdb1e4e
+	
 }
 /*Search variable end here */
 	
@@ -84,18 +75,9 @@ $seconds = $playerPlaytime;
 
 ?>
 <div id="primary_content">
-<h3>Search via STEAMID </h3>
-<form name="input" action="search.php" method="get">
-<input type="text" name="STEAMID"></br>
-<input type="submit" value="Submit">
-</form>
-
-<h3>Search via Nickname (last steam name seen on the server)</h3>
-<form name="input" action="search.php" method="get">
-<input type="text" name="NICK"></br>
-<input type="submit" value="Submit">
-</form>
-
+<h3>This is a test loadingurl outputting your personal TTT stats that you've accumulated over www.sngaming.org's TTT servers.</h3>
+</br>
+<h3>All "bans" are loaded from a test database, not SNGaming.org's current ban database</h3>
 
 <table border ="1">
 						<tr>
@@ -128,10 +110,9 @@ echo "<td>" . $playerKills . "</td>";
 echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
-echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
+echo "<td>" . $bannedTotal . "</td>";
 echo "</tr>";
 echo "</table>";
-echo $playerKDR;
 echo "</div>";
 
 include("./includes/footer.php");

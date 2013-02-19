@@ -66,6 +66,8 @@ function loadPlyStats( ply )
 				ply.murders = 0;
 				ply.maxfrags = 0;
 				ply.headshots = 0;
+				ply.dbReady = true;
+				
 			
 			end
 			tquery2.onError = function(q,e) 
@@ -94,6 +96,8 @@ function loadPlyStats( ply )
 					ply.maxfrags = row['maxfrags'];
 					ply.headshots = row['headshots'];
 					ply.timeCheck = CurTime();
+					ply.dbReady = true;
+
   
 				end
 			end	
@@ -116,15 +120,16 @@ end
 local function DeathStat( victim, weapon, killer )
  
 	if GAMEMODE.round_state == ROUND_ACTIVE then
-		
-		if killer:IsValid() and killer.murders != nil then
+		if killer:IsValid() and killer.dbReady and killer.murders != nil then
 			if killer:SteamID() != victim:SteamID() then
 				if victim.lastHitGroup && victim.lastHitGroup == HITGROUP_HEAD then
 					killer.headshots = killer.headshots + 1;
 				end
 				killer.murders = killer.murders + 1;
 			end
-		end		
+		end	
+			
+		if not victim.dbReady then return; end
 		victim.deaths = victim.deaths + 1;
 		savePlyStats(victim);
 	end	
@@ -133,23 +138,27 @@ end
 
 local function roundStart()
 	for _, ply in pairs(player.GetAll()) do
-		if ply:IsTraitor() then
-			ply.timesTraitor = ply.timesTraitor + 1;
-		elseif ply:IsDetective() then
-			ply.timesDetective = ply.timesDetective + 1;
-		else
-			ply.timesInno = ply.timesInno + 1;
+		if ply.dbReady then
+			if ply:IsTraitor() then
+				ply.timesTraitor = ply.timesTraitor + 1;
+			elseif ply:IsDetective() then
+				ply.timesDetective = ply.timesDetective + 1;
+			else
+				ply.timesInno = ply.timesInno + 1;
+			end	
+			ply.roundsplayed = ply.roundsplayed + 1;
 		end	
-		ply.roundsplayed = ply.roundsplayed + 1;
 	end	
 end
 
 local function roundEnd(result)
 	for _, ply in pairs(player.GetAll()) do
-		if ply:Frags() > ply.maxfrags or ply:Alive() then
-			savePlyStats(ply);
+		if ply.dbReady then
+			if ply:Frags() > ply.maxfrags or ply:Alive() then
+				savePlyStats(ply);
+			end
 		end
-	end
+	end	
 end
 
 
@@ -211,21 +220,28 @@ function getPlayTime(ply)
 end
 
 function PrintStats(ply, cmd, arg )
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Time played: " .. (math.Round(getPlayTime(ply)/60)) );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Rounds played: " .. ply.roundsplayed );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Innocent times: " .. ply.timesInno );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Detective Times: " .. ply.timesDetective );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Traitor Times: " .. ply.timesTraitor );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Deaths: " .. ply.deaths );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Kills: " .. ply.murders );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "Headshots: " .. ply.headshots );
-	ply:PrintMessage( HUD_PRINTCONSOLE, "High Score: " .. ply.maxfrags );
+	if ply.dbReady then
+	
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Time played: " .. (math.Round(getPlayTime(ply)/60)) );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Rounds played: " .. ply.roundsplayed );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Innocent times: " .. ply.timesInno );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Detective Times: " .. ply.timesDetective );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Traitor Times: " .. ply.timesTraitor );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Deaths: " .. ply.deaths );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Kills: " .. ply.murders );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Headshots: " .. ply.headshots );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "High Score: " .. ply.maxfrags );
+	else
+		ply:PrintMessage( HUD_PRINTCONSOLE, "An error has occured please rejoin in order to be tracked" );
+
+	end
 end
 concommand.Add( "printStats", PrintStats )
 
 local function pGone( ply )
-	savePlyStats(ply);
-	
+	if ply.dbReady then
+		savePlyStats(ply);
+	end	
 end
 
 local function pCome( ply )
