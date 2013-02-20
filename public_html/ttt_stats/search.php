@@ -57,12 +57,10 @@ $playerKills = $playerarray['kills'];
 $playerHeadshots = $playerarray['headshots'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
-<<<<<<< HEAD
- $playerKills / $playerDeaths = $playerKDR;
-=======
+
 $sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
->>>>>>> 8817aa38d829a545086e6bf1e56bc9d8abdb1e4e
 }
+$playerKDR = $playerKills / $playerDeaths;
 /*Search variable end here */
 	
 /*Maths for any functions go here */
@@ -108,6 +106,7 @@ $seconds = $playerPlaytime;
 						<th>Times traitor</th>
 						<th>Total Deaths</th>
 						<th>Total Kills</th>
+						<th>KDR K/D</th>
 						<th>Total Headshots</th>
 						<th>Highest Score</th>
 						<th>First seen in the server</th>
@@ -125,13 +124,13 @@ echo "<td>" . $playerDetectivetimes . "</td>";
 echo "<td>" . $playerTraitortimes . "</td>";
 echo "<td>" . $playerDeaths . "</td>";
 echo "<td>" . $playerKills . "</td>";
+echo "<td>" . $playerKDR . "</td>";
 echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
 echo "</tr>";
 echo "</table>";
-echo $playerKDR;
 echo "</div>";
 
 include("./includes/footer.php");
