@@ -60,6 +60,8 @@ $top10Deaths = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`deat
 $top10Kills = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
 $top10Head = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
 
+$KDR = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `kills` DESC, `deaths` ASC LIMIT 0, 10");
+
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
