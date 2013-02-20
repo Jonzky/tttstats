@@ -60,8 +60,13 @@ $playerFirstjoined = $playerarray['first_joined'];
 
 $sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
 }
+if ($playerKills or $playerDeaths != 0){
 $playerKDRTrun = $playerKills / $playerDeaths;
 $playerKDR = round($playerKDRTrun, 2);
+}
+else {
+$playerKDR = "N/A";
+}
 /*Search variable end here */
 	
 /*Maths for any functions go here */
