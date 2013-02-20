@@ -211,13 +211,16 @@ echo "</table>";
 						<th>KDR K/D</th>
 						</tr>
 <?
+$KDRArray = array[['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0]]; //10 array!
 while($rowK = mysql_fetch_array( $KDR )) {
-
+$PlyNick = $rokK['nickname'];
 $killCheck = $rowK['kills'];
 $deathCheck = $rowK['deaths'];
 
 $KDRMath = $killCheck / $deathCheck
 $KDRRounded = round($KDRMath, 2);
+foreach (
+
 
 }
 
