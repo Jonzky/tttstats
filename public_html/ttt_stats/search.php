@@ -158,9 +158,9 @@ echo "</table>";
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
         data.addRows([
-          ['Traitor', <?echo$playerInnocenttimes;?>],
+          ['Innocent', <?echo$playerInnocenttimes;?>],
           ['Detective', <?echo$playerDetectivetimes;?>],
-          ['Innocent', <?echo$playerTraitortimes;?>]
+          ['Traitor', <?echo$playerTraitortimes;?>]
         ]);
 
         // Set chart options
