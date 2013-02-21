@@ -205,7 +205,7 @@ while($row5 = mysql_fetch_array( $top10Head )) {
 } 
 echo "</table>";
 ?>
-<h3>Top 10 KDR</h3>
+<h3>Top 10 KDR (not sorted yet, can be seen in search)</h3>
 <table border ="1">
 						<tr>
 						<th>Nickname</th>
@@ -224,13 +224,10 @@ array_push($PlyArray, $PlyNick);
 array_push($KDRArray, $KDRRounded);
 }
 arsort($KDRArray);
-foreach($PlyArray as $val) {
-    print $val;
-	echo "</br>";
-	foreach ($KDRArray as $val){
-	 print $val;
-	echo "</br>";
-	}
+foreach($KDRArray as $val) {
+   // print $val;
+	//echo "</br>";
+
 	
 }
 //print_r($KDRArray);
