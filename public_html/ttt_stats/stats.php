@@ -49,7 +49,7 @@ $time = mysql_query('SELECT SUM(playtime) FROM ttt_stats');
 $timearray = mysql_fetch_array($time);
 $timetotal = array_sum($timearray);
 
-$topscore = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 1");
+$topscore = mysql_query("SELECT nickname, maxfrags FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 1");
 $topscorearray = mysql_fetch_array ( $topscore );
 $topscorefinal = $topscorearray['maxfrags'];
 $topscorenick = $topscorearray['nickname'];
@@ -59,7 +59,7 @@ $top10Score = mysql_query("SELECT nickname, maxfrags FROM `ttt_stats` ORDER BY `
 $top10Deaths = mysql_query("SELECT nickname, deaths FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
 $top10Kills = mysql_query("SELECT nickname, kills FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
 $top10Head = mysql_query("SELECT nickname, headshots FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
-$top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` ORDER BY `KDR` DESC LIMIT 0, 10");
+$top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` WHERE deaths >= '20' ORDER BY `KDR` DESC LIMIT 0, 10");
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
