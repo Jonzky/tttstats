@@ -61,7 +61,7 @@ $top10Kills = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`kills
 $top10Head = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
 
 //$KDR = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `kills` DESC, `deaths` ASC LIMIT 0, 10");
-$KDR = mysql_query("SELECT 'nickname', 'kills', 'deaths' FROM `ttt_stats`");
+$KDR = mysql_query("SELECT * FROM `ttt_stats` WHERE 'kills' > '0' AND 'deaths' > '0'");
 // New Query? SELECT 'nickname','kills','deaths' FROM `ttt_stats` WHERE 'kills' > '0' AND 'deaths' > '0' 
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
@@ -213,21 +213,21 @@ echo "</table>";
 						</tr>
 <?
 $KDRArray = array();
-
+$PlyArray = array();
 while($rowK = mysql_fetch_array( $KDR )) {
 $PlyNick = $rokK['nickname'];
 $killCheck = $rowK['kills'];
 $deathCheck = $rowK['deaths'];
-
-if ($killCheck or $deathCheck = 0) {
-break;
-}
-
 $KDRMath = $killCheck / $deathCheck;
 $KDRRounded = round($KDRMath, 2);
-array_push($KDRArray, $PlyNick, $KDRRounded);
+array_push($PlyArray, $PlyNick);
+array_push($KDRArray, $KDRRounded);
+
 }
+arsort($KDRArray);
 print_r($KDRArray);
+echo "</br>";
+print_r($PlyArray);
 
 echo "</table>";
 echo "</div>";
