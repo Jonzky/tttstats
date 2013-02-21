@@ -11,6 +11,11 @@
 | 	   by Handy_man       |
 \------------------------*/
 include("./includes/header.php");
+/*Setup variables for SQL statements */
+//Used in KDR, basically low amount of deaths (1 or 2) are generally RDMer's in your server.
+//This variable allows for you to scale this to your liking, default is set to 30.
+$deathLimit = 30;
+
 
 /*Stats SQL queries all go here */
 
@@ -59,7 +64,7 @@ $top10Score = mysql_query("SELECT nickname, maxfrags FROM `ttt_stats` ORDER BY `
 $top10Deaths = mysql_query("SELECT nickname, deaths FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
 $top10Kills = mysql_query("SELECT nickname, kills FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
 $top10Head = mysql_query("SELECT nickname, headshots FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
-$top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` WHERE deaths >= '20' ORDER BY `KDR` DESC LIMIT 0, 10");
+$top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` WHERE deaths >= '$deathLimit' ORDER BY `KDR` DESC LIMIT 0, 10");
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
@@ -202,7 +207,7 @@ while($row5 = mysql_fetch_array( $top10Head )) {
 } 
 echo "</table>";
 ?>
-<h3>Top 10 KDR (not sorted yet, can be seen in search)</h3>
+<h3>Top 10 KDR (<?echo $deathLimit;?> deaths required before you're tracked in this stat.)</h3>
 <table border ="1">
 						<tr>
 						<th>Nickname</th>
