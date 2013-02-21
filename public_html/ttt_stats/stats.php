@@ -61,7 +61,7 @@ $top10Kills = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`kills
 $top10Head = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
 
 //$KDR = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `kills` DESC, `deaths` ASC LIMIT 0, 10");
-$KDR = mysql_query("SELECT * FROM `ttt_stats` WHERE 'kills' > '0' AND 'deaths' > '0'");
+$KDR = mysql_query("SELECT * FROM `ttt_stats` WHERE `deaths` != 0 AND `kills` != 0");
 // New Query? SELECT 'nickname','kills','deaths' FROM `ttt_stats` WHERE 'kills' > '0' AND 'deaths' > '0' 
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
