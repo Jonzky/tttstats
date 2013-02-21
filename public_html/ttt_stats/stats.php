@@ -215,19 +215,27 @@ echo "</table>";
 $KDRArray = array();
 $PlyArray = array();
 while($rowK = mysql_fetch_array( $KDR )) {
-$PlyNick = $rokK['nickname'];
+$PlyNick = $rowK['nickname'];
 $killCheck = $rowK['kills'];
 $deathCheck = $rowK['deaths'];
 $KDRMath = $killCheck / $deathCheck;
 $KDRRounded = round($KDRMath, 2);
 array_push($PlyArray, $PlyNick);
 array_push($KDRArray, $KDRRounded);
-
 }
 arsort($KDRArray);
-print_r($KDRArray);
+foreach($PlyArray as $val) {
+    print $val;
+	echo "</br>";
+	foreach ($KDRArray as $val){
+	 print $val;
+	echo "</br>";
+	}
+	
+}
+//print_r($KDRArray);
 echo "</br>";
-print_r($PlyArray);
+//print_r($PlyArray);
 
 echo "</table>";
 echo "</div>";
