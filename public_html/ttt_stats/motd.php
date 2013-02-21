@@ -54,6 +54,14 @@ $playerHeadshots = $playerarray['headshots'];
 $playerFirstjoined = $playerarray['first_joined'];
 	
 }
+
+if ($playerKills or $playerDeaths != 0){
+$playerKDRTrun = $playerKills / $playerDeaths;
+$playerKDR = round($playerKDRTrun, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
+}
+else {
+$playerKDR = "N/A";
+}
 /*Search variable end here */
 	
 /*Maths for any functions go here */
@@ -90,6 +98,7 @@ $seconds = $playerPlaytime;
 						<th>Times traitor</th>
 						<th>Total Deaths</th>
 						<th>Total Kills</th>
+						<th>KDR K/D</th>
 						<th>Total Headshots</th>
 						<th>Highest Score</th>
 						<th>First seen in the server</th>
@@ -107,6 +116,7 @@ echo "<td>" . $playerDetectivetimes . "</td>";
 echo "<td>" . $playerTraitortimes . "</td>";
 echo "<td>" . $playerDeaths . "</td>";
 echo "<td>" . $playerKills . "</td>";
+echo "<td>" . $playerKDR . "</td>";
 echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";

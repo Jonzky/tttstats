@@ -54,15 +54,12 @@ $topscorearray = mysql_fetch_array ( $topscore );
 $topscorefinal = $topscorearray['maxfrags'];
 $topscorenick = $topscorearray['nickname'];
 
-$top10Time = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`playtime` DESC LIMIT 0, 10 ");
-$top10Score = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 10 ");
-$top10Deaths = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
-$top10Kills = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
-$top10Head = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
-
-//$KDR = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `kills` DESC, `deaths` ASC LIMIT 0, 10");
-$KDR = mysql_query("SELECT * FROM `ttt_stats` WHERE `deaths` != 0 AND `kills` != 0");
-// New Query? SELECT 'nickname','kills','deaths' FROM `ttt_stats` WHERE 'kills' > '0' AND 'deaths' > '0' 
+$top10Time = mysql_query("SELECT nickname, playtime FROM `ttt_stats` ORDER BY `ttt_stats`.`playtime` DESC LIMIT 0, 10 ");
+$top10Score = mysql_query("SELECT nickname, maxfrags FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 10 ");
+$top10Deaths = mysql_query("SELECT nickname, deaths FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
+$top10Kills = mysql_query("SELECT nickname, kills FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
+$top10Head = mysql_query("SELECT nickname, headshots FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
+$top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` ORDER BY `KDR` DESC LIMIT 0, 10");
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
@@ -209,31 +206,25 @@ echo "</table>";
 <table border ="1">
 						<tr>
 						<th>Nickname</th>
+						<th>Kills</th>
+						<th>Deaths</th>
 						<th>KDR K/D</th>
 						</tr>
 <?
-$KDRArray = array();
-$PlyArray = array();
-while($rowK = mysql_fetch_array( $KDR )) {
-$PlyNick = $rowK['nickname'];
-$killCheck = $rowK['kills'];
-$deathCheck = $rowK['deaths'];
-$KDRMath = $killCheck / $deathCheck;
-$KDRRounded = round($KDRMath, 2);
-array_push($PlyArray, $PlyNick);
-array_push($KDRArray, $KDRRounded);
-}
-arsort($KDRArray);
-foreach($KDRArray as $val) {
-   // print $val;
-	//echo "</br>";
-
+while($row6 = mysql_fetch_array( $top10KDR )) {
+		
+	echo "<tr><td>"; 
+	echo $row6['nickname']; 
+	echo "</td>";
+	echo "<td>"; 
+	echo $row6['kills']; 
+	echo "</td>";
+	echo "<td>"; 
+	echo $row6['deaths']; 
+	echo "</td>
+	<td> " . $row6['KDR'] . "</td></tr>";
 	
-}
-//print_r($KDRArray);
-echo "</br>";
-//print_r($PlyArray);
-
+} 
 echo "</table>";
 echo "</div>";
 include("./includes/footer.php");
