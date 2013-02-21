@@ -212,23 +212,23 @@ echo "</table>";
 						<th>KDR K/D</th>
 						</tr>
 <?
-//$KDRArray = array(['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0]); //10 array!
-/*
+$KDRArray = array();
+
 while($rowK = mysql_fetch_array( $KDR )) {
 $PlyNick = $rokK['nickname'];
 $killCheck = $rowK['kills'];
 $deathCheck = $rowK['deaths'];
 
+if ($killCheck or $deathCheck = 0) {
+break;
+}
+
 $KDRMath = $killCheck / $deathCheck;
 $KDRRounded = round($KDRMath, 2);
-
-foreach( ) {
-
+array_push($KDRArray, $PlyNick, $KDRRounded);
 }
+print_r($KDRArray);
 
-}
-
-*/
 echo "</table>";
 echo "</div>";
 include("./includes/footer.php");
