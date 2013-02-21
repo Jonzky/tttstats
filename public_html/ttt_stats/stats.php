@@ -62,6 +62,7 @@ $top10Head = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `ttt_stats`.`headsh
 
 //$KDR = mysql_query("SELECT * FROM `ttt_stats` ORDER BY `kills` DESC, `deaths` ASC LIMIT 0, 10");
 $KDR = mysql_query("SELECT 'nickname', 'kills', 'deaths' FROM `ttt_stats`");
+// New Query? SELECT 'nickname','kills','deaths' FROM `ttt_stats` WHERE 'kills' > '0' AND 'deaths' > '0' 
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
@@ -211,17 +212,19 @@ echo "</table>";
 						<th>KDR K/D</th>
 						</tr>
 <?
-$KDRArray = array[['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0]]; //10 array!
+//$KDRArray = array(['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0]); //10 array!
 while($rowK = mysql_fetch_array( $KDR )) {
 $PlyNick = $rokK['nickname'];
 $killCheck = $rowK['kills'];
 $deathCheck = $rowK['deaths'];
 
-$KDRMath = $killCheck / $deathCheck
+$KDRMath = $killCheck / $deathCheck;
 $KDRRounded = round($KDRMath, 2);
-foreach (
+/*
+foreach( ) {
 
-
+}
+*/
 }
 
 echo "</div>";
