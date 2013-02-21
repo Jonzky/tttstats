@@ -178,13 +178,13 @@ margin: auto auto auto auto;
 
 }
 
-div#checkout-left
+div#to-left
 {
 float: left;
 text-align: left;
 }
 
-div#checkout-right
+div#to-right
 {
 text-align: right;
 }
