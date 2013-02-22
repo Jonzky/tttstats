@@ -15,6 +15,22 @@ include("./includes/header.php");
 /*Search variable go here */
 $inputPlayer = $_GET['STEAMID'];
 $inputType = $_GET['stype'];
+$regex = "/^STEAM_0:[01]:[0-9]{8,9}$/";
+if ($inputType == "NICK"){
+
+}
+else{
+if(!preg_match($regex, $inputPlayer)) {
+    echo "<script LANGUAGE='JavaScript'>";
+	echo "window.alert('Invalid STEAMID! please try again.')";
+	echo "</script>";
+	unset($inputPlayer);
+}
+}
+
+
+
+
 if(isset($inputPlayer)){
 $playerEscaped = mysql_real_escape_string($inputPlayer);
 if ($inputType == "STEAM_ID"){
@@ -77,7 +93,7 @@ $seconds = $playerPlaytime;
 
 ?>
 <div id="primary_content">
-<h4>Search via STEAMID </h4>
+<h4>Search for your TTT stats!</h4>
 <form name="input" action="search.php" method="get">
 <input type="text" name="STEAMID">
 <input type="radio" name="stype" value="STEAM_ID">SteamID
