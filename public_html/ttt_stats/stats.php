@@ -211,8 +211,6 @@ echo "</table>";
 <table border ="1">
 						<tr>
 						<th>Nickname</th>
-						<th>Kills</th>
-						<th>Deaths</th>
 						<th>KDR K/D</th>
 						</tr>
 <?
@@ -221,13 +219,7 @@ while($row6 = mysql_fetch_array( $top10KDR )) {
 	echo "<tr><td>"; 
 	echo $row6['nickname']; 
 	echo "</td>";
-	echo "<td>"; 
-	echo $row6['kills']; 
-	echo "</td>";
-	echo "<td>"; 
-	echo $row6['deaths']; 
-	echo "</td>
-	<td> " . $row6['KDR'] . "</td></tr>";
+	echo "<td> " . $row6['KDR'] . "</td></tr>";
 	
 } 
 echo "</table>";
