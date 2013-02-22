@@ -90,13 +90,9 @@ $seconds = $playerPlaytime;
 <div id="primary_content">
 <h4>Search via STEAMID </h4>
 <form name="input" action="search.php" method="get">
-<input type="text" name="STEAMID"></br>
-<input type="submit" value="Submit">
-</form>
-
-<h4>Search via Nickname (last steam name seen on the server)</h4>
-<form name="input" action="search.php" method="get">
-<input type="text" name="NICK"></br>
+<input type="text" name="STEAMID">
+<input type="radio" name="stype" value="STEAM_ID">SteamID
+<input type="radio" name="stype" value="NICK">Nickname
 <input type="submit" value="Submit">
 </form>
 
