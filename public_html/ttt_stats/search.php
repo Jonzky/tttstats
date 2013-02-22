@@ -16,8 +16,15 @@ include("./includes/header.php");
 $inputPlayer = $_GET['STEAMID'];
 $inputType = $_GET['stype'];
 $regex = "/^STEAM_0:[01]:[0-9]{8,9}$/";
+$nickRegex = "/^[a-z, A-Z, 0-9]/";
+if (isset($inputPlayer)){
 if ($inputType == "NICK"){
-
+if(!preg_match($nickRegex, $inputPlayer)) {
+    echo "<script LANGUAGE='JavaScript'>";
+	echo "window.alert('Your Nickname includes invalid chars, please use STEAMID for your next search.')";
+	echo "</script>";
+	unset($inputPlayer);
+}
 }
 else{
 if(!preg_match($regex, $inputPlayer)) {
@@ -27,7 +34,7 @@ if(!preg_match($regex, $inputPlayer)) {
 	unset($inputPlayer);
 }
 }
-
+}
 
 
 
