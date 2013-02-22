@@ -13,31 +13,19 @@
 include("./includes/header.php");
 
 /*Search variable go here */
-
-$inputPlayerNick = $_GET['NICK'];
-if(isset($inputPlayerNick)){
-$playerEscaped = mysql_real_escape_string($inputPlayerNick);
-$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `nickname` LIKE '$playerEscaped' LIMIT 0, 30 ");
-$playerarray = mysql_fetch_array($player);
-
-$playerSteamid = $playerarray['steamid'];
-$playerNickname = $playerarray['nickname'];
-$playerPlaytime = $playerarray['playtime'];
-$playerRoundsplayed = $playerarray['roundsplayed'];
-$playerInnocenttimes = $playerarray['innocenttimes'];
-$playerDetectivetimes = $playerarray['detectivetimes'];
-$playerTraitortimes = $playerarray['traitortimes'];
-$playerDeaths = $playerarray['deaths'];
-$playerKills = $playerarray['kills'];
-$playerHeadshots = $playerarray['headshots'];
-$playerMaxfrags = $playerarray['maxfrags'];
-$playerFirstjoined = $playerarray['first_joined'];
-
-}
 $inputPlayer = $_GET['STEAMID'];
+$inputType = $_GET['stype'];
 if(isset($inputPlayer)){
 $playerEscaped = mysql_real_escape_string($inputPlayer);
+if ($inputType == "STEAM_ID"){
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
+}
+elseif($inputType == "NICK") {
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `nickname` LIKE '$playerEscaped' LIMIT 0, 30 ");
+}
+else{
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 "); //default to steamid
+}
 $playerarray = mysql_fetch_array($player);
 mysql_close($connect);
 include("./includes/config_sb.php");
