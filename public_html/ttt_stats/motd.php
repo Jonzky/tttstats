@@ -35,11 +35,12 @@ $playerEscaped = mysql_real_escape_string($inputPlayer);
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
 $playerarray = mysql_fetch_array($player);
 mysql_close($connect);
+/*
 include("./includes/config_sb.php");
 
 $banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerEscaped'");
 $bannedTotal = mysql_num_rows($banned);
-
+*/
 $playerSteamid = $playerarray['steamid'];
 $playerNickname = $playerarray['nickname'];
 $playerPlaytime = $playerarray['playtime'];
