@@ -16,7 +16,7 @@ include("./includes/header.php");
 $inputPlayer = $_GET['STEAMID'];
 $inputType = $_GET['stype'];
 $regex = "/^STEAM_0:[01]:[0-9]{8,9}$/";
-$nickRegex = "/^[a-z, A-Z, 0-9]/";
+$nickRegex = "/^[a-zA-Z0-9_]+((\s|\-) [a-zA-Z0-9_]+)?$/";
 if (isset($inputPlayer)){
 if ($inputType == "NICK"){
 if(!preg_match($nickRegex, $inputPlayer)) {
