@@ -265,7 +265,7 @@ h3
 text-align: center;
 }
 tr:nth-child(even) {
-background: #CCC
+background: #CCFFFF
 }
 tr:nth-child(odd) {
 background: #FFF
