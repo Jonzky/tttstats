@@ -106,7 +106,7 @@ $seconds = $playerPlaytime;
 <input type="text" name="STEAMID">
 <input type="radio" name="stype" value="STEAM_ID">SteamID
 <input type="radio" name="stype" value="NICK">Nickname
-<input type="submit" value="Submit">
+<input type="submit" value="Search">
 </form>
 
 <table border ="1">
