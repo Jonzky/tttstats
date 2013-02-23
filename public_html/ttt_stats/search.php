@@ -17,12 +17,12 @@ $inputPlayer = $_GET['STEAMID'];
 $inputType = $_GET['stype'];
 /*Regex, we love regex to stop potential SQL injection :D */
 $regex = "/^STEAM_0:[01]:[0-9]{8,9}$/";
-$nickRegex = "/^[a-zA-Z0-9_]+((\s|\-) [a-zA-Z0-9_]+)?$/";
+$nickRegex = "/^[a-zA-Z0-9_. ]+((\s|\-) [a-zA-Z0-9_. ]+)?$/";
 if (isset($inputPlayer)){
 if ($inputType == "NICK"){
 if(!preg_match($nickRegex, $inputPlayer)) {
     echo "<script LANGUAGE='JavaScript'>";
-	echo "window.alert('Your Nickname includes invalid chars, please use STEAMID for your next search.')";
+	echo "window.alert('Your Nickname includes invalid characters, please use STEAMID for your next search.')";
 	echo "</script>";
 	unset($inputPlayer);
 }
