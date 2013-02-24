@@ -179,6 +179,26 @@ margin: auto auto auto auto;
 
 }
 
+div#primary_content_about
+{
+margin: auto auto auto auto;
+
+	/* ROUNDED CORNERS */
+	-moz-border-radius: 24px;
+	-webkit-border-radius: 24px;
+	border-radius: 24px;
+	/* DROP SHADOW */
+	-moz-box-shadow: 0px 0px 14px #000000;
+	-webkit-box-shadow: 0px 0px 14px #000000;
+	box-shadow: 0px 0px 14px #000000;
+	/* OTHER */
+	background-color: white;
+	padding: 10px;
+	opacity: 0.9;
+	text-align: left;
+
+}
+
 div#to-left
 {
 float: left;
