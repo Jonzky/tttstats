@@ -52,7 +52,7 @@ $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscap
 }
 
 mysql_close($connect);
-
+}
 ?>
 <div id="primary_content">
 <h4>Search for your TTT stats!</h4>
