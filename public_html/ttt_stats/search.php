@@ -118,12 +118,12 @@ $seconds = $playerPlaytime;
 				$divisor_for_seconds = $divisor_for_minutes % 60;
 				$seconds = ceil($divisor_for_seconds);
 
-/*		
+		
 include("./includes/config_sb.php");
 
 $banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerEscaped'");
 $bannedTotal = mysql_num_rows($banned);
-*/				
+				
 
 echo "<tr>";
 echo "<td>" . $playerSteamid . "</td>";
