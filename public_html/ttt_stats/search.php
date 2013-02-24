@@ -121,7 +121,7 @@ $seconds = $playerPlaytime;
 		
 include("./includes/config_sb.php");
 
-$banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerEscaped'");
+$banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerSteamid'");
 $bannedTotal = mysql_num_rows($banned);
 				
 
