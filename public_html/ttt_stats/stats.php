@@ -93,7 +93,7 @@ $seconds = $timetotal;
 
 echo "<div id='primary_content'>";
 
-echo "Number of unique users : " . $uniqueusers;
+echo "<img src='./static/images/icon_id.png'/> : " . $uniqueusers;
 echo "<img src='./static/images/icon_bullet.png'/> : " . $killstotal;
 echo "<img src='./static/images/icon_inno.png'/> : " . $innocenttotal . "</br>";
 echo "<img src='./static/images/icon_det.png'/> : " . $detectivetotal;
