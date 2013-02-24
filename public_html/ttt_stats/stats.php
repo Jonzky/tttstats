@@ -93,16 +93,16 @@ $seconds = $timetotal;
 
 echo "<div id='primary_content'>";
 
-echo "Number of unique users : " . $uniqueusers . "</br>";
-echo "Total number of kills : " . $killstotal . "</br>";
-echo "Total number of innocents : " . $innocenttotal . "</br>";
-echo "Total number of detectives : " . $detectivetotal . "</br>";
-echo "Total number of traitors : " . $traitortotal . "</br>";
-echo "Total number of deaths : " . $deathtotal . "</br>";
-echo "Total number of Headshots : " . $headtotal . "</br>";
+echo "Number of unique users : " . $uniqueusers;
+echo "<img src='./static/images/icon_bullet.png'/> : " . $killstotal;
+echo "<img src='./static/images/icon_inno.png'/> : " . $innocenttotal . "</br>";
+echo "<img src='./static/images/icon_det.png'/> : " . $detectivetotal;
+echo "<img src='./static/images/icon_traitor.png'/> : " . $traitortotal;
+echo "<img src='./static/images/icon_corpse.png'/> : " . $deathtotal;
+echo "<img src='./static/images/icon_head.png'/> : " . $headtotal . "</br>";
 //echo "Total number of rounds played : " . $roundstotal . "</br>"; //bad stat, multiple players can play the same round thus it's untrue.
 
-echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds. </br>";
+echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds.";
 echo "The highest score on the server is: " . $topscorefinal . " This is held by " . $topscorenick . " think you can beat him? </br>";
 
 ?>
