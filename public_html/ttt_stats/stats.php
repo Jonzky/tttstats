@@ -102,7 +102,7 @@ echo "<img src='./static/images/icon_corpse.png'/> : " . $deathtotal;
 echo "<img src='./static/images/icon_head.png'/> : " . $headtotal . "</br>";
 //echo "Total number of rounds played : " . $roundstotal . "</br>"; //bad stat, multiple players can play the same round thus it's untrue.
 
-echo "Total number of time played between all players is: " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds.";
+echo "<img src='./static/images/icon_time.png'/> total number of " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds wasted.";
 echo "The highest score on the server is: " . $topscorefinal . " This is held by " . $topscorenick . " think you can beat him? </br>";
 
 ?>
@@ -174,7 +174,7 @@ while($row3 = mysql_fetch_array( $top10Deaths )) {
 } 
 echo "</table>";
 ?>
-
+\
 <h3>Top 10 Kills</h3>
 <table border ="1">
 						<tr>
