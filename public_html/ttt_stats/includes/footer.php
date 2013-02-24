@@ -15,8 +15,7 @@
 				</div>
 				<div class="clearfooter"></div>
 				<div id="content_box_bottom">
-				<p id="lastmodified"> Copyright 2013 SNGaming.org</p><p>
-  </p>
+				<p id="lastmodified"> Copyright 2013 SNGaming.org</p>
 				</div>
 		</body>
 </html>

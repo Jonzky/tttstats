@@ -50,54 +50,8 @@ $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `nickname` LIKE '$playerE
 else{
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 "); //default to steamid
 }
-$playerarray = mysql_fetch_array($player);
+
 mysql_close($connect);
-/*
-include("./includes/config_sb.php");
-
-$banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerEscaped'");
-$bannedTotal = mysql_num_rows($banned);
-*/
-$playerSteamid = $playerarray['steamid'];
-$playerNickname = $playerarray['nickname'];
-$playerPlaytime = $playerarray['playtime'];
-$playerRoundsplayed = $playerarray['roundsplayed'];
-$playerInnocenttimes = $playerarray['innocenttimes'];
-$playerDetectivetimes = $playerarray['detectivetimes'];
-$playerTraitortimes = $playerarray['traitortimes'];
-$playerDeaths = $playerarray['deaths'];
-$playerKills = $playerarray['kills'];
-$playerHeadshots = $playerarray['headshots'];
-$playerMaxfrags = $playerarray['maxfrags'];
-$playerFirstjoined = $playerarray['first_joined'];
-
-$sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
-}
-if ($playerKills or $playerDeaths != 0){
-$playerKDRTrun = $playerKills / $playerDeaths;
-$playerKDR = round($playerKDRTrun, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
-}
-else {
-$playerKDR = "N/A";
-}
-/*Search variable end here */
-	
-/*Maths for any functions go here */
-
-$seconds = $playerPlaytime;
-			//start of math for hourse, minues and seconds
-				$hours = floor($seconds / (60 * 60));
- 
-			// extract minutes
-				$divisor_for_minutes = $seconds % (60 * 60);
-				$minutes = floor($divisor_for_minutes / 60);
- 
-			// extract the remaining seconds
-				$divisor_for_seconds = $divisor_for_minutes % 60;
-				$seconds = ceil($divisor_for_seconds);
-				
-/*Maths for functions end here */	
-
 
 ?>
 <div id="primary_content">
@@ -128,6 +82,49 @@ $seconds = $playerPlaytime;
 						</tr>
 
 <?
+
+if(isset($inputPlayer)){
+$multiResult = mysql_num_rows($player);
+while($playerarray = mysql_fetch_array( $player )) {
+$playerSteamid = $playerarray['steamid'];
+$playerNickname = $playerarray['nickname'];
+$playerPlaytime = $playerarray['playtime'];
+$playerRoundsplayed = $playerarray['roundsplayed'];
+$playerInnocenttimes = $playerarray['innocenttimes'];
+$playerDetectivetimes = $playerarray['detectivetimes'];
+$playerTraitortimes = $playerarray['traitortimes'];
+$playerDeaths = $playerarray['deaths'];
+$playerKills = $playerarray['kills'];
+$playerHeadshots = $playerarray['headshots'];
+$playerMaxfrags = $playerarray['maxfrags'];
+$playerFirstjoined = $playerarray['first_joined'];
+
+if ($playerKills or $playerDeaths != 0){
+$playerKDRTrun = $playerKills / $playerDeaths;
+$playerKDR = round($playerKDRTrun, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
+}
+else {
+$playerKDR = "N/A";
+}
+$seconds = $playerPlaytime;
+			//start of math for hourse, minues and seconds
+				$hours = floor($seconds / (60 * 60));
+ 
+			// extract minutes
+				$divisor_for_minutes = $seconds % (60 * 60);
+				$minutes = floor($divisor_for_minutes / 60);
+ 
+			// extract the remaining seconds
+				$divisor_for_seconds = $divisor_for_minutes % 60;
+				$seconds = ceil($divisor_for_seconds);
+
+/*		
+include("./includes/config_sb.php");
+
+$banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerEscaped'");
+$bannedTotal = mysql_num_rows($banned);
+*/				
+
 echo "<tr>";
 echo "<td>" . $playerSteamid . "</td>";
 echo "<td>" . $playerNickname . "</td>";
@@ -144,8 +141,13 @@ echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
 echo "</tr>";
-echo "</table>";
 
+	
+} 
+
+
+}
+echo "</table>";
 ?>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -181,7 +183,12 @@ echo "</table>";
         chart.draw(data, options);
       }
     </script>
-<div id="chart_div"></div>
+<?
+if ($multiResult == 1){
+echo  "<div id='chart_div'></div>";
+}
+?>
+
 </div>
 <?
 include("./includes/footer.php");
