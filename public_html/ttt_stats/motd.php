@@ -35,12 +35,12 @@ $playerEscaped = mysql_real_escape_string($inputPlayer);
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
 $playerarray = mysql_fetch_array($player);
 mysql_close($connect);
-/*
+
 include("./includes/config_sb.php");
 
 $banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerEscaped'");
 $bannedTotal = mysql_num_rows($banned);
-*/
+
 $playerSteamid = $playerarray['steamid'];
 $playerNickname = $playerarray['nickname'];
 $playerPlaytime = $playerarray['playtime'];
@@ -84,9 +84,8 @@ $seconds = $playerPlaytime;
 
 ?>
 <div id="primary_content">
-<h3>This is a test loadingurl outputting your personal TTT stats that you've accumulated over www.sngaming.org's TTT servers.</h3>
+<h3>TTT Stat tracker! Here are your TTT stats for Sngaming.org's TTT servers.</h3>
 </br>
-<h3>All "bans" are loaded from a test database, not SNGaming.org's current ban database</h3>
 
 <table border ="1">
 						<tr>
