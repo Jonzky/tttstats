@@ -15,7 +15,7 @@
 				</div>
 				<div class="clearfooter"></div>
 				<div id="content_box_bottom">
-				<p id="lastmodified"> Copyright 2013 SNGaming.org</p>
+				<a href="mailto:administrator@thehiddennation.com">Report a Problem</a>
 				</div>
 		</body>
 </html>
