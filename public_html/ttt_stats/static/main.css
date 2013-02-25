@@ -13,7 +13,8 @@ body
 	font-size: 14px;
 	color: #333;
 	text-align: left;
-	background-image: url('../static/images/background.png');
+	background-image: url('../static/images/repeat-background.jpg');
+	background-repeat: repeat;
 	margin: 0px 0 0 0;
 	height: 100%;
 }
