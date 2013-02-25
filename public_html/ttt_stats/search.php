@@ -48,7 +48,7 @@ elseif($inputType == "NICK") {
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `nickname` LIKE '$playerEscaped' LIMIT 0, 30 ");
 }
 else{
-$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 "); //default to steamid
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 "); //default to steamid, we should never be here.
 }
 
 mysql_close($connect);
@@ -60,7 +60,7 @@ mysql_close($connect);
 <input type="text" name="STEAMID" placeholder="Steamid / Nickname" value required>
 <input type="radio" name="stype" value="STEAM_ID"checked>SteamID
 <input type="radio" name="stype" value="NICK">Nickname
-<input type="submit" value="Search">
+<button class="button" type="submit">Search</button>
 </form>
 
 <table border ="1">
