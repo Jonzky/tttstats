@@ -71,5 +71,6 @@ $headReturn = '<img src="../images/icon_head.png"> <font face="arial" color="#30
 $detectiveReturn = '<img src="../images/icon_det.png"> <font face="arial" color="#30a5f0">Total Detectives:</font><font face="arial" color="#828282"> ' . $detectivetotal . '</font><br>';
 $innocentReturn ='<img src="../images/icon_inno.png"> <font face="arial" color="#30a5f0">Total Innocents:</font><font face="arial" color="#828282"> ' . $innocenttotal . '</font><br>';
 $traitorReturn = '<img src="../images/icon_traitor.png"> <font face="arial" color="#30a5f0">Total Traitors:</font><font face="arial" color="#828282"> ' . $traitortotal . '</font><br>';
+$thehidden = "<p align='center'>Powered by <a href='http://www.thehiddennation.com/ttt_stats/'>TTT Stats.</a></p>";
 
-return $killsReturn . $deathsReturn . $headReturn . $detectiveReturn . $innocentReturn . $traitorReturn;
+return $uniqueReturn . $killsReturn . $deathsReturn . $headReturn . $detectiveReturn . $innocentReturn . $traitorReturn . $thehidden;
