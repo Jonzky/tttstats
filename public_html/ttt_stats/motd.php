@@ -17,6 +17,7 @@
 
 
 include("./includes/header.php");
+include("./includes/config.php");	
 
 /*SteamID getting from _get data*/
 //Get the steamid (really the community id)

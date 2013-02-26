@@ -11,6 +11,7 @@
 | 	   by Handy_man       |
 \------------------------*/
 include("./includes/header.php");
+include("./includes/config.php");	
 /*Setup variables for SQL statements */
 //Used in KDR, basically low amount of deaths (1 or 2) are generally RDMer's in your server.
 //This variable allows for you to scale this to your liking, default is set to 30.
