@@ -16,15 +16,14 @@ include("./includes/header.php");
 
 
 include("./includes/config_sb.php");
-$grabAdmin = mysql_query("SELECT 'authid' FROM `sb_admins` WHERE `srv_group` LIKE 'admin' LIMIT 0, 30 ");
+$grabAdmin = mysql_query("SELECT `authid` FROM sb_admins where `srv_group` = 'admin'");
+$Admins = mysql_fetch_array($grabAdmin);
 mysql_close($connect_sb);
-$inputPlayer = $grabAdmin
 include("./includes/config.php");	
 
-$playerEscaped = mysql_real_escape_string($inputPlayer);
+$playerEscaped = $Admins;
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
 
-}
 ?>
 <div id="primary_content">
 
@@ -104,7 +103,7 @@ echo "</tr>";
 
 echo "</table>";
 
-</div>
-<?
+echo "</div>";
+
 include("./includes/footer.php");
 ?>
