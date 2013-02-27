@@ -45,7 +45,7 @@ if ($inputType == "STEAM_ID"){
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
 }
 elseif($inputType == "NICK") {
-$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `nickname` LIKE '$playerEscaped' LIMIT 0, 30 ");
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `nickname` LIKE '%$playerEscaped%' LIMIT 0, 30 ");
 }
 else{
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 "); //default to steamid, we should never be here.
