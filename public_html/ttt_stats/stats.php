@@ -1,14 +1,14 @@
 <?php
 /*------------------------\
 |        TTT STATS        |
-|	       Beta           |
+|	       Beta       |
 |=========================|
-|© 2013 SNGaming.org      |
-|	All Rights Reserved   |
+|ï¿½ 2013 SNGaming.org      
+|  All Rights Reserved    |
 |=========================|
-| 	Website printout      |
-| 	   beta testing       |
-| 	   by Handy_man       |
+| 	Website printout  |
+| 	   beta testing   |
+| 	   by Handy_man   |
 \------------------------*/
 include("./includes/header.php");
 include("./includes/config.php");	
@@ -103,11 +103,11 @@ echo "<img src='./static/images/icon_corpse.png'/> : " . $deathtotal;
 echo "<img src='./static/images/icon_head.png'/> : " . $headtotal . "</br>";
 //echo "Total number of rounds played : " . $roundstotal . "</br>"; //bad stat, multiple players can play the same round thus it's untrue.
 
-echo "<img src='./static/images/icon_time.png'/> total number of " . $hours . " Hours " . $minutes . " Minutes and " . $seconds . " seconds wasted.";
-echo "The highest score on the server is: " . $topscorefinal . " This is held by " . $topscorenick . " think you can beat him? </br>";
+echo "<img src='./static/images/icon_time.png'/> Total number of '" . $hours . " Hours, " . $minutes . " Minutes, and " . $seconds . " seconds' wasted on TTT.";
+echo "<br />The highest score on the server is: " . $topscorefinal . ",  held by " . $topscorenick . "! Think you can beat him? </br>";
 
 ?>
-<h3>Top 10 play time</h3>
+<h3>Top 10 Play Time</h3>
 <table border ="1">
 						<tr>
 						<th>Nickname</th>
@@ -175,7 +175,7 @@ while($row3 = mysql_fetch_array( $top10Deaths )) {
 } 
 echo "</table>";
 ?>
-\
+
 <h3>Top 10 Kills</h3>
 <table border ="1">
 						<tr>
@@ -193,7 +193,7 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 } 
 echo "</table>";
 ?>
-<h3>Top 10 Headshots</h3>
+<h3>Top 10 Head-Shots</h3>
 <table border ="1">
 						<tr>
 						<th>Nickname</th>
@@ -210,11 +210,11 @@ while($row5 = mysql_fetch_array( $top10Head )) {
 } 
 echo "</table>";
 ?>
-<h3>Top 10 KDR (<?echo $deathLimit;?> deaths required before you're tracked in this stat.)</h3>
+<h3>Top 10 KDR (<?echo $deathLimit;?> deaths required before tracked.)</h3>
 <table border ="1">
 						<tr>
 						<th>Nickname</th>
-						<th>KDR K/D</th>
+						<th>K/D Ratio</th>
 						</tr>
 <?
 while($row6 = mysql_fetch_array( $top10KDR )) {
