@@ -23,7 +23,7 @@ include("./includes/config.php");
 
 $playerEscaped = $Admins;
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
-
+mysql_close($connect);
 ?>
 <div id="primary_content">
 
