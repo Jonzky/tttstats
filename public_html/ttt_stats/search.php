@@ -58,8 +58,8 @@ mysql_close($connect);
 <h4>Search for your TTT stats!</h4>
 <form name="input" action="search.php" method="get">
 <input type="text" name="STEAMID" placeholder="Steamid / Nickname" value required>
-<input type="radio" name="stype" value="STEAM_ID"checked>SteamID
-<input type="radio" name="stype" value="NICK">Nickname
+<input type="radio" name="stype" value="STEAM_ID">SteamID
+<input type="radio" name="stype" value="NICK" checked>Nickname
 <button class="button" type="submit">Search</button>
 </form>
 
