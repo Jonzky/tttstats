@@ -3,7 +3,7 @@
 |        TTT STATS        |
 |	   Beta           |
 |=========================|
-|© 2013 SNGaming.org      |
+|ï¿½ 2013 SNGaming.org      |
 |   All Rights Reserved   |
 |=========================|
 |   Website printout      |
@@ -67,18 +67,18 @@ mysql_close($connect);
 						<tr>
 						<th>SteamID</th>
 						<th>Nickname</th>
-						<th>Playtime(hours, minutes, seconds)</th>
-						<th>Rounds played</th>
-						<th>Times innocent</th>
-						<th>Times detective</th>
-						<th>Times traitor</th>
+						<th>Playtime<br/>(hours, minutes, seconds)</th>
+						<th>Rounds Played</th>
+						<th>Times Innocent</th>
+						<th>Times Detective</th>
+						<th>Times Traitor</th>
 						<th>Total Deaths</th>
 						<th>Total Kills</th>
-						<th>KDR K/D</th>
-						<th>Total Headshots</th>
+						<th>K/D Ratio</th>
+						<th>Total Head-Shots</th>
 						<th>Highest Score</th>
-						<th>First seen in the server</th>
-						<th>Number of Bans</th>
+						<th>First Joined</th>
+						<th># of Bans</th>
 						</tr>
 
 <?
