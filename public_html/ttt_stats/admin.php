@@ -16,13 +16,11 @@ include("./includes/header.php");
 
 
 include("./includes/config_sb.php");
-$grabAdmin = mysql_query("SELECT `authid` FROM sb_admins where `srv_group` = 'admin'");
-$Admins = mysql_fetch_array($grabAdmin);
+$getAdmin = mysql_query("SELECT `authid` FROM sb_admins WHERE `srv_group` = 'admin' LIMIT 0, 30 ");
+$admins = mysql_fetch_array($getAdmin);
 mysql_close($connect_sb);
 include("./includes/config.php");	
-
-$playerEscaped = $Admins;
-$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$admins' LIMIT 0, 30 ");
 mysql_close($connect);
 ?>
 <div id="primary_content">
