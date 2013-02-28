@@ -44,6 +44,10 @@ mysql_close($connect);
 						</tr>
 
 <?
+while ($sbArray = mysql_fetch_array($getAdmin)){
+echo $sbArray['authid'];
+}
+
 while($playerarray = mysql_fetch_array( $player )) {
 $playerSteamid = $playerarray['steamid'];
 $playerNickname = $playerarray['nickname'];
