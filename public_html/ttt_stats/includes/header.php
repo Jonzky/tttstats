@@ -37,6 +37,31 @@
 							
 							
 						</div>
-					<div id="navigation">
-					<a href="index.php">Home</a>	<a href="about.php">About</a>	<a href="stats.php">Stats</a>	<a href="search.php">Search</a>		
-					</div>
+					
+					<nav>
+						<ul>
+						<li>
+						<a href="index.php">Home</a>
+						</li>
+
+						<li>
+							<a href="#">About</a>
+							<ul>
+								<li><a href="about.php">The product</a></li>
+								<li><a href="about.php">Meet the team</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Stats</a>
+							<ul>
+								<li><a href="stats.php">Top 10 Time</a></li>
+								<li><a href="stats.php">Top 10 Kills</a></li>
+								<li><a href="stats.php">Top 10 Deaths</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="search.php">Search</a>
+						</li>
+						</ul>
+					</nav>
+					
