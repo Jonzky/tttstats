@@ -52,12 +52,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="#">Stats</a>
-							<ul>
-								<li><a href="stats.php">Top 10 Time</a></li>
-								<li><a href="stats.php">Top 10 Kills</a></li>
-								<li><a href="stats.php">Top 10 Deaths</a></li>
-							</ul>
+							<a href="stats.php">Stats</a>
 						</li>
 						<li>
 							<a href="search.php">Search</a>

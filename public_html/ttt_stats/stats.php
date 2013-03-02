@@ -107,7 +107,8 @@ echo "<img src='./static/images/icon_time.png'/> Total number of '" . $hours . "
 echo "<br />The highest score on the server is: " . $topscorefinal . ",  held by " . $topscorenick . "! Think you can beat him? </br>";
 */
 echo"<form name='input' action='stats.php' method='get'>
-<input type='radio' name='type' value='time'e checked>Time
+<input type='radio' name='type' value='all' checked>All
+<input type='radio' name='type' value='time'>Time
 <input type='radio' name='type' value='kills'>Kills
 <input type='radio' name='type' value='deaths'>Deaths
 <input type='radio' name='type' value='score'>Score
@@ -116,7 +117,7 @@ echo"<form name='input' action='stats.php' method='get'>
 <button class='button' type='submit'>Filter</button>
 </form>";
 
-if ($statType == 'time'){
+if ($statType == 'time' or $statType == 'all'){
 echo"<h3>Top 10 Play Time</h3><table border ='1'><tr><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th></tr>";
 
 
@@ -146,7 +147,7 @@ while($row1 = mysql_fetch_array( $top10Time )) {
 
 echo "</table>";
 }
-if ($statType == 'score'){
+if ($statType == 'score' or $statType == 'all'){
 echo"<h3>Top 10 Score</h3><table border ='1'><tr><th>Nickname</th><th>Score</th></tr>";
 
 while($row2 = mysql_fetch_array( $top10Score )) {
@@ -158,7 +159,7 @@ while($row2 = mysql_fetch_array( $top10Score )) {
 } 
 echo "</table>";
 }
-if ($statType == 'deaths'){
+if ($statType == 'deaths' or $statType == 'all'){
 echo"<h3>Top 10 Deaths</h3><table border ='1'><tr><th>Nickname</th><th>Deaths</th></tr>";
 
 
@@ -170,7 +171,7 @@ while($row3 = mysql_fetch_array( $top10Deaths )) {
 } 
 echo "</table>";
 }
-if ($statType == 'kills'){
+if ($statType == 'kills' or $statType == 'all'){
 echo"<h3>Top 10 Kills</h3><table border ='1'><tr><th>Nickname</th><th>Kills</th></tr>";
 
 
@@ -183,7 +184,7 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 } 
 echo "</table>";
 }
-if ($statType == 'headshots'){
+if ($statType == 'headshots' or $statType == 'all'){
 echo"<h3>Top 10 Head-Shots</h3><table border ='1'><tr><th>Nickname</th><th>Headshots</th></tr>";
 
 
@@ -197,7 +198,7 @@ while($row5 = mysql_fetch_array( $top10Head )) {
 echo "</table>";
 }
 
-if ($statType == 'kdr'){
+if ($statType == 'kdr' or $statType == 'all'){
 echo"<h3>Top 10 KDR ( " . $deathLimit . " deaths required before tracked.)</h3><table border ='1'><tr><th>Nickname</th><th>K/D Ratio</th></tr>";
 
 while($row6 = mysql_fetch_array( $top10KDR )) {
