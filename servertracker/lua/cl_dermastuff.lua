@@ -19,11 +19,10 @@ if(CLIENT) then
 		DermaList:EnableVerticalScrollbar( true ) 		
 		
 		local data = net.ReadTable()
-		local osTime = net.ReadFloat()
 		for id, row in pairs( data ) do
 			
 			local serverTime = tonumber(row['lastupdate'])
-			if (osTime - serverTime) < 60 then
+			if (os.time() - serverTime) < 60 then
 					
 				local texty = string.format("Connect to: %s - Current map %s - Current playercount %d/%d", row['hostname'], row['map'], row['players'], row['maxplayers'])
 					local dButton = vgui.Create( "DButton", DermaList )

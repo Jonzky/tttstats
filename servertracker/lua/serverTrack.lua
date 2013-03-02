@@ -1,9 +1,4 @@
-require( "mysqloo" )
 util.AddNetworkString( "TESTY" )
-AddCSLuaFile( "cl_dermastuff.lua" )
-include( "cl_dermastuff.lua" )
-
-
 
 function getPlyCount()
 
@@ -17,8 +12,13 @@ end
 
 function loadServerStats( )
 
+
+	if databaseFailed then 
+		timer.Simple( 10, loadServerStats )
+	end
 	lHost = GetConVarString("hostname");
-	ipPort = string.format("%s:%s", SERVER_IP, SERVER_PORT);
+	ipPort = string.format("%s:%s", ServerStatsDB.ServerIP, ServerStatsDB.ServerPort);
+	curServ = tostring(ipPort);
 	currentMap = game.GetMap();
 
     local Statquery1 = db:query("SELECT * FROM server_track WHERE hostip = '" .. ipPort .. "'")
@@ -31,7 +31,7 @@ function loadServerStats( )
 	Statquery1.onSuccess = function(q)
         if not checkQuery(q) then
 
-			local Statquery2 = db:query("INSERT INTO server_track(hostip, hostname, maxplayers, map, players, lastupdate) VALUES ('" .. ipPort .. "', '" .. lHost .. "', '" .. MAX_PLAYERS .. "', '" .. currentMap .. "', '" .. getPlyCount() .. "', '" .. os.time() .. "')")
+			local Statquery2 = db:query("INSERT INTO server_track(hostip, hostname, maxplayers, map, players, lastupdate) VALUES ('" .. ipPort .. "', '" .. lHost .. "', '" .. tonumber(GetConVarString("sv_visiblemaxplayers")) .. "', '" .. currentMap .. "', '" .. getPlyCount() .. "', '" .. os.time() .. "')")
 
 			Statquery2.onSuccess = function(q)  
 			
@@ -49,6 +49,7 @@ function loadServerStats( )
 		updateReady = true
 	end 
 	Statquery1:start()
+	
 end
 
 
@@ -60,7 +61,7 @@ function updateServers ()
 	updateString = "UPDATE server_track SET hostname='%s', maxplayers='%d', map='%s', players='%d', lastupdate='%d' WHERE hostip ='%s'"		
 	local formQ = string.format(updateString,
 					GetConVarString("hostname"),
-					MAX_PLAYERS,
+					tonumber(GetConVarString("sv_visiblemaxplayers")),
 					game.GetMap(),
 					getPlyCount(),
 					os.time(),
@@ -76,7 +77,7 @@ function updateServers ()
 	updateQuery:start()	
 
 end
-timer.Create("serverUpdaterTracker", 15, 0, updateServers);
+timer.Create("serverUpdater", 15, 0, updateServers);
 
 
 function getServers(ply)
@@ -90,7 +91,6 @@ function getServers(ply)
     getAllQ.onSuccess = function(q, sdata)
 		net.Start( "TESTY")
 			net.WriteTable(sdata)
-			net.WriteFloat(os.time())
 		net.Send(ply)
 	end
 	getAllQ.onError = function(q,e)
@@ -112,6 +112,47 @@ function superAd()
 end
 timer.Create( "SuperADD", 120, 0, superAd)
 
+
+function awsomeAdd()
+
+	if databaseFailed then return; end
+	local AddQ = db:query( "SELECT * FROM server_track WHERE players > 0")
+    AddQ.onSuccess = function(q, sdata)
+	
+		local datarow = table.Random(sdata);
+		curServ = tostring(datarow['hostip'] );
+		if tostring(datarow['hostip']) == ipPort then return; end
+		local advert = string.format("Type !join to play on: %s - Current map: %s - Players: %s/%s!", tostring(datarow['hostname']), tostring(datarow['map']), tostring(datarow['players']), tostring(datarow['maxplayers']));
+		
+		for k,v in pairs(player.GetAll()) do
+			v:ChatPrint(advert)
+		end
+		
+	end	
+	AddQ.onError = function(q,e)
+		print("[Awesome Tracker]Something went wrong")
+		print(e)
+	end
+	AddQ:start()
+end
+timer.Create( "AwsineADZORZ", 600, 0, awsomeAdd)
+
+function maintain()
+			
+	if databaseFailed then return; end		
+	updateString = "DELETE FROM server_track WHERE lastupdate > '%d'"		
+	local formQ = string.format(updateString, os.time())
+	local updateQuery = db:query(formQ)
+	updateQuery.onSuccess = function(q) end; 
+	updateQuery.onError = function(q,e)
+		print("[Awesome Tracker]Something went wrong")
+		print(e)
+	end
+	updateQuery:start()				
+				
+end
+timer.Create( "mainTaineor", 30, 0, maintain)
+
 local function chatCom( ply, text, toall )
 
     local tab = string.Explode( " ", text );
@@ -119,7 +160,9 @@ local function chatCom( ply, text, toall )
      
         getServers(ply)
      
-    end
+    elseif tab[1] == "!join" then
+		ply:SendLua("LocalPlayer():ConCommand('connect "..curServ.."')")
+	end
  
 end
 hook.Add( "PlayerSay", "JonZChatCommands", chatCom)
