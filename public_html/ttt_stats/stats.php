@@ -16,7 +16,7 @@ include("./includes/config.php");
 //Used in KDR, basically low amount of deaths (1 or 2) are generally RDMer's in your server.
 //This variable allows for you to scale this to your liking, default is set to 30.
 $deathLimit = 30;
-
+$statType = $_GET['type'];
 
 /*Stats SQL queries all go here */
 
@@ -93,7 +93,7 @@ $seconds = $timetotal;
 /*print statements */
 
 echo "<div id='primary_content'>";
-
+/*
 echo "<img src='./static/images/icon_id.png'/> : " . $uniqueusers;
 echo "<img src='./static/images/icon_bullet.png'/> : " . $killstotal;
 echo "<img src='./static/images/icon_inno.png'/> : " . $innocenttotal . "</br>";
@@ -105,16 +105,22 @@ echo "<img src='./static/images/icon_head.png'/> : " . $headtotal . "</br>";
 
 echo "<img src='./static/images/icon_time.png'/> Total number of '" . $hours . " Hours, " . $minutes . " Minutes, and " . $seconds . " seconds' wasted on TTT.";
 echo "<br />The highest score on the server is: " . $topscorefinal . ",  held by " . $topscorenick . "! Think you can beat him? </br>";
+*/
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='time'e checked>Time
+<input type='radio' name='type' value='kills'>Kills
+<input type='radio' name='type' value='deaths'>Deaths
+<input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='headshots'>Head-Shots
+<input type='radio' name='type' value='kdr'>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
 
-?>
-<h3>Top 10 Play Time</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Playtime(hours, minutes, seconds)</th>
-						</tr>
+if ($statType == 'time'){
+echo"<h3>Top 10 Play Time</h3><table border ='1'><tr><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th></tr>";
 
-<?
+
+
 while($row1 = mysql_fetch_array( $top10Time )) {
 		$seconds1 = $row1['playtime'];
 			//start of math for hourse, minues and seconds
@@ -136,19 +142,13 @@ while($row1 = mysql_fetch_array( $top10Time )) {
 	echo "</td><td>";
 	echo "H:" . $hours1 . " M:" . $minutes1 . " S:" . $seconds1 . "";
 	echo "</td></tr>";
-	
 } 
+
 echo "</table>";
-?>
+}
+if ($statType == 'score'){
+echo"<h3>Top 10 Score</h3><table border ='1'><tr><th>Nickname</th><th>Score</th></tr>";
 
-<h3>Top 10 Score</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Score</th>
-						</tr>
-
-<?
 while($row2 = mysql_fetch_array( $top10Score )) {
 		
 	echo "<tr><td>"; 
@@ -157,16 +157,11 @@ while($row2 = mysql_fetch_array( $top10Score )) {
 	
 } 
 echo "</table>";
-?>
+}
+if ($statType == 'deaths'){
+echo"<h3>Top 10 Deaths</h3><table border ='1'><tr><th>Nickname</th><th>Deaths</th></tr>";
 
-<h3>Top 10 Deaths</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Deaths</th>
-						</tr>
 
-<?
 while($row3 = mysql_fetch_array( $top10Deaths )) {
 		
 	echo "<tr><td>"; 
@@ -174,16 +169,11 @@ while($row3 = mysql_fetch_array( $top10Deaths )) {
 	echo "</td><td> " . $row3['deaths'] . "</td> </tr>";
 } 
 echo "</table>";
-?>
+}
+if ($statType == 'kills'){
+echo"<h3>Top 10 Kills</h3><table border ='1'><tr><th>Nickname</th><th>Kills</th></tr>";
 
-<h3>Top 10 Kills</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Kills</th>
-						</tr>
 
-<?
 while($row4 = mysql_fetch_array( $top10Kills )) {
 		
 	echo "<tr><td>"; 
@@ -192,15 +182,11 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 	
 } 
 echo "</table>";
-?>
-<h3>Top 10 Head-Shots</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Headshots</th>
-						</tr>
+}
+if ($statType == 'headshots'){
+echo"<h3>Top 10 Head-Shots</h3><table border ='1'><tr><th>Nickname</th><th>Headshots</th></tr>";
 
-<?
+
 while($row5 = mysql_fetch_array( $top10Head )) {
 		
 	echo "<tr><td>"; 
@@ -209,14 +195,11 @@ while($row5 = mysql_fetch_array( $top10Head )) {
 	
 } 
 echo "</table>";
-?>
-<h3>Top 10 KDR (<?echo $deathLimit;?> deaths required before tracked.)</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>K/D Ratio</th>
-						</tr>
-<?
+}
+
+if ($statType == 'kdr'){
+echo"<h3>Top 10 KDR ( " . $deathLimit . " deaths required before tracked.)</h3><table border ='1'><tr><th>Nickname</th><th>K/D Ratio</th></tr>";
+
 while($row6 = mysql_fetch_array( $top10KDR )) {
 		
 	echo "<tr><td>"; 
@@ -226,6 +209,7 @@ while($row6 = mysql_fetch_array( $top10KDR )) {
 	
 } 
 echo "</table>";
+}
 echo "</div>";
 include("./includes/footer.php");
 ?>
