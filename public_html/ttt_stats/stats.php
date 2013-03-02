@@ -106,13 +106,13 @@ echo"<form name='input' action='stats.php' method='get'>
 </form>";
 
 if (!isset($statType)){
-echo "<img src='./static/images/icon_id.png'/> : " . $uniqueusers;
-echo "<img src='./static/images/icon_bullet.png'/> : " . $killstotal;
-echo "<img src='./static/images/icon_inno.png'/> : " . $innocenttotal;
-echo "<img src='./static/images/icon_det.png'/> : " . $detectivetotal;
-echo "<img src='./static/images/icon_traitor.png'/> : " . $traitortotal;
-echo "<img src='./static/images/icon_corpse.png'/> : " . $deathtotal;
-echo "<img src='./static/images/icon_head.png'/> : " . $headtotal . "</br>";
+echo "<img src='./static/images/icon_id.png' alt='ID icon' title='unique users' /> : " . $uniqueusers;
+echo "<img src='./static/images/icon_bullet.png' alt='Bullet icon' title='Total kills'/> : " . $killstotal;
+echo "<img src='./static/images/icon_inno.png' alt='TTT innocent icon' title='Total Innocents'/> : " . $innocenttotal;
+echo "<img src='./static/images/icon_det.png' alt='TTT Detective icon' title='Total Detectives'/> : " . $detectivetotal;
+echo "<img src='./static/images/icon_traitor.png' alt='TTT Traitor icon' title='Total Traitors'/> : " . $traitortotal;
+echo "<img src='./static/images/icon_corpse.png' alt='Deadbody icon' title='Total Deaths'/> : " . $deathtotal;
+echo "<img src='./static/images/icon_head.png' alt='Headshot icon' title='Total Headshots'/> : " . $headtotal . "</br>";
 //echo "Total number of rounds played : " . $roundstotal . "</br>"; //bad stat, multiple players can play the same round thus it's untrue.
 //echo "<img src='./static/images/icon_time.png'/> Total number of " . $hours . " Hours, " . $minutes . " Minutes, and " . $seconds . " seconds spent on SNGaming's TTT servers.</br>";
 echo "<br />The highest score on the server is: " . $topscorefinal . ",  held by " . $topscorenick . "! Think you can beat him?";
