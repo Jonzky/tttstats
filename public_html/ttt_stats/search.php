@@ -78,6 +78,7 @@ mysql_close($connect);
 						<th>Total Head-Shots</th>
 						<th>Highest Score</th>
 						<th>First Joined</th>
+						<th>Last Seen</th>
 						<th># of Bans</th>
 						</tr>
 
@@ -98,6 +99,7 @@ $playerKills = $playerarray['kills'];
 $playerHeadshots = $playerarray['headshots'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
+$playerLastSeen = $playerarray['last_seen'];
 $sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
 if ($playerKills or $playerDeaths != 0){
 $playerKDRTrun = $playerKills / $playerDeaths;
@@ -139,6 +141,7 @@ echo "<td>" . $playerKDR . "</td>";
 echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
+echo "<td>" . $playerLastSeen . "</td>";
 echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
 echo "</tr>";
 

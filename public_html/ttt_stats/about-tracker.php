@@ -26,11 +26,5 @@ include("./includes/header.php");
 	
 	<p>There are also plans to implement in the search bar the number of bans a user has incurred on the server, this interfaces with sourcebans as it's the ban method used by <a href="http://www.sngaming.org">SNGaming.org</a> and will be included in a release as an optional feature</p>
 	
-	<h3>The Developers!</h3>
-	
-	<h4>Jonzky</h4> Jonzky is responsible for all of the code found in the garry's mod addon or the lua side of the project, also credited with the initial database design. <a href="http://steamcommunity.com/id/jonzky1/">Steam</a>
-	<h4>Handy_man</h4> Handy_man is responsible for all of the PHP code which drives the output of the project's stats on the web, also credited with upkeeping/ updating the initial database design for more fields etc. <a href="http://steamcommunity.com/id/Handy_man/">Steam</a>
-	
-							
 	</div>
 <?PHP include("./includes/footer.php");?>

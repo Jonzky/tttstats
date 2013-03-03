@@ -47,8 +47,8 @@
 						<li>
 							<a href="#">About</a>
 							<ul>
-								<li><a href="about.php">The product</a></li>
-								<li><a href="about.php">Meet the team</a></li>
+								<li><a href="about-tracker.php">The Tracker</a></li>
+								<li><a href="about-team.php">Meet the team</a></li>
 							</ul>
 						</li>
 						<li>

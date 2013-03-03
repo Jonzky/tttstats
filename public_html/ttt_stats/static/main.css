@@ -38,14 +38,6 @@ h2
 	line-height: 10px;
 	color: black;
 }
-p#disclaimer	{
-font-style: italic;
-}
-p#centerhead	{
-text-align: center;
-font-size: 28px
-}
-
 .center	{
 text-align: center;
 font-size: 18px
@@ -71,36 +63,6 @@ div#page /*Sets entire page contents to be 80% use 100% inside of this div*/
 	width: 90%;
 	margin-bottom:-30px;
 	min-height: 100%; /*forces footer to the bottom of the page*/
-}
-div#site_title/*Website title could change to image?*/
-{
-	color: white;
-	text-transform: uppercase;
-	font-weight: bold;
-	font-size: 21px;
-	line-height: 15px;
-	margin: 10px 0 0 0;
-	float:left;
-	clear:right;
-	
-}
-div#navigation
-{
-	margin: 40px 30% 35px 30%;
-	text-align: center;
-	font-size: 18px;
-	/* ROUNDED CORNERS */
-	-moz-border-radius: 24px;
-	-webkit-border-radius: 24px;
-	border-radius: 24px;
-	/* DROP SHADOW */
-	-moz-box-shadow: 0px 0px 14px #000000;
-	-webkit-box-shadow: 0px 0px 14px #000000;
-	box-shadow: 0px 0px 14px #000000;
-	/* OTHER */
-	background-color: white;
-	padding: 0px;
-	opacity: 0.9;
 }
 
 div#logo
@@ -206,25 +168,6 @@ text-align: left;
 div#to-right
 {
 text-align: right;
-}
-
-div#primary_content_basket
-{
-margin: auto auto auto auto;
-
-	/* ROUNDED CORNERS */
-	-moz-border-radius: 24px;
-	-webkit-border-radius: 24px;
-	border-radius: 24px;
-	/* DROP SHADOW */
-	-moz-box-shadow: 0px 0px 14px #000000;
-	-webkit-box-shadow: 0px 0px 14px #000000;
-	box-shadow: 0px 0px 14px #000000;
-	/* OTHER */
-	background-color: white;
-	padding: 20px;
-	opacity: 0.9;
-	text-align: center;
 }
 
 /* FOOTER LAYOUT */
