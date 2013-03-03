@@ -20,21 +20,16 @@ if(CLIENT) then
 		
 		local data = net.ReadTable()
 		for id, row in pairs( data ) do
-			
-			local serverTime = tonumber(row['lastupdate'])
-			if (os.time() - serverTime) < 60 then
-					
-				local texty = string.format("Connect to: %s - Current map %s - Current playercount %d/%d", row['hostname'], row['map'], row['players'], row['maxplayers'])
-					local dButton = vgui.Create( "DButton", DermaList )
-					dButton:SetText( texty )
-					dButton:SetSize( 700, 30 )
-					dButton.DoClick = function ()
-						local strHost = tostring(row['hostip'] )
-						print("*" .. strHost .. "*")
-						LocalPlayer():ConCommand( "connect " .. strHost )
-					end
-					DermaList:AddItem(dButton)
-			end		
+			local texty = string.format("Connect to: %s - Current map %s - Current playercount %d/%d", row['hostname'], row['map'], row['players'], row['maxplayers'])
+			local dButton = vgui.Create( "DButton", DermaList )
+			dButton:SetText( texty )
+			dButton:SetSize( 700, 30 )
+			dButton.DoClick = function ()
+				local strHost = tostring(row['hostip'] )
+				print("*" .. strHost .. "*")
+				LocalPlayer():ConCommand( "connect " .. strHost )
+			end
+			DermaList:AddItem(dButton)
 		end
 	end 
 	net.Receive( "TESTY", makeStuff)
