@@ -16,22 +16,21 @@ include("./includes/header.php");
 
 
 include("./includes/config_sb.php");
-$getAdmin = mysql_query("SELECT `authid` FROM sb_admins WHERE `srv_group` = 'admin' LIMIT 0, 30 ");
-$admins = mysql_fetch_array($getAdmin);
+$getAdmin = mysql_query("SELECT authid FROM sb_admins WHERE `srv_group` = 'admin' OR srv_group= 'SuperAdmin'");
+$multiResult = mysql_num_rows($getAdmin);
+
+
+
+//$admins = implode(', ', $admins);
 /*
-while ($row = mysql_fetch_array($getAdmin)){
-echo $row['authid'];
-}
-*/
-$c_admins = implode(",", mysql_fetch_array($getAdmin));
 mysql_close($connect_sb);
 include("./includes/config.php");	
-$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` IN ($c_admins) LIMIT 0, 30 ");
-echo $c_admins;
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` IN ($admins) LIMIT 0, 30 ");
 mysql_close($connect);
+*/
 ?>
 <div id="primary_content">
-
+<?echo $multiResult . " Admins exist in the SB database, checking them now.";?>
 <table border ="1">
 						<tr>
 						<th>SteamID</th>
@@ -51,9 +50,14 @@ mysql_close($connect);
 						</tr>
 
 <?
+while($adminArray = mysql_fetch_array( $getAdmin )){
+$myAdmins = $adminArray['authid'];
+include("./includes/config.php");	
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$myAdmins'");
 
 
 while($playerarray = mysql_fetch_array( $player )) {
+
 $playerSteamid = $playerarray['steamid'];
 $playerNickname = $playerarray['nickname'];
 $playerPlaytime = $playerarray['playtime'];
@@ -107,7 +111,7 @@ echo "</tr>";
 
 	
 } 
-
+}
 echo "</table>";
 
 echo "</div>";
