@@ -16,17 +16,21 @@ include("./includes/header.php");
 
 
 include("./includes/config_sb.php");
-$getAdmin = mysql_query("SELECT `authid` FROM sb_admins WHERE `srv_group` = 'admin' LIMIT 0, 30 ");
-$admins = mysql_fetch_array($getAdmin);
-$c_admins = implode(",", $admins);
+$getAdmin = mysql_query("SELECT authid FROM sb_admins WHERE `srv_group` = 'admin' OR srv_group= 'SuperAdmin'");
+$multiResult = mysql_num_rows($getAdmin);
+
+
+
+//$admins = implode(', ', $admins);
+/*
 mysql_close($connect_sb);
 include("./includes/config.php");	
-$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` IN ($c_admins) LIMIT 0, 30 ");
-echo $c_admins;
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` IN ($admins) LIMIT 0, 30 ");
 mysql_close($connect);
+*/
 ?>
 <div id="primary_content">
-
+<?echo $multiResult . " Admins exist in the SB database, checking them now.";?>
 <table border ="1">
 						<tr>
 						<th>SteamID</th>
@@ -42,13 +46,17 @@ mysql_close($connect);
 						<th>Total Headshots</th>
 						<th>Highest Score</th>
 						<th>First seen in the server</th>
-						<th>Number of Bans</th>
 						</tr>
 
 <?
+while($adminArray = mysql_fetch_array( $getAdmin )){
+$myAdmins = $adminArray['authid'];
+include("./includes/config.php");	
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$myAdmins'");
 
 
 while($playerarray = mysql_fetch_array( $player )) {
+
 $playerSteamid = $playerarray['steamid'];
 $playerNickname = $playerarray['nickname'];
 $playerPlaytime = $playerarray['playtime'];
@@ -61,7 +69,8 @@ $playerKills = $playerarray['kills'];
 $playerHeadshots = $playerarray['headshots'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
-$sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
+
+
 if ($playerKills or $playerDeaths != 0){
 $playerKDRTrun = $playerKills / $playerDeaths;
 $playerKDR = round($playerKDRTrun, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
@@ -97,12 +106,11 @@ echo "<td>" . $playerKDR . "</td>";
 echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
-echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
 echo "</tr>";
 
 	
 } 
-
+}
 echo "</table>";
 
 echo "</div>";
