@@ -27,25 +27,25 @@ $multiResult = mysql_num_rows($getAdmin);
 echo "<div id='primary_content'>";
 echo "Filter the Admin lised based on the Awesome tracker database or SourceBans below!";
 echo"<form name='input' action='admin.php' method='get'>
+<input type='radio' name='type' value='stats' checked>Stats
 <input type='radio' name='type' value='sb'>SB
-<input type='radio' name='type' value='stats'>Stats
 <button class='button' type='submit'>Filter</button>
 </form>";
 echo "<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Highest Score</th><th>First seen in the server</th></tr>";
-
+include("./includes/config.php");
+$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `isadmin` = '1'");
 
 while($adminArray = mysql_fetch_array( $getAdmin )){
 if ($searchType == "sb"){
 $myAdmins = $adminArray['authid'];
 }
-
-include("./includes/config.php");
 if ($searchType == "sb"){	
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$myAdmins'");
 }
-else{
-$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `isadmin` = '1'");
-}
+
+
+
+
 
 while($playerarray = mysql_fetch_array( $player )) {
 
