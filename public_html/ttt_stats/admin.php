@@ -25,7 +25,7 @@ $multiResult = mysql_num_rows($getAdmin);
 }
 
 echo "<div id='primary_content'>";
-echo "Please select a method for getting admins, SB database or Tracker database.";
+echo "Filter the Admin lised based on the Awesome tracker database or SourceBans below!";
 echo"<form name='input' action='admin.php' method='get'>
 <input type='radio' name='type' value='sb'>SB
 <input type='radio' name='type' value='stats'>Stats
