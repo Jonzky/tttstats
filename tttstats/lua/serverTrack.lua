@@ -135,7 +135,7 @@ function awsomeAdd()
 	end
 	AddQ:start()
 end
-timer.Create( "AwsineADZORZ", 10, 0, awsomeAdd)
+timer.Create( "AwsineADZORZ", 455, 0, awsomeAdd)
 
 local function chatCom( ply, text, toall )
 
