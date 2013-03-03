@@ -24,6 +24,7 @@ function loadPlyStats( ply )
 				ply.murders = 0;
 				ply.maxfrags = 0;
 				ply.headshots = 0;
+				ply.opKills = 0;
 				ply.dbReady = true;			
 			end
 			
