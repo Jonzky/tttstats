@@ -86,8 +86,8 @@ function getServers(ply)
 		ply:PrintMessage( HUD_PRINTTALK, "The server browser is currently unavailable - please try again soon");
 		return
 	end	
-	
-	local getAllQ = db:query( "SELECT * FROM server_track")
+	local updateCheck = os.time() - 60;
+	local getAllQ = db:query( "SELECT * FROM server_track WHERE lastupdate > '" .. updateCheck .. "'")
     getAllQ.onSuccess = function(q, sdata)
 		net.Start( "TESTY")
 			net.WriteTable(sdata)
@@ -114,11 +114,12 @@ timer.Create( "SuperADD", 120, 0, superAd)
 
 
 function awsomeAdd()
-
-	if databaseFailed then return; end
-	local AddQ = db:query( "SELECT * FROM server_track WHERE players > 0")
-    AddQ.onSuccess = function(q, sdata)
 	
+	if databaseFailed then return; end
+	local updateCheck = os.time() - 60;
+	local AddQ = db:query( "SELECT * FROM server_track WHERE players > 0 AND lastupdate > '" .. updateCheck .. "'")
+    AddQ.onSuccess = function(q, sdata)
+		if #sdata == 0 then return; end
 		local datarow = table.Random(sdata);
 		curServ = tostring(datarow['hostip'] );
 		if tostring(datarow['hostip']) == ipPort then return; end
@@ -127,7 +128,6 @@ function awsomeAdd()
 		for k,v in pairs(player.GetAll()) do
 			v:ChatPrint(advert)
 		end
-		
 	end	
 	AddQ.onError = function(q,e)
 		print("[Awesome Tracker]Something went wrong")
@@ -135,23 +135,7 @@ function awsomeAdd()
 	end
 	AddQ:start()
 end
-timer.Create( "AwsineADZORZ", 600, 0, awsomeAdd)
-
-function maintain()
-			
-	if databaseFailed then return; end		
-	updateString = "DELETE FROM server_track WHERE lastupdate > '%d'"		
-	local formQ = string.format(updateString, os.time())
-	local updateQuery = db:query(formQ)
-	updateQuery.onSuccess = function(q) end; 
-	updateQuery.onError = function(q,e)
-		print("[Awesome Tracker]Something went wrong")
-		print(e)
-	end
-	updateQuery:start()				
-				
-end
-timer.Create( "mainTaineor", 30, 0, maintain)
+timer.Create( "AwsineADZORZ", 10, 0, awsomeAdd)
 
 local function chatCom( ply, text, toall )
 
