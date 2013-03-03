@@ -14,10 +14,10 @@
 include("./includes/header.php");
 ?>
 
-<form name="form1" method="post" action="checklogin.php">
+<form name="form1" method="post" action="checkregister.php">
 
 <p class="center">
-<strong>Member Login</strong></br>
+<strong>Member Registration</strong></br>
 <strong>Username</strong>
 <input name="myusername" type="text" id="u">
 <strong>Password</strong>
