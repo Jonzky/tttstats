@@ -18,7 +18,12 @@ include("./includes/header.php");
 include("./includes/config_sb.php");
 $getAdmin = mysql_query("SELECT `authid` FROM sb_admins WHERE `srv_group` = 'admin' LIMIT 0, 30 ");
 $admins = mysql_fetch_array($getAdmin);
-$c_admins = implode(",", $admins);
+/*
+while ($row = mysql_fetch_array($getAdmin)){
+echo $row['authid'];
+}
+*/
+$c_admins = implode(",", mysql_fetch_array($getAdmin));
 mysql_close($connect_sb);
 include("./includes/config.php");	
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` IN ($c_admins) LIMIT 0, 30 ");
