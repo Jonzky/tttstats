@@ -46,7 +46,6 @@ mysql_close($connect);
 						<th>Total Headshots</th>
 						<th>Highest Score</th>
 						<th>First seen in the server</th>
-						<th>Number of Bans</th>
 						</tr>
 
 <?
@@ -70,7 +69,8 @@ $playerKills = $playerarray['kills'];
 $playerHeadshots = $playerarray['headshots'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
-$sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
+
+
 if ($playerKills or $playerDeaths != 0){
 $playerKDRTrun = $playerKills / $playerDeaths;
 $playerKDR = round($playerKDRTrun, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
@@ -106,7 +106,6 @@ echo "<td>" . $playerKDR . "</td>";
 echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
-echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
 echo "</tr>";
 
 	
