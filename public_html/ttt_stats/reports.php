@@ -13,10 +13,14 @@
 include("./includes/header.php");
 include("./includes/config.php");	
 
+$allreports = mysql_query("SELECT * FROM `ttt_report`");
+$multiResult = mysql_num_rows($allreports);
+
 
 ?>
 <div id="primary_content">
-<h4>Here are the latest reported players!</h4>
+
+<h4><? echo $multiResult . " report(s) currently waiting your attention.";?></h4>
 
 <table border ="1">
 						<tr>
@@ -27,33 +31,37 @@ include("./includes/config.php");
 						<th>Message</th>
 						<th>reporterID</th>
 						<th>reporterNickname</th>
+						<th>Report Time</th>
 						</tr>
 
 <?
 
-if(isset($inputPlayer)){
-$multiResult = mysql_num_rows($player);
-while($playerarray = mysql_fetch_array( $player )) {
-$playerSteamid = $playerarray['steamid'];
-$playerNickname = $playerarray['nickname'];
-$playerPlaytime = $playerarray['playtime'];
-$playerRoundsplayed = $playerarray['roundsplayed'];
-$playerInnocenttimes = $playerarray['innocenttimes'];
+
+while($reportArray = mysql_fetch_array( $allreports )) {
+$reportSteamid = $reportArray['steamid'];
+$reportNick = $reportArray['nickname'];
+$reportKarma = $reportArray['lKarma'];
+$reportKills = $reportArray['opKills'];
+$reportMessage = $reportArray['message'];
+$reporterID = $reportArray['repID'];
+$reporterNick = $reportArray['repNick'];
+$reportTime = $reportArray['report_time'];
+
 
 echo "<tr>";
-echo "<td>" . $playerSteamid . "</td>";
-echo "<td>" . $playerNickname . "</td>";
-echo "<td> H:" . $hours . " M:" . $minutes . " S:" . $seconds . "</td>";
-echo "<td>" . $playerRoundsplayed . "</td>";
-echo "<td>" . $playerInnocenttimes . "</td>";
-echo "<td>" . $playerDetectivetimes . "</td>";
-echo "<td>" . $playerTraitortimes . "</td>";
+echo "<td>" . $reportSteamid . "</td>";
+echo "<td>" . $reportNick . "</td>";
+echo "<td>" . $reportKarma . "</td>";
+echo "<td>" . $reportKills . "</td>";
+echo "<td>" . $reportMessage . "</td>";
+echo "<td>" . $reporterID . "</td>";
+echo "<td>" . $reporterNick . "</td>";
+echo "<td>" . $reportTime . "</td>";
 echo "</tr>";
 
 	
 } 
 
-}
 echo "</table> </div>";
 
 include("./includes/footer.php");
