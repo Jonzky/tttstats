@@ -30,7 +30,7 @@ mysql_close($connect);
 */
 ?>
 <div id="primary_content">
-<?echo $multiResult . " Admins exist in the SB database, checking them now.";?>
+<?echo $multiResult . " Admins exist in the SB database, not all are TTT admins.";?>
 <table border ="1">
 						<tr>
 						<th>SteamID</th>

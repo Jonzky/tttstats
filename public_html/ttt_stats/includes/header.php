@@ -56,6 +56,9 @@
 						</li>
 						<li>
 							<a href="search.php">Search</a>
+							<ul>
+							<li><a href="admin.php">Admins</a></li>
+							</ul>
 						</li>
 						</ul>
 					</nav>
