@@ -53,6 +53,8 @@ function loadPlyStats( ply )
 					ply.headshots = row['headshots'];
 					ply.timeCheck = CurTime();
 					ply.dbReady = true;
+					ply.lKarma = 1000;
+					ply.opKills = 0;
 
   
 				end
@@ -81,7 +83,12 @@ local function DeathStat( victim, weapon, killer )
 				if victim.lastHitGroup && victim.lastHitGroup == HITGROUP_HEAD then
 					killer.headshots = killer.headshots + 1;
 				end
-				killer.murders = killer.murders + 1;
+				
+				if killer:GetTraitor() == victim:GetTraitor() then
+					killer.opKills = killer.opKills + 1;
+				else
+					killer.murders = killer.murders + 1;
+				end
 			end
 		end	
 			
@@ -109,6 +116,9 @@ end
 
 local function roundEnd(result)
 	for _, ply in pairs(player.GetAll()) do
+		if ply.lKarma > ply:GetLiveKarma() then
+			ply.lKarma = ply:GetLiveKarma()
+		end	
 		if ply.dbReady then
 			if ply:Frags() > ply.maxfrags or ply:Alive() then
 				savePlyStats(ply);
@@ -207,6 +217,95 @@ end
 local function pCome( ply )
 	loadPlyStats(ply);
 end
+
+
+local function reportPlayer(ply, tabl, repName)
+
+	if databaseFailed then
+		repName:ChatPrint("Something went wrong and the player wasn't reported :(");
+		return
+	end
+
+
+--	reportM = table.concat(tabl," ",3,#tabl); 
+	reportMessage = db:escape( tabl );
+	RepString = "INSERT INTO ttt_report(steamid, nickname, lKarma, opKills, message, repID, repNick) VALUES ('%s', '%s', '%d', '%d', '%s', '%s', '%s')"
+	local badBoy = db:escape( ply:Nick() );
+	local ecName = db:escape( repName:Nick() );
+	local formQ = string.format(RepString,
+					ply:SteamID(),
+					badBoy,
+					tonumber(ply.lKarma),
+					tonumber(ply.opKills),
+					reportMessage,
+					repName:SteamID(),
+					ecName
+				)
+	
+	local updateQuery = db:query(formQ)
+
+	updateQuery.onSuccess = function(q)  
+	
+		repName:ChatPrint("Player reported! Thanks for the report.");
+	
+	end
+	
+	updateQuery.onError = function(q,e) 
+		repName:ChatPrint("Something went wrong and the player wasn't reported :(");
+		print("[Awesome Stats]Something went wrong")
+		print(e)
+	end
+	updateQuery:start()
+
+end
+
+local function repCom( ply, text, toall )
+
+	local tLen = string.len(text);
+
+	alFound = false;
+	rPly = nil;
+	
+	
+    local tab = string.Explode( " ", text );
+    if tab[1] == "!report" or tab[1] == "/report" then
+		
+		if #tab < 3 then
+			ply:ChatPrint("You need to leave a message and/or player!");
+			return false
+		end
+			
+		for k,v in pairs(player.GetAll()) do
+			
+			if string.find(string.lower(v:Nick()),string.lower(tab[2])) then
+
+				if alFound then
+					ply:ChatPrint("Two 2 or more players found with that name")
+					return
+				end
+				
+				alFound = true;
+				rPly = v;
+			end	
+		end
+		
+		if alFound then
+		
+			lName = rPly:Nick();
+			lenName = (string.len(tab[2]) + 10);
+			local Rest = string.sub(text,lenName,tLen)
+			reportPlayer(rPly, Rest, ply);
+		else	
+			ply:ChatPrint("Player not found!");			
+		end
+		
+		return false;
+    elseif tab[1] == "!join" then
+		ply:SendLua("LocalPlayer():ConCommand('connect "..curServ.."')")
+	end
+ 
+end
+hook.Add( "PlayerSay", "ReportCommands", repCom)
 
 hook.Add( "PlayerInitialSpawn", "playerComes", pCome )
 hook.Add( "PlayerDisconnected", "playerGoes", pGone )
