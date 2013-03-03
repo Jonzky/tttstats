@@ -62,6 +62,12 @@
 							<li><a href="reports.php">Reports</a></li>
 							</ul>
 						</li>
+						<li>
+							<a href="#">Resources</a>
+							<ul>
+							<li><a href="../maplistttt/index.php">Maps</a></li>
+							</ul>
+						</li>
 						</ul>
 					</nav>
 					
