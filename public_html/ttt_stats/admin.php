@@ -13,42 +13,15 @@
 include("./includes/header.php");
 
 /*Search variable go here */
-
-
 include("./includes/config_sb.php");
 $getAdmin = mysql_query("SELECT authid FROM sb_admins WHERE `srv_group` = 'admin' OR srv_group= 'SuperAdmin'");
 $multiResult = mysql_num_rows($getAdmin);
 
+echo "<div id='primary_content'>";
+echo $multiResult . " Admins exist in the SB database, not all are TTT admins.";
+echo "<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Highest Score</th><th>First seen in the server</th></tr>";
 
 
-//$admins = implode(', ', $admins);
-/*
-mysql_close($connect_sb);
-include("./includes/config.php");	
-$player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` IN ($admins) LIMIT 0, 30 ");
-mysql_close($connect);
-*/
-?>
-<div id="primary_content">
-<?echo $multiResult . " Admins exist in the SB database, not all are TTT admins.";?>
-<table border ="1">
-						<tr>
-						<th>SteamID</th>
-						<th>Nickname</th>
-						<th>Playtime(hours, minutes, seconds)</th>
-						<th>Rounds played</th>
-						<th>Times innocent</th>
-						<th>Times detective</th>
-						<th>Times traitor</th>
-						<th>Total Deaths</th>
-						<th>Total Kills</th>
-						<th>KDR K/D</th>
-						<th>Total Headshots</th>
-						<th>Highest Score</th>
-						<th>First seen in the server</th>
-						</tr>
-
-<?
 while($adminArray = mysql_fetch_array( $getAdmin )){
 $myAdmins = $adminArray['authid'];
 include("./includes/config.php");	
