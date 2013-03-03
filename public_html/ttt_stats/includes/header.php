@@ -55,9 +55,11 @@
 							<a href="stats.php">Stats</a>
 						</li>
 						<li>
-							<a href="search.php">Search</a>
+							<a href="#">Search</a>
 							<ul>
+							<li><a href="search.php">Search</a></li>
 							<li><a href="admin.php">Admins</a></li>
+							<li><a href="reports.php">Reports</a></li>
 							</ul>
 						</li>
 						</ul>
