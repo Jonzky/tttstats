@@ -43,6 +43,30 @@ text-align: center;
 font-size: 18px;
 color:white;
 }
+.centerShort{
+margin-left: 40%;
+font-size: 18px;
+color:white;
+}
+.centerShortPass{
+margin-left: 40%;
+margin-right: 4px;
+font-size: 18px;
+color:white;
+}
+
+.centerLong{
+margin-left: 40%;
+margin-right: 67px;
+font-size: 18px;
+color:white;
+}
+.centerLongUser{
+margin-left: 40%;
+margin-right: 63px;
+font-size: 18px;
+color:white;
+}
 .center1	{
 text-align: center;
 }

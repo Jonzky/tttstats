@@ -41,18 +41,20 @@ function checkEmail(theForm) {
 
 <p class="center">
 <strong>Member Registration</strong><br/>
-<strong>Username :</strong>
+</p>
+<span class="centerLongUser">Username :</span>
 <input name="myusername" type="text" id="myusername" required>
 <br/>
-<strong>Repeat Username :</strong>
+<span class="centerShort">Repeat Username :</span>
 <input name="myusername2" type="text" id="myusername2" required>
 <br/>
-<strong>Password :</strong>
+<span class="centerLong">Password :</span>
 <input name="mypassword" type="password" id="mypassword" required>
 <br/>
-<strong>Repeat Password :</strong>
+<span class="centerShortPass">Repeat Password :</span>
 <input name="mypassword2" type="password" id="mypassword2" required>
 <br/>
+<p class="center">
 <button class='button' type='submit'>Register</button>
 </form>
 </p>
