@@ -180,7 +180,8 @@ echo "</table>";
         var options = {'title':'Traitor, Detective, Innocent Times.',
                        'width':400,
                        'height':300,
-					   'colors': ['green', 'blue', 'red']
+					   'colors': ['green', 'blue', 'red'],
+					   'is3D': true
 					   };
 
         // Instantiate and draw our chart, passing in some options.
