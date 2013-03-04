@@ -34,6 +34,7 @@ $inputPlayer = $steamid;
 if(isset($inputPlayer)){
 $playerEscaped = mysql_real_escape_string($inputPlayer);
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 ");
+$multiResult = mysql_num_rows($player);
 $playerarray = mysql_fetch_array($player);
 mysql_close($connect);
 
@@ -124,26 +125,9 @@ $seconds = $playerPlaytime;
 <div id="primary_content">
 <h3>TTT Stat tracker! Here are your TTT stats for Sngaming.org's TTT servers.</h3>
 </br>
-
-<table border ="1">
-						<tr>
-						<th>SteamID</th>
-						<th>Nickname</th>
-						<th>Playtime(hours, minutes, seconds)</th>
-						<th>Rounds played</th>
-						<th>Times innocent</th>
-						<th>Times detective</th>
-						<th>Times traitor</th>
-						<th>Total Deaths</th>
-						<th>Total Kills</th>
-						<th>KDR K/D</th>
-						<th>Total Headshots</th>
-						<th>Highest Score</th>
-						<th>First seen in the server</th>
-						<th>Number of Bans</th>
-						</tr>
-
-<?
+<?PHP
+if ($multiResult == 1){ 
+echo"<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Highest Score</th><th>First seen in the server</th><th>Number of Bans</th></tr>";
 echo "<tr>";
 echo "<td>" . $playerSteamid . "</td>";
 echo "<td>" . $playerNickname . "</td>";
@@ -162,7 +146,12 @@ echo "<td>" . $bannedTotal . "</td>";
 echo "</tr>";
 echo "</table>";
 echo "<div id='chart_div'></div>";
+}
+else{
+echo "<h3>Looks like you've never joined the server before! Welcome, remember to check out the MOTD in game!</h3>
+}
 echo "</div>";
+
 ?>
 
 

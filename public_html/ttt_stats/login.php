@@ -25,6 +25,6 @@ include("./includes/header.php");
 <button class='button' type='submit'>Login</button>
 </form>
 
-<p class="center">Have no login? why not try and <a href="register.php">register</a>?</p>
+<p class="center">Have no login? Why not try and <a href="register.php">register</a>?</p>
 </p>
 <?PHP include("./includes/footer.php");?>
