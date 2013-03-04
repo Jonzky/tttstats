@@ -148,7 +148,7 @@ echo "</table>";
 echo "<div id='chart_div'></div>";
 }
 else{
-echo "<h3>Looks like you've never joined the server before! Welcome, remember to check out the MOTD in game!</h3>
+echo "<h3>Looks like you've never joined the server before! Welcome, remember to check out the MOTD in game!</h3>";
 }
 echo "</div>";
 
