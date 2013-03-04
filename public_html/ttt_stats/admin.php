@@ -86,7 +86,7 @@ $seconds = $playerPlaytime;
 				
 
 echo "<tr>";
-echo "<td>" . $playerSteamid . "</td>";
+echo "<td> <a href='search.php?STEAMID=" . $playerSteamid . "&stype=STEAM_ID'>" . $playerSteamid . "</a></td>";
 echo "<td>" . $playerNickname . "</td>";
 echo "<td> H:" . $hours . " M:" . $minutes . " S:" . $seconds . "</td>";
 echo "<td>" . $playerRoundsplayed . "</td>";

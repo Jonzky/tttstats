@@ -16,7 +16,7 @@ include("./includes/config.php");
 $inputPlayer = $_GET['STEAMID'];
 $inputType = $_GET['stype'];
 /*Regex, we love regex to stop potential SQL injection :D */
-$regex = "/^STEAM_0:[01]:[0-9]{8,9}$/";
+$regex = "/^STEAM_0:[01]:[0-9]{7,8}$/";
 $nickRegex = "/^[a-zA-Z0-9_. ]+((\s|\-) [a-zA-Z0-9_. ]+)?$/";
 if (isset($inputPlayer)){
 if ($inputType == "NICK"){
