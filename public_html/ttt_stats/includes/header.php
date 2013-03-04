@@ -69,7 +69,13 @@ require("./includes/session_start.php");
 							</ul>
 						</li>
 							<li>
-							<a href="login.php">Login</a>
+							<?PHP if (isset($_SESSION['myusername'])){
+							echo "<a href='./control/index.php'>Control</a>";
+							}
+							else{
+							echo "<a href='login.php'>Login</a>";
+							}
+							?>
 							</li>
 						</li>
 						</ul>
