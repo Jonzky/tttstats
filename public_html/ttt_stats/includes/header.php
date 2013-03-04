@@ -65,7 +65,7 @@ require("./includes/session_start.php");
 						<li>
 							<a href="#">Resources</a>
 							<ul>
-							<li><a href="../maplistttt/index.php">Maps</a></li>
+							<li><a href="http://www.thehiddennation.com/maplistttt/index.php">Maps</a></li>
 							</ul>
 						</li>
 							<li>
