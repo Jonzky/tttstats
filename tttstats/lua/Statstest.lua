@@ -117,9 +117,6 @@ end
 
 local function roundEnd(result)
 	for _, ply in pairs(player.GetAll()) do
-		if ply.lKarma > ply:GetLiveKarma() then
-			ply.lKarma = ply:GetLiveKarma()
-		end	
 		if ply.dbReady then
 			if ply:Frags() > ply.maxfrags or ply:Alive() then
 				savePlyStats(ply);
@@ -227,6 +224,9 @@ local function reportPlayer(ply, tabl, repName)
 		return
 	end
 
+	if ply.lKarma > ply:GetLiveKarma() then
+		ply.lKarma = ply:GetLiveKarma()
+	end	
 
 --	reportM = table.concat(tabl," ",3,#tabl); 
 	reportMessage = db:escape( tabl );
