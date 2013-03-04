@@ -84,7 +84,7 @@ $seconds = $playerPlaytime;
 
 
 ?>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
 
       // Load the Visualization API and the piechart package.
@@ -110,8 +110,11 @@ $seconds = $playerPlaytime;
 
         // Set chart options
         var options = {'title':'Traitor, Detective, Innocent Times.',
-                       'width':400,
-                       'height':300};
+                       'width':350,
+                       'height':250,
+					   'colors': ['green', 'blue', 'red'],
+					   'is3D': true
+					   };
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -158,7 +161,7 @@ echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td>" . $bannedTotal . "</td>";
 echo "</tr>";
 echo "</table>";
-//echo "<div id='chart_div'></div>";
+echo "<div id='chart_div'></div>";
 echo "</div>";
 ?>
 

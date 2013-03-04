@@ -48,7 +48,7 @@ header('Location: http://www.thehiddennation.com/ttt_stats/nologin.php');
 					<nav>
 						<ul>
 						<li>
-						<a href="index.php">Home</a>
+						<a href="../index.php">Home</a>
 						</li>
 						<li>
 							<a href="#">control</a>
