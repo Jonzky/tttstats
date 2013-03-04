@@ -15,7 +15,7 @@ if (isset($_SESSION['myusername'])){
 //Do nothing we've logged in, we're happy. Might add more stuff here later.
 }
 else{
-header('Location: http://www.thehiddennation.com/ttt_stats/');
+header('Location: http://www.thehiddennation.com/ttt_stats/nologin.php');
 }
 
 ?>
