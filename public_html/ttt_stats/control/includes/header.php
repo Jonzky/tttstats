@@ -12,10 +12,10 @@
 \------------------------*/		
 require("./includes/session_start.php");
 if (isset($_SESSION['myusername'])){
-
+//Do nothing we've logged in, we're happy. Might add more stuff here later.
 }
 else{
-
+header('Location: http://www.thehiddennation.com/ttt_stats/');
 }
 
 ?>
@@ -50,30 +50,14 @@ else{
 						<li>
 						<a href="index.php">Home</a>
 						</li>
-
 						<li>
-							<a href="#">About</a>
+							<a href="#">control</a>
 							<ul>
-								<li><a href="about-tracker.php">The Tracker</a></li>
-								<li><a href="about-team.php">Meet the team</a></li>
+							<li><a href="control-reports.php">Reports</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="stats.php">Stats</a>
-						</li>
-						<li>
-							<a href="#">Search</a>
-							<ul>
-							<li><a href="search.php">Search</a></li>
-							<li><a href="admin.php">Admins</a></li>
-							<li><a href="reports.php">Reports</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">Resources</a>
-							<ul>
-							<li><a href="../maplistttt/index.php">Maps</a></li>
-							</ul>
+						<a href="logout.php">logout</a>
 						</li>
 						</ul>
 					</nav>
