@@ -19,10 +19,10 @@ include("./includes/header.php");
 <p class="center">
 <strong>Member Registration</strong><br/>
 <strong>Username</strong>
-<input name="myusername" type="text" id="u">
+<input name="myusername" type="text" id="myusername">
 <strong>Password</strong>
-<input name="mypassword" type="text" id="p">
-<button class='button' type='submit'>Login</button>
+<input name="mypassword" type="text" id="mypassword">
+<button class='button' type='submit'>Register</button>
 </form>
 </p>
 <?PHP include("./includes/footer.php");?>

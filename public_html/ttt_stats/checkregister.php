@@ -4,34 +4,33 @@ include("./includes/config.php");
 
 
 
+
 // username and password sent from form
-$myusername=$_POST['u'];
-$mypassword=$_POST['p'];
+$myusername=$_POST['myusername'];
+$mypassword=$_POST['mypassword'];
 
 // To protect MySQL injection (more detail about MySQL injection)
-$myusername = stripslashes($myusername);
-$mypassword = stripslashes($mypassword);
 $myusername = mysql_real_escape_string($myusername);
 $mypassword = mysql_real_escape_string($mypassword);
 $encrypted_mypassword=md5($mypassword);
 
-$sql="SELECT * FROM $tbl_name WHERE username='$myusername' and password='$encrypted_mypassword'";
-$result=mysql_query($sql);
+$check = mysql_query("SELECT * FROM admin_users WHERE user='$myusername'");
+
 
 // Mysql_num_row is counting table row
-$count=mysql_num_rows($result);
+$users = mysql_num_rows($check);
 
 // If result matched $myusername and $mypassword, table row must be 1 row
 
-if($count==1){
+if($users==1){
 
 // Register $myusername, $mypassword and redirect to file "login_success.php"
-session_register("myusername");
-session_register("mypassword");
-header("location:/control/index.php");
+echo "That username is unavaliable!";
 }
 else {
-echo "Wrong Username or Password";
+echo $myusername ." " . $mypassword . "<br/>";
+$check = mysql_query("INSERT INTO `handyman_ttt_stats`.`admin_users` (`ID`, `user`, `pass`, `last_login`, `last_ip`) VALUES (NULL, '$myusername', MD5('$mypassword'), '0000-00-00 00:00:00', '127.0.0.1');");
+echo "registration successful, please login <a href='/ttt_stats/login.php'>here</a>";
 }
 
 ?>
