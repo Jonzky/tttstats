@@ -26,8 +26,7 @@ if($users==1){
 
 // Register $myusername, $mypassword and redirect to file "login_success.php"
 $_SESSION['myusername'] = $myusername;
-echo "<h3>Thank you for logging in! " . $_SESSION['myusername'] . "</h3>";
-echo "please click the followling link to the admin panel <a href='./control/'>HERE</a>";
+header('Location: http://www.thehiddennation.com/ttt_stats/control/index.php');
 }
 else {
 echo "Wrong Username or Password";

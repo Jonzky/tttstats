@@ -28,9 +28,8 @@ if($users==1){
 echo "That username is unavaliable!";
 }
 else {
-echo $myusername ." " . $mypassword . "<br/>";
 $check = mysql_query("INSERT INTO `handyman_ttt_stats`.`admin_users` (`ID`, `user`, `pass`, `last_login`, `last_ip`) VALUES (NULL, '$myusername', MD5('$mypassword'), '0000-00-00 00:00:00', '127.0.0.1');");
-echo "registration successful, please login <a href='/ttt_stats/login.php'>here</a>";
+header('Location: http://www.thehiddennation.com/ttt_stats/login.php');
 }
 
 ?>
