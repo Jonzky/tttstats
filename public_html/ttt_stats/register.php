@@ -19,9 +19,9 @@ include("./includes/header.php");
 <p class="center">
 <strong>Member Registration</strong><br/>
 <strong>Username</strong>
-<input name="myusername" type="text" id="myusername">
+<input name="myusername" type="text" id="myusername" required>
 <strong>Password</strong>
-<input name="mypassword" type="text" id="mypassword">
+<input name="mypassword" type="text" id="mypassword" required>
 <button class='button' type='submit'>Register</button>
 </form>
 </p>

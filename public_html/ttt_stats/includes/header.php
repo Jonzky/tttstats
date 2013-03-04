@@ -68,6 +68,10 @@ require("./includes/session_start.php");
 							<li><a href="../maplistttt/index.php">Maps</a></li>
 							</ul>
 						</li>
+							<li>
+							<a href="login.php">Login</a>
+							</li>
+						</li>
 						</ul>
 					</nav>
 					
