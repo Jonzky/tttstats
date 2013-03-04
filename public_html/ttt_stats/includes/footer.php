@@ -19,7 +19,7 @@ $quotes = $input[$rand_keys[0]] . "\n";
 				<div class="clearfooter"></div>
 				<div id="content_box_bottom">
 				
-				<a href="mailto:administrator@thehiddennation.com">Report a Problem</a></br>
+				<a href="mailto:administrator@thehiddennation.com">Report a Problem</a><br/>
 				<?//echo $quotes;?>
 				</div>
 		</body>
