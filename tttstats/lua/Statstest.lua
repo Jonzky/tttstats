@@ -213,6 +213,7 @@ local function pGone( ply )
 end
 
 local function pCome( ply )
+	ply.dbReady = false
 	loadPlyStats(ply);
 end
 
