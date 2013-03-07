@@ -13,7 +13,7 @@
 include("./includes/header.php");
 include("./includes/config.php");	
 
-$allreports = mysql_query("SELECT * FROM `ttt_report`");
+$allreports = mysql_query("SELECT * FROM `ttt_report` ORDER BY `ttt_report`.`id` DESC");
 $multiResult = mysql_num_rows($allreports);
 
 
