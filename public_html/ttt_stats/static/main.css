@@ -67,6 +67,21 @@ margin-right: 63px;
 font-size: 18px;
 color:white;
 }
+
+.centerLongEmail{
+margin-left: 40%;
+margin-right: 95px;
+font-size: 18px;
+color:white;
+}
+.centerShortEmail{
+margin-left: 40%;
+margin-right: 32px;
+font-size: 18px;
+color:white;
+}
+
+
 .center1	{
 text-align: center;
 }

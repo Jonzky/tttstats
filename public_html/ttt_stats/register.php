@@ -21,6 +21,16 @@ include("./includes/header.php");
 // if they're the same, or not if they're different.
 //--------------------------------
 function checkEmail(theForm) {
+
+		var x=document.forms["form1"]["myemail"].value;
+		var atpos=x.indexOf("@");
+		var dotpos=x.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+		{
+		alert("Not a valid e-mail address");
+		return false;
+		}
+	
     if (theForm.myusername.value != theForm.myusername2.value )
     {
         alert('These Usernames don\'t match!');
@@ -28,6 +38,10 @@ function checkEmail(theForm) {
     } else if (theForm.mypassword.value != theForm.mypassword2.value ) 
 	{
 		alert('These Passwords don\'t match!');
+        return false;
+	} else if (theForm.myemail.value != theForm.myemail2.value ) 
+	{
+		alert('These E-mails don\'t match!');
         return false;
 	} else	
 	{
@@ -42,6 +56,12 @@ function checkEmail(theForm) {
 <p class="center">
 <strong>Member Registration</strong><br/>
 </p>
+<span class="centerLongEmail">E-mail :</span>
+<input name="myemail" type="text" id="myemail" required>
+<br/>
+<span class="centerShortEmail">Repeat E-mail :</span>
+<input name="myemail2" type="text" id="myemail2" required>
+<br/>
 <span class="centerLongUser">Username :</span>
 <input name="myusername" type="text" id="myusername" required>
 <br/>
