@@ -47,9 +47,8 @@ $reporterID = $reportArray['repID'];
 $reporterNick = $reportArray['repNick'];
 $reportTime = $reportArray['report_time'];
 
-
 echo "<tr>";
-echo "<td><a href='http://bans.sngaming.org/index.php?p=admin&c=bans'>" . $reportSteamid . "</a></td>";
+echo "<td><a href='http://bans.sngaming.org/index.php?p=banlist&searchText=" . $reportSteamid . "&Submit='>" . $reportSteamid . "</a></td>";
 echo "<td>" . $reportNick . "</td>";
 echo "<td>" . $reportKarma . "</td>";
 echo "<td>" . $reportKills . "</td>";
