@@ -57,22 +57,22 @@ function checkEmail(theForm) {
 <strong>Member Registration</strong><br/>
 </p>
 <span class="centerLongEmail">E-mail :</span>
-<input name="myemail" type="text" id="myemail" required>
+<input class="centerRight" name="myemail" type="text" id="myemail" required>
 <br/>
 <span class="centerShortEmail">Repeat E-mail :</span>
-<input name="myemail2" type="text" id="myemail2" required>
+<input class="centerRight" name="myemail2" type="text" id="myemail2" required>
 <br/>
 <span class="centerLongUser">Username :</span>
-<input name="myusername" type="text" id="myusername" required>
+<input class="centerRight" name="myusername" type="text" id="myusername" required>
 <br/>
 <span class="centerShort">Repeat Username :</span>
-<input name="myusername2" type="text" id="myusername2" required>
+<input class="centerRight" name="myusername2" type="text" id="myusername2" required>
 <br/>
 <span class="centerLong">Password :</span>
-<input name="mypassword" type="password" id="mypassword" required>
+<input class="centerRight" name="mypassword" type="password" id="mypassword" required>
 <br/>
 <span class="centerShortPass">Repeat Password :</span>
-<input name="mypassword2" type="password" id="mypassword2" required>
+<input class="centerRight" name="mypassword2" type="password" id="mypassword2" required>
 <br/>
 <p class="center">
 <button class='button' type='submit'>Register</button>

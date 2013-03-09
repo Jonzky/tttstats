@@ -50,33 +50,31 @@ color:white;
 }
 .centerShortPass{
 margin-left: 40%;
-margin-right: 2px;
 font-size: 18px;
 color:white;
 }
 
 .centerLong{
 margin-left: 40%;
-margin-right: 65px;
 font-size: 18px;
 color:white;
 }
+.centerRight{
+margin-right: 20%;
+}
 .centerLongUser{
 margin-left: 40%;
-margin-right: 65px;
 font-size: 18px;
 color:white;
 }
 
 .centerLongEmail{
 margin-left: 40%;
-margin-right: 95px;
 font-size: 18px;
 color:white;
 }
 .centerShortEmail{
 margin-left: 40%;
-margin-right: 32px;
 font-size: 18px;
 color:white;
 }
