@@ -61,12 +61,33 @@ margin-right: 65px;
 font-size: 18px;
 color:white;
 }
-.centerLongUser{
+.centerRight{
 margin-left: 40%;
-margin-right: 63px;
+margin-right: 65px;
 font-size: 18px;
 color:white;
 }
+.centerLongUser{
+margin-left: 40%;
+margin-right: 65px;
+font-size: 18px;
+color:white;
+}
+
+.centerLongEmail{
+margin-left: 40%;
+margin-right: 95px;
+font-size: 18px;
+color:white;
+}
+.centerShortEmail{
+margin-left: 40%;
+margin-right: 32px;
+font-size: 18px;
+color:white;
+}
+
+
 .center1	{
 text-align: center;
 }
