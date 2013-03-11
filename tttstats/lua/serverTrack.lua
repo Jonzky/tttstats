@@ -102,7 +102,10 @@ end
 
 local adverts = {
 "To view the server browser type /servers in chat!",
-"Want to play a different gamemode? Type /servers in chat!"
+"Somone RDM'ing? Use /report name message to report them :)",
+"Want to play a different gamemode? Type /servers in chat!",
+"Having a good time? Then add this server to your favourites - Type !favourites to find out how!",
+"Seen someone breaking the rules? Then use /report name message to report them!"
 }
 
 function superAd()
@@ -145,8 +148,19 @@ local function chatCom( ply, text, toall )
         getServers(ply)
      
     elseif tab[1] == "!join" then
+				
 		ply:SendLua("LocalPlayer():ConCommand('connect "..curServ.."')")
+	
+	elseif tab[1] == "!favourites" then
+		
+		ply:ChatPrint("To add this server to your favourites, then:")
+		ply:ChatPrint("Go to the main menu (without leaving the server) by pushing Esc.")
+		ply:ChatPrint("Click Legacy Browser - then select the Favourites tab.")
+		ply:ChatPrint("Click the button, \"Add Current Server\" - Then your done :)")		
+
+		
 	end
+	
  
 end
 hook.Add( "PlayerSay", "JonZChatCommands", chatCom)
