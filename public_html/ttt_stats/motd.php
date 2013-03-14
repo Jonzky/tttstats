@@ -127,7 +127,7 @@ $seconds = $playerPlaytime;
 </br>
 <?PHP
 if ($multiResult == 1){ 
-echo"<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Highest Score</th><th>First seen in the server</th><th>Number of Bans</th></tr>";
+echo"<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Highest Score</th><th>First seen in the server</th><th># of Bans</th></tr>";
 echo "<tr>";
 echo "<td>" . $playerSteamid . "</td>";
 echo "<td>" . $playerNickname . "</td>";
