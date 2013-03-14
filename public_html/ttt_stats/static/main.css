@@ -43,50 +43,15 @@ text-align: center;
 font-size: 18px;
 color:white;
 }
-.centerShort{
-margin-left: 40%;
-font-size: 18px;
-color:white;
-}
-.centerShortPass{
-margin-left: 40%;
-margin-right: 2px;
-font-size: 18px;
-color:white;
-}
 
-.centerLong{
+.formData{
+display: inline-block;
 margin-left: 40%;
-margin-right: 65px;
+width: 160px;
+margin-right: 1em;
 font-size: 18px;
-color:white;
+color: white;
 }
-.centerRight{
-margin-left: 40%;
-margin-right: 65px;
-font-size: 18px;
-color:white;
-}
-.centerLongUser{
-margin-left: 40%;
-margin-right: 65px;
-font-size: 18px;
-color:white;
-}
-
-.centerLongEmail{
-margin-left: 40%;
-margin-right: 95px;
-font-size: 18px;
-color:white;
-}
-.centerShortEmail{
-margin-left: 40%;
-margin-right: 32px;
-font-size: 18px;
-color:white;
-}
-
 
 .center1	{
 text-align: center;

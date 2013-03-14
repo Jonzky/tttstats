@@ -56,23 +56,23 @@ function checkEmail(theForm) {
 <p class="center">
 <strong>Member Registration</strong><br/>
 </p>
-<span class="centerLongEmail">E-mail :</span>
-<input name="myemail" type="text" id="myemail" required>
+<span class="formData">E-mail :</span>
+<input name="myemail" type="text" id="myemail" placeholder="E-mail" required>
 <br/>
-<span class="centerShortEmail">Repeat E-mail :</span>
-<input name="myemail2" type="text" id="myemail2" required>
+<span class="formData">Repeat E-mail :</span>
+<input name="myemail2" type="text" id="myemail2" placeholder="Repeat E-mail" required>
 <br/>
-<span class="centerLongUser">Username :</span>
-<input name="myusername" type="text" id="myusername" required>
+<span class="formData">Username :</span>
+<input name="myusername" type="text" id="myusername" placeholder="Username" required>
 <br/>
-<span class="centerShort">Repeat Username :</span>
-<input name="myusername2" type="text" id="myusername2" required>
+<span class="formData">Repeat Username :</span>
+<input name="myusername2" type="text" id="myusername2" placeholder="Repeat Username" required>
 <br/>
-<span class="centerLong">Password :</span>
-<input name="mypassword" type="password" id="mypassword" required>
+<span class="formData">Password :</span>
+<input name="mypassword" type="password" id="mypassword" placeholder="Password" required>
 <br/>
-<span class="centerShortPass">Repeat Password :</span>
-<input name="mypassword2" type="password" id="mypassword2" required>
+<span class="formData">Repeat Password :</span>
+<input name="mypassword2" type="password" id="mypassword2" placeholder="Repeat Password" required>
 <br/>
 <p class="center">
 <button class='button' type='submit'>Register</button>
