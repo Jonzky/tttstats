@@ -1,4 +1,16 @@
 <?PHP
+/*------------------------\
+|        TTT STATS        |
+|          Beta           |
+|=========================|
+|© 2013 SNGaming.org      |
+|   All Rights Reserved   |
+|=========================|
+|   Website printout      |
+|      beta testing       |
+|      by Handy_man       |
+\------------------------*/		
+
 require("./includes/session_start.php");
 
 include("./includes/config.php");
