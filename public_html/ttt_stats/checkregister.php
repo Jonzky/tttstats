@@ -19,7 +19,14 @@ $encrypted_mypassword=md5($mypassword);
 $check = mysql_query("SELECT * FROM admin_users WHERE user='$myusername'");
 $users = mysql_num_rows($check);
 
+$checkemail = mysql_query("SELECT * FROM admin_users WHERE email='$myemail'");
+$usersemail = mysql_num_rows($checkemail);
+
 if($users==1){
+$_SESSION['failedReg'] = true;
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/register.php');
+}
+else if($usersemail==1){
 $_SESSION['failedReg'] = true;
 header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/register.php');
 }

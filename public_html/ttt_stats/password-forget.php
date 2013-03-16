@@ -62,7 +62,7 @@ $newpassword = generatePassword();
 
 $subject = '[TTT STATS] Password reset!';
 
-$message = "Automated message " . $_SERVER['HTTP_HOST'] . " 
+$message = "Automated message " . $_SERVER['HTTP_HOST'] . "/ttt_stats 
 
 Hello, " . $theusername . ". 
 
@@ -70,7 +70,7 @@ Your password has been reset for the TTT stat tracker to: ". $newpassword . "
 
 Thanks,
 
-[TTT STAT TACKER]";
+[TTT STAT TACKER] - " . $_SERVER['HTTP_HOST'] . "/ttt_stats";
 
 
 

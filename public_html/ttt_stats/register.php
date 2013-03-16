@@ -14,7 +14,7 @@
 include("./includes/header.php");
 
 if (isset($_SESSION['failedReg'])){
-echo "<script type='text/javascript' language='JavaScript'> alert('That Username already exists!')</script>";
+echo "<script type='text/javascript' language='JavaScript'> alert('That Username or E-mail address already exists!')</script>";
 session_destroy();
 }
 ?>
