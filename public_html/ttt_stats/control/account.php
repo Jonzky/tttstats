@@ -14,10 +14,6 @@ include("./includes/header.php");
 include("./includes/config.php");
 
 $plySteamID = $_POST['steamID'];
-$prevPass = $_POST['prevPass'];
-$prevPass = mysql_real_escape_string($prevPass);
-$newPass = $_POST['newPass'];
-$newPass = mysql_real_escape_string($newPass);
 $myUsername = $_SESSION['myusername']; //we should probably do this by id, but i know we have this in session data and it works the same.
 
 $regex = "/^STEAM_0:[01]:[0-9]{7,8}$/";
@@ -34,7 +30,11 @@ if(isset($plySteamID)){
 mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `steamID` = '$plySteamID' WHERE `admin_users`.`user` = '$myUsername'");
 }
 
-if(isset($prevPass) && isset($newPass)){
+if(isset($_POST['prevPass']) && isset($_POST['newPass'])){
+$prevPass = $_POST['prevPass'];
+$prevPass = mysql_real_escape_string($prevPass);
+$newPass = $_POST['newPass'];
+$newPass = mysql_real_escape_string($newPass);
 
 $check = mysql_query("SELECT * FROM admin_users WHERE user='$myusername' and pass=MD5('$prevPass')");
 $users = mysql_num_rows($check);
