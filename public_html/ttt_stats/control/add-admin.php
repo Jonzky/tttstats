@@ -17,6 +17,35 @@ include("./includes/config.php");
 
 ?>
 
+<script type="text/javascript" language="JavaScript">
+<!--
+//--------------------------------
+// This code compares two fields in a form and submit it
+// if they're the same, or not if they're different.
+//--------------------------------
+function checkEmail(theForm) {
+
+		var x=document.forms["form1"]["myemail"].value;
+		var atpos=x.indexOf("@");
+		var dotpos=x.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+		{
+		alert("Not a valid e-mail address");
+		return false;
+		}
+	
+    if (theForm.password.value != theForm.password2.value )
+    {
+        alert('These Passwords don\'t match!');
+        return false;
+    }else	
+	{
+		return true;
+    }
+}
+//-->
+</script> 
+
 <p class="center">
 <strong>Add a new Admin</strong><br/>
 </p>
