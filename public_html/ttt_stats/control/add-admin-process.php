@@ -43,7 +43,6 @@ $_SESSION['failedReg'] = true;
 header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/control/add-admin.php');
 }
 else {
-//$check = mysql_query("INSERT INTO `handyman_ttt_stats`.`admin_users` (`ID`, `email`, `user`, `pass`, `last_login`, `last_ip`, 'steamID', 'isadmin') VALUES (NULL, '$myemail', '$myusername', MD5('$mypassword'), '0000-00-00 00:00:00', '127.0.0.1', '$mySteam', '$myAdminType')");
 $check = mysql_query("INSERT INTO `handyman_ttt_stats`.`admin_users` (`ID`, `email`, `user`, `pass`, `last_login`, `last_ip`, `steamID`, `isadmin`, `hash`, `active`) VALUES (NULL, '$myemail', '$myusername', MD5('$mypassword'), '0000-00-00 00:00:00', '127.0.0.0', '$mySteam', '$myAdminType', '$myHash', '0')");
 header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/login.php');
 }
