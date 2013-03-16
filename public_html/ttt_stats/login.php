@@ -12,6 +12,11 @@
 \------------------------*/				
 
 include("./includes/header.php");
+
+if (isset($_SESSION['failedLogin'])){
+echo "<script type='text/javascript' language='JavaScript'> alert('That Username already exists!')</script>";
+session_destroy();
+}
 ?>
 
 <form name="form1" method="post" action="checklogin.php">

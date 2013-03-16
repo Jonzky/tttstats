@@ -40,7 +40,8 @@ $_SESSION['isadmin'] = $plyAdmin;
 header('Location: http://www.thehiddennation.com/ttt_stats/login-success.php');
 }
 else {
-echo "Wrong Username or Password";
+$_SESSION['failedLogin'] = true;
+header('Location: http://www.thehiddennation.com/ttt_stats/login.php');
 }
 
 ?>
