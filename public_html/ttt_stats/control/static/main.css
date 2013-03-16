@@ -43,6 +43,16 @@ text-align: center;
 font-size: 18px;
 color:white;
 }
+
+.formData{
+display: inline-block;
+margin-left: 40%;
+width: 160px;
+margin-right: 1em;
+font-size: 18px;
+color: white;
+}
+
 .center1	{
 text-align: center;
 }
@@ -60,7 +70,7 @@ float: right;
 /* LAYOUT */
 div#page /*Sets entire page contents to be 80% use 100% inside of this div*/
 {
-	margin: 0 auto 0 auto;
+	margin: 0 auto 10px auto;
 	width: 90%;
 	margin-bottom:-30px;
 	min-height: 100%; /*forces footer to the bottom of the page*/
@@ -136,6 +146,29 @@ margin: auto auto auto auto;
 	background-color: white;
 	padding: 10px;
 	opacity: 0.9;
+	text-align: center;
+
+}
+
+div#advert_foot
+{
+margin-top: 5%;
+margin-bottom: 20px;
+margin-left: 40%;
+margin-right: 40%;
+
+	/* ROUNDED CORNERS */
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+	/* DROP SHADOW */
+	-moz-box-shadow: 0px 0px 14px #000000;
+	-webkit-box-shadow: 0px 0px 14px #000000;
+	box-shadow: 0px 0px 14px #000000;
+	/* OTHER */
+	background-color: white;
+	padding: 2px;
+	opacity: 0.1;
 	text-align: center;
 
 }
@@ -275,7 +308,7 @@ clear: both;
 	top:1px;
 }
 nav{
-margin: 40px 30% 35px 30%;
+margin: 40px 25% 35px 25%;
 	text-align: center;
 	font-size: 18px;
 }

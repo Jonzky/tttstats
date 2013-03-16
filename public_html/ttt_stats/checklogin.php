@@ -25,10 +25,18 @@ $mypassword = mysql_real_escape_string($mypassword);
 
 $check = mysql_query("SELECT * FROM admin_users WHERE user='$myusername' and pass=MD5('$mypassword')");
 $users = mysql_num_rows($check);
+while($playerarray = mysql_fetch_array( $check )) {
+$plySteamID = $playerarray['steamID'];
+$plyAdmin = $playerarray['isadmin'];
+}
+
+
 $user_ip = $_SERVER['REMOTE_ADDR'];
 if($users==1){
 $update = mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `last_login` = now(), `last_ip` = '$user_ip' WHERE `admin_users`.`user` = '$myusername'");
 $_SESSION['myusername'] = $myusername;
+$_SESSION['steamid'] = $plySteamID;
+$_SESSION['isadmin'] = $plyAdmin;
 header('Location: http://www.thehiddennation.com/ttt_stats/login-success.php');
 }
 else {
