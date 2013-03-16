@@ -10,8 +10,10 @@
 |      beta testing       |
 |      by Handy_man       |
 \------------------------*/
+include("./includes/superonly.php");	
 include("./includes/header.php");
 include("./includes/config.php");	
+
 
 ?>
 

@@ -25,7 +25,7 @@ $_SESSION['isadmin'] = $plyAdmin;
 else{
 header('Location: http://www.thehiddennation.com/ttt_stats/nologin.php');
 }
-
+$adminLevel = $_SESSION['isadmin']; //0 is non admin, 1 = admin and 2 = superadmin
 
 
 ?>
@@ -58,7 +58,11 @@ header('Location: http://www.thehiddennation.com/ttt_stats/nologin.php');
 					<nav>
 						<ul>
 						<li>
-						<a href="../index.php">Home</a>
+						<a href="#">Home</a>
+							<ul>
+							<li><a href="../index.php">Normal home</a></li>
+							<li><a href="./index.php">Admin home</a></li>
+							</ul>
 						</li>
 						<li>
 							<a href="#">Account</a>
@@ -72,6 +76,19 @@ header('Location: http://www.thehiddennation.com/ttt_stats/nologin.php');
 							<li><a href="control-reports.php">Reports</a></li>
 							</ul>
 						</li>
+						<?PHP
+						if(isset($adminLevel)){
+							if($adminLevel == 2){
+								echo "<li>";
+								echo "<a href='#'>Admin</a>";
+								echo "<ul>";
+								echo "<li><a href='add-admin.php'>Add Admin</a></li>";
+								echo "<li><a href='list-admin.php'>List Admins</a></li>";
+								echo "</ul>";
+								echo "</li>";
+							}
+						}
+						?>
 						<li>
 						<a href="logout.php">logout</a>
 						</li>
