@@ -43,6 +43,11 @@ text-align: center;
 font-size: 18px;
 color:white;
 }
+.noexist{
+text-align: center;
+font-size: 18px;
+color:red;
+}
 
 .formData{
 display: inline-block;
