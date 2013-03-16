@@ -31,6 +31,6 @@ session_destroy();
 </form>
 
 <p class="center">Have no login? Why not try and <a href="register.php">register</a>?</p>
-<p class="centerSmall"><a href="./login-forget.php">Forgotten your login?</a>  <a href="./password-forget.php">Forgotten your password?</a></p>
+<p class="centerSmall"><a href="./login-forget.php">Forgotten your login?</a>  |  <a href="./password-forget.php">Forgotten your password?</a></p>
 </p>
 <?PHP include("./includes/footer.php");?>
