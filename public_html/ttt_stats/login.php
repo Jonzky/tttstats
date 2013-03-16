@@ -14,7 +14,7 @@
 include("./includes/header.php");
 
 if (isset($_SESSION['failedLogin'])){
-echo "<script type='text/javascript' language='JavaScript'> alert('That Username already exists!')</script>";
+echo "<script type='text/javascript' language='JavaScript'> alert('Incorrect Username or Password')</script>";
 session_destroy();
 }
 ?>
