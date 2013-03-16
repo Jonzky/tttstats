@@ -35,6 +35,12 @@ include("./includes/config.php");
 <span class="formData">Repeat Password</span>
 <input name="password2" type="text" id="password2" placeholder="Repeat password">
 <br/>
+<span class="formData">Admin Type</span>
+<select name="admin">
+<option value="admin">Admin</option>
+<option value="superAdmin">Super Admin</option>
+</select>
+<br/>
 
 <p class="center">
 <button class='button' type='submit'>Add new Admin</button>
