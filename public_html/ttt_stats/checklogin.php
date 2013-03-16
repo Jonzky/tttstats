@@ -17,7 +17,7 @@ $user_ip = $_SERVER['REMOTE_ADDR'];
 if($users==1){
 $update = mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `last_login` = now(), `last_ip` = '$user_ip' WHERE `admin_users`.`user` = '$myusername'");
 $_SESSION['myusername'] = $myusername;
-header('Location: http://www.thehiddennation.com/ttt_stats/control/index.php');
+header('Location: http://www.thehiddennation.com/ttt_stats/login-success.php');
 }
 else {
 echo "Wrong Username or Password";

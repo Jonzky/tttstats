@@ -24,6 +24,7 @@ $multiResult = mysql_num_rows($allreports);
 
 <table border ="1">
 						<tr>
+						<th>ReportID</th>
 						<th>SteamID</th>
 						<th>Nickname</th>
 						<th>Karma</th>
@@ -38,6 +39,7 @@ $multiResult = mysql_num_rows($allreports);
 
 
 while($reportArray = mysql_fetch_array( $allreports )) {
+$reportID = $reportArray['id'];
 $reportSteamid = $reportArray['steamid'];
 $reportNick = $reportArray['nickname'];
 $reportKarma = $reportArray['lKarma'];
@@ -48,6 +50,7 @@ $reporterNick = $reportArray['repNick'];
 $reportTime = $reportArray['report_time'];
 
 echo "<tr>";
+echo "<td>" . $reportID . "</td>";
 echo "<td><a href='http://bans.sngaming.org/index.php?p=banlist&searchText=" . $reportSteamid . "&Submit='>" . $reportSteamid . "</a></td>";
 echo "<td>" . $reportNick . "</td>";
 echo "<td>" . $reportKarma . "</td>";
