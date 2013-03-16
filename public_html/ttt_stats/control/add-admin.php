@@ -24,16 +24,6 @@ include("./includes/config.php");
 // if they're the same, or not if they're different.
 //--------------------------------
 function checkEmail(theForm) {
-
-		var x=document.forms["form1"]["myemail"].value;
-		var atpos=x.indexOf("@");
-		var dotpos=x.lastIndexOf(".");
-		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
-		{
-		alert("Not a valid e-mail address");
-		return false;
-		}
-	
     if (theForm.password.value != theForm.password2.value )
     {
         alert('These Passwords don\'t match!');
@@ -61,10 +51,10 @@ function checkEmail(theForm) {
 <input name="e-mail" type="text" id="e-mail" placeholder="admin@gmail.com">
 <br/>
 <span class="formData">Admin Password</span>
-<input name="password" type="text" id="password" placeholder="Password">
+<input name="password" type="password" id="password" placeholder="Password">
 <br/>
 <span class="formData">Repeat Password</span>
-<input name="password2" type="text" id="password2" placeholder="Repeat password">
+<input name="password2" type="password" id="password2" placeholder="Repeat password">
 <br/>
 <span class="formData">Admin Type</span>
 <select name="admin">
