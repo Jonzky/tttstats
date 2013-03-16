@@ -6,4 +6,8 @@ create a tool that allows a user to search their steamid and if they're able to 
 
 Interface with the SteamAPI so that when we have details of a single user from search we can get their other steam stats such as avatar etc. (I'm not strong on my JSON yet, will take a little while to test etc)
 
+Finish up e-mail validation(the e-mailing the val code as well as if their active = 0 tell them they're not active and don't allow a login)
+
+Play with the idea of using RCON in TTT stats for certain things... not sure what i would really do for the moment :/ but hey it might be fun.
+
 ===HTML/ PHP coding===
