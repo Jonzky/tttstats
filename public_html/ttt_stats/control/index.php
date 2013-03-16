@@ -14,6 +14,6 @@
 include("./includes/header.php");
 ?>
 							<div id="primary_content">
-							<p>Welcome! <?PHP echo $_SESSION['myusername'];?>, this is the control section of TTT Stat Tracker. There is currently no functionality! but we're logged in :)</p>
+							<p>Welcome! <?PHP echo $_SESSION['myusername'];?>, this is the control section of TTT Stat Tracker. The only functionality includes removeing reports for the moment.</p>
 							</div>
 				<?PHP include("./includes/footer.php");?>
