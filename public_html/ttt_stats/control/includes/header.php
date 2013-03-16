@@ -70,13 +70,17 @@ $adminLevel = $_SESSION['isadmin']; //0 is non admin, 1 = admin and 2 = superadm
 							<li><a href="account.php">Edit account</a></li>
 							</ul>
 						</li>
-						<li>
-							<a href="#">control</a>
-							<ul>
-							<li><a href="control-reports.php">Reports</a></li>
-							</ul>
-						</li>
 						<?PHP
+						if(isset($adminLevel)){
+							if($adminLevel >= 1){
+						echo	"<li>";
+						echo	"<a href='#'>control</a>";
+						echo	"<ul>";
+						echo	"<li><a href='control-reports.php'>Reports</a></li>";
+						echo	"</ul>";
+						echo	"</li>";
+						}
+						}
 						if(isset($adminLevel)){
 							if($adminLevel == 2){
 								echo "<li>";

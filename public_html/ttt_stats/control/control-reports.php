@@ -10,6 +10,7 @@
 |      beta testing       |
 |      by Handy_man       |
 \------------------------*/
+include("./includes/adminonly.php");
 include("./includes/header.php");
 include("./includes/config.php");	
 
