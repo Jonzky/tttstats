@@ -62,7 +62,7 @@ $newpassword = generatePassword();
 
 $subject = '[TTT STATS] Password reset!';
 
-$message = "Automated message from www.thehiddennation.com
+$message = "Automated message " . $_SERVER['HTTP_HOST'] . " 
 
 Hello, " . $theusername . ". 
 
@@ -70,12 +70,12 @@ Your password has been reset for the TTT stat tracker to: ". $newpassword . "
 
 Thanks,
 
-[TTT STAT TACKER] copyright www.thehiddennation.com";
+[TTT STAT TACKER]";
 
 
 
-$headers = 'From: no-reply@thehiddennation.com' . "\r\n" .
-    'Reply-To: no-reply@thehiddennation.com' . "\r\n" .
+$headers = 'From: no-reply@' . $_SERVER['HTTP_HOST'] . '' . "\r\n" .
+    'Reply-To: no-reply@' . $_SERVER['HTTP_HOST'] . '' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 mail($to, $subject, $message, $headers);

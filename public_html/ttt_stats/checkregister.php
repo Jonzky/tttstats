@@ -21,11 +21,11 @@ $users = mysql_num_rows($check);
 
 if($users==1){
 $_SESSION['failedReg'] = true;
-header('Location: http://www.thehiddennation.com/ttt_stats/register.php');
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/register.php');
 }
 else {
 $check = mysql_query("INSERT INTO `handyman_ttt_stats`.`admin_users` (`ID`, `email`, `user`, `pass`, `last_login`, `last_ip`) VALUES (NULL, '$myemail', '$myusername', MD5('$mypassword'), '0000-00-00 00:00:00', '127.0.0.1')");
-header('Location: http://www.thehiddennation.com/ttt_stats/login.php');
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/login.php');
 }
 
 ?>

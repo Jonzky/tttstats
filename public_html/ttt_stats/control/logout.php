@@ -12,6 +12,6 @@
 \------------------------*/		
 require("./includes/session_start.php");
 session_destroy();
-header('Location: http://www.thehiddennation.com/ttt_stats');
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats');
 
 ?>

@@ -37,11 +37,11 @@ $update = mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `last_login
 $_SESSION['myusername'] = $myusername;
 $_SESSION['steamid'] = $plySteamID;
 $_SESSION['isadmin'] = $plyAdmin;
-header('Location: http://www.thehiddennation.com/ttt_stats/login-success.php');
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/login-success.php');
 }
 else {
 $_SESSION['failedLogin'] = true;
-header('Location: http://www.thehiddennation.com/ttt_stats/login.php');
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/login.php');
 }
 
 ?>

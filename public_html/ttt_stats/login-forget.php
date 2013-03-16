@@ -31,20 +31,20 @@ $theusername = $playerarray['user'];
 }
 $subject = '[TTT STATS] Username reminder';
 
-$message = "Automated message from www.thehiddennation.com
+$message = "Automated message from " . $_SERVER['HTTP_HOST'] . "/ttt_stats
 
 Your username was requested to be re-sent to your e-mail address listed for the TTT Stat tracker!
 
-Your username from TTT stats is as follows:". $theusername . "
+Your username from TTT stats is as follows:" . $theusername . "
 
 Thanks,
 
-[TTT STAT TACKER] copyright www.thehiddennation.com";
+[TTT STAT TACKER] - " . $_SERVER['HTTP_HOST'] . "/ttt_stats";
 
 
 
-$headers = 'From: no-reply@thehiddennation.com' . "\r\n" .
-    'Reply-To: no-reply@thehiddennation.com' . "\r\n" .
+$headers = 'From: no-reply@' . $_SERVER['HTTP_HOST'] . '' . "\r\n" .
+    'Reply-To: no-reply@' . $_SERVER['HTTP_HOST'] . '' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 mail($to, $subject, $message, $headers);

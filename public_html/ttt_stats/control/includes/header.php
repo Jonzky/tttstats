@@ -23,7 +23,7 @@ $_SESSION['steamid'] = $plySteamID;
 $_SESSION['isadmin'] = $plyAdmin;
 }
 else{
-header('Location: http://www.thehiddennation.com/ttt_stats/nologin.php');
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/nologin.php');
 }
 $adminLevel = $_SESSION['isadmin']; //0 is non admin, 1 = admin and 2 = superadmin
 
