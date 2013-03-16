@@ -24,15 +24,15 @@ include("./includes/config.php");
 // if they're the same, or not if they're different.
 //--------------------------------
 function checkEmail(theForm) {
-	-		var x=document.forms["form1"]["e-mail"].value;
--		var atpos=x.indexOf("@");
--		var dotpos=x.lastIndexOf(".");
--		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
--		{
--		alert("Not a valid e-mail address");
--		return false;
--		}
 
+		var x=document.forms["form1"]["myemail"].value;
+		var atpos=x.indexOf("@");
+		var dotpos=x.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+		{
+		alert("Not a valid e-mail address");
+		return false;
+		}
 	
     if (theForm.password.value != theForm.password2.value )
     {
@@ -50,7 +50,7 @@ function checkEmail(theForm) {
 <strong>Add a new Admin</strong><br/>
 </p>
 
-<form name="form1" action='add-admin-process.php' method='post' onsubmit='return checkEmail(this);'>
+<form action='add-admin-process.php' method='post' onsubmit='return checkEmail(this);'>
 <span class="formData">Admin Login</span>
 <input name="nick" type="text" id="nick" placeholder="Example: Handy_man">
 <br/>
