@@ -48,6 +48,11 @@ text-align: center;
 font-size: 18px;
 color:red;
 }
+.centerSmall	{
+text-align: center;
+font-size: 12px;
+color:white;
+}
 
 .formData{
 display: inline-block;
