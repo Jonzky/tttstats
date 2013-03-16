@@ -16,7 +16,17 @@ include("./includes/config.php");
 $plySteamID = $_POST['steamID'];
 $myUsername = $_SESSION['myusername']; //we should probably do this by id, but i know we have this in session data and it works the same.
 
+$regex = "/^STEAM_0:[01]:[0-9]{7,8}$/";
+
+
+
 if(isset($plySteamID)){
+	if(!preg_match($regex, $plySteamID)) {
+    echo "<script LANGUAGE='JavaScript'>";
+	echo "window.alert('Invalid STEAMID! please try again.')";
+	echo "</script>";
+	unset($plySteamID);
+	}
 mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `steamID` = '$plySteamID' WHERE `admin_users`.`user` = '$myUsername'");
 }
 	

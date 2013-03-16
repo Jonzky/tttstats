@@ -51,6 +51,12 @@ header('Location: http://www.thehiddennation.com/ttt_stats/nologin.php');
 						<a href="../index.php">Home</a>
 						</li>
 						<li>
+							<a href="#">Account</a>
+							<ul>
+							<li><a href="account.php">Edit account</a></li>
+							</ul>
+						</li>
+						<li>
 							<a href="#">control</a>
 							<ul>
 							<li><a href="control-reports.php">Reports</a></li>
