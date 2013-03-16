@@ -1,10 +1,21 @@
 <?PHP
+/*------------------------\
+|        TTT STATS        |
+|          Beta           |
+|=========================|
+|© 2013 SNGaming.org      |
+|   All Rights Reserved   |
+|=========================|
+|   Website printout      |
+|      beta testing       |
+|      by Handy_man       |
+\------------------------*/				
 require("./includes/session_start.php");
+include("./includes/header.php");
 ?>
 
-<meta http-equiv="refresh" content="5;url=./control/index.php">
+<meta http-equiv="refresh" content="3;url=./control/index.php">
 
-<p>
-   Thank you for logging in <?PHP echo$_SESSION['username'];?> you will be redirected to the control panel in 5 seconds. 
-   Click <a href="./control/index.php">here</a> if you're impatient.
-</p>
+		<p class="center">Thank you for loggin in, you will be redirected to the control panel soon.</p>
+		<p class="center">Click <a href="./control/index.php">here</a> if you'd prefer not to wait.</p>
+<?PHP include("./includes/footer.php");?>
