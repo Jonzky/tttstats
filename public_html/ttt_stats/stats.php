@@ -16,6 +16,7 @@ include("./includes/config.php");
 //Used in KDR, basically low amount of deaths (1 or 2) are generally RDMer's in your server.
 //This variable allows for you to scale this to your liking, default is set to 30.
 $deathLimit = 30;
+$hourLimit = 36000; //10 hours
 $statType = $_GET['type'];
 
 /*Stats SQL queries all go here */
@@ -65,7 +66,7 @@ $top10Score = mysql_query("SELECT nickname, maxfrags FROM `ttt_stats` ORDER BY `
 $top10Deaths = mysql_query("SELECT nickname, deaths FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
 $top10Kills = mysql_query("SELECT nickname, kills FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
 $top10Head = mysql_query("SELECT nickname, headshots FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
-$top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` WHERE deaths >= '$deathLimit' ORDER BY `KDR` DESC LIMIT 0, 10");
+$top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` WHERE deaths >= '$deathLimit' AND playtime >= '$hourLimit' ORDER BY `KDR` DESC LIMIT 0, 10");
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
@@ -201,7 +202,7 @@ echo "</table>";
 }
 
 if ($statType == 'kdr' or $statType == 'all'){
-echo"<h3>Top 10 KDR ( " . $deathLimit . " deaths required before tracked.)</h3><table border ='1'><tr><th>Nickname</th><th>K/D Ratio</th></tr>";
+echo"<h3>Top 10 KDR ( " . $deathLimit . " deaths & " . $hourLimit . " Seconds of playtime before tracked.)</h3><table border ='1'><tr><th>Nickname</th><th>K/D Ratio</th></tr>";
 
 while($row6 = mysql_fetch_array( $top10KDR )) {
 		
