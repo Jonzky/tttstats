@@ -13,8 +13,19 @@
 
 include("./includes/header.php");
 
+if (isset($_SESSION['verifynow'])){
+echo "<p class ='noexist'>Your account needs to be verified before you can login, please check your email and spam filters.</p>";
+session_destroy();
+}
+
+
 if (isset($_SESSION['failedLogin'])){
 echo "<script type='text/javascript' language='JavaScript'> alert('Incorrect Username or Password')</script>";
+session_destroy();
+}
+
+if (isset($_SESSION['verifyorpass'])){
+echo "<p class ='noexist'>Incorrect username or password or account not verified, please check your email and spam filters.</p>";
 session_destroy();
 }
 ?>

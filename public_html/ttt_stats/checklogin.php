@@ -33,6 +33,10 @@ $plyAdmin = $playerarray['isadmin'];
 
 $user_ip = $_SERVER['REMOTE_ADDR'];
 if($users==1){
+$checkActive = mysql_query("SELECT * FROM admin_users WHERE user='$myusername' and pass=MD5('$mypassword') AND active = 1");
+$usersActive = mysql_num_rows($checkActive);
+
+if ($usersActive==1){
 $update = mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `last_login` = now(), `last_ip` = '$user_ip' WHERE `admin_users`.`user` = '$myusername'");
 $_SESSION['myusername'] = $myusername;
 $_SESSION['steamid'] = $plySteamID;
@@ -41,6 +45,11 @@ header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/login-success.p
 }
 else {
 $_SESSION['failedLogin'] = true;
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/login.php');
+}
+}
+else{
+$_SESSION['verifyorpass'] = true;
 header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/login.php');
 }
 
