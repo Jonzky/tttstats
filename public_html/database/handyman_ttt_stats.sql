@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2013 at 10:57 AM
+-- Generation Time: Mar 17, 2013 at 07:17 AM
 -- Server version: 5.5.23
 -- PHP Version: 5.2.17
 
@@ -33,9 +33,13 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
   `pass` text COLLATE utf8_unicode_ci NOT NULL,
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `last_ip` text COLLATE utf8_unicode_ci NOT NULL,
+  `steamID` text COLLATE utf8_unicode_ci NOT NULL,
+  `isadmin` int(11) NOT NULL,
+  `hash` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `active` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `unique usernames` (`user`(100))
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=54 ;
 
 -- --------------------------------------------------------
 
@@ -70,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `ttt_report` (
   `repNick` text COLLATE utf8_unicode_ci NOT NULL,
   `report_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=75 ;
 
 -- --------------------------------------------------------
 
