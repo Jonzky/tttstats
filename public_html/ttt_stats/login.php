@@ -21,10 +21,12 @@ session_destroy();
 
 if (isset($_SESSION['failedLogin'])){
 echo "<script type='text/javascript' language='JavaScript'> alert('Incorrect Username or Password')</script>";
+echo "<p class ='noexist'>Incorrect username or password or account not verified, please check your email and spam filters.</p>";
 session_destroy();
 }
 
 if (isset($_SESSION['verifyorpass'])){
+echo "<script type='text/javascript' language='JavaScript'> alert('Incorrect Username or Password')</script>";
 echo "<p class ='noexist'>Incorrect username or password or account not verified, please check your email and spam filters.</p>";
 session_destroy();
 }
