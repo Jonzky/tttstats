@@ -16,7 +16,8 @@ include("./includes/config.php");
 //Used in KDR, basically low amount of deaths (1 or 2) are generally RDMer's in your server.
 //This variable allows for you to scale this to your liking, default is set to 30.
 $deathLimit = 30;
-
+$hourLimit = 36000; //10 hours
+$statType = $_GET['type'];
 
 /*Stats SQL queries all go here */
 
@@ -65,7 +66,7 @@ $top10Score = mysql_query("SELECT nickname, maxfrags FROM `ttt_stats` ORDER BY `
 $top10Deaths = mysql_query("SELECT nickname, deaths FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
 $top10Kills = mysql_query("SELECT nickname, kills FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
 $top10Head = mysql_query("SELECT nickname, headshots FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
-$top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` WHERE deaths >= '$deathLimit' ORDER BY `KDR` DESC LIMIT 0, 10");
+$top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` WHERE deaths >= '$deathLimit' AND playtime >= '$hourLimit' ORDER BY `KDR` DESC LIMIT 0, 10");
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
@@ -94,27 +95,36 @@ $seconds = $timetotal;
 
 echo "<div id='primary_content'>";
 
-echo "<img src='./static/images/icon_id.png'/> : " . $uniqueusers;
-echo "<img src='./static/images/icon_bullet.png'/> : " . $killstotal;
-echo "<img src='./static/images/icon_inno.png'/> : " . $innocenttotal . "</br>";
-echo "<img src='./static/images/icon_det.png'/> : " . $detectivetotal;
-echo "<img src='./static/images/icon_traitor.png'/> : " . $traitortotal;
-echo "<img src='./static/images/icon_corpse.png'/> : " . $deathtotal;
-echo "<img src='./static/images/icon_head.png'/> : " . $headtotal . "</br>";
-//echo "Total number of rounds played : " . $roundstotal . "</br>"; //bad stat, multiple players can play the same round thus it's untrue.
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='all' checked>All
+<input type='radio' name='type' value='time'>Time
+<input type='radio' name='type' value='kills'>Kills
+<input type='radio' name='type' value='deaths'>Deaths
+<input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='headshots'>Head-Shots
+<input type='radio' name='type' value='kdr'>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
 
-echo "<img src='./static/images/icon_time.png'/> Total number of '" . $hours . " Hours, " . $minutes . " Minutes, and " . $seconds . " seconds' wasted on TTT.";
-echo "<br />The highest score on the server is: " . $topscorefinal . ",  held by " . $topscorenick . "! Think you can beat him? </br>";
+if (!isset($statType)){
+echo "<img src='./static/images/icon_id.png' alt='ID icon' title='unique users' /> : " . $uniqueusers;
+echo "<img src='./static/images/icon_bullet.png' alt='Bullet icon' title='Total kills'/> : " . $killstotal;
+echo "<img src='./static/images/icon_inno.png' alt='TTT innocent icon' title='Total Innocents'/> : " . $innocenttotal;
+echo "<img src='./static/images/icon_det.png' alt='TTT Detective icon' title='Total Detectives'/> : " . $detectivetotal;
+echo "<img src='./static/images/icon_traitor.png' alt='TTT Traitor icon' title='Total Traitors'/> : " . $traitortotal;
+echo "<img src='./static/images/icon_corpse.png' alt='Deadbody icon' title='Total Deaths'/> : " . $deathtotal;
+echo "<img src='./static/images/icon_head.png' alt='Headshot icon' title='Total Headshots'/> : " . $headtotal . "<br/>";
+//echo "Total number of rounds played : " . $roundstotal . "<br/>"; //bad stat, multiple players can play the same round thus it's untrue.
+//echo "<img src='./static/images/icon_time.png'/> Total number of " . $hours . " Hours, " . $minutes . " Minutes, and " . $seconds . " seconds spent on SNGaming's TTT servers.<br/>";
+echo "<br />The highest score on the server is: " . $topscorefinal . ",  held by " . $topscorenick . "! Think you can beat him?";
+}
 
-?>
-<h3>Top 10 Play Time</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Playtime(hours, minutes, seconds)</th>
-						</tr>
 
-<?
+if ($statType == 'time' or $statType == 'all'){
+echo"<h3>Top 10 Play Time</h3><table border ='1'><tr><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th></tr>";
+
+
+
 while($row1 = mysql_fetch_array( $top10Time )) {
 		$seconds1 = $row1['playtime'];
 			//start of math for hourse, minues and seconds
@@ -136,19 +146,13 @@ while($row1 = mysql_fetch_array( $top10Time )) {
 	echo "</td><td>";
 	echo "H:" . $hours1 . " M:" . $minutes1 . " S:" . $seconds1 . "";
 	echo "</td></tr>";
-	
 } 
+
 echo "</table>";
-?>
+}
+if ($statType == 'score' or $statType == 'all'){
+echo"<h3>Top 10 Score</h3><table border ='1'><tr><th>Nickname</th><th>Score</th></tr>";
 
-<h3>Top 10 Score</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Score</th>
-						</tr>
-
-<?
 while($row2 = mysql_fetch_array( $top10Score )) {
 		
 	echo "<tr><td>"; 
@@ -157,16 +161,11 @@ while($row2 = mysql_fetch_array( $top10Score )) {
 	
 } 
 echo "</table>";
-?>
+}
+if ($statType == 'deaths' or $statType == 'all'){
+echo"<h3>Top 10 Deaths</h3><table border ='1'><tr><th>Nickname</th><th>Deaths</th></tr>";
 
-<h3>Top 10 Deaths</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Deaths</th>
-						</tr>
 
-<?
 while($row3 = mysql_fetch_array( $top10Deaths )) {
 		
 	echo "<tr><td>"; 
@@ -174,16 +173,11 @@ while($row3 = mysql_fetch_array( $top10Deaths )) {
 	echo "</td><td> " . $row3['deaths'] . "</td> </tr>";
 } 
 echo "</table>";
-?>
+}
+if ($statType == 'kills' or $statType == 'all'){
+echo"<h3>Top 10 Kills</h3><table border ='1'><tr><th>Nickname</th><th>Kills</th></tr>";
 
-<h3>Top 10 Kills</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Kills</th>
-						</tr>
 
-<?
 while($row4 = mysql_fetch_array( $top10Kills )) {
 		
 	echo "<tr><td>"; 
@@ -192,15 +186,11 @@ while($row4 = mysql_fetch_array( $top10Kills )) {
 	
 } 
 echo "</table>";
-?>
-<h3>Top 10 Head-Shots</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>Headshots</th>
-						</tr>
+}
+if ($statType == 'headshots' or $statType == 'all'){
+echo"<h3>Top 10 Head-Shots</h3><table border ='1'><tr><th>Nickname</th><th>Headshots</th></tr>";
 
-<?
+
 while($row5 = mysql_fetch_array( $top10Head )) {
 		
 	echo "<tr><td>"; 
@@ -209,14 +199,11 @@ while($row5 = mysql_fetch_array( $top10Head )) {
 	
 } 
 echo "</table>";
-?>
-<h3>Top 10 KDR (<?echo $deathLimit;?> deaths required before tracked.)</h3>
-<table border ="1">
-						<tr>
-						<th>Nickname</th>
-						<th>K/D Ratio</th>
-						</tr>
-<?
+}
+
+if ($statType == 'kdr' or $statType == 'all'){
+echo"<h3>Top 10 KDR ( " . $deathLimit . " deaths & " . $hourLimit . " seconds of playtime before tracked.)</h3><table border ='1'><tr><th>Nickname</th><th>K/D Ratio</th></tr>";
+
 while($row6 = mysql_fetch_array( $top10KDR )) {
 		
 	echo "<tr><td>"; 
@@ -226,6 +213,7 @@ while($row6 = mysql_fetch_array( $top10KDR )) {
 	
 } 
 echo "</table>";
+}
 echo "</div>";
 include("./includes/footer.php");
 ?>
