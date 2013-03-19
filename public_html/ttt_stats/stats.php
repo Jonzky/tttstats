@@ -16,7 +16,8 @@ include("./includes/config.php");
 //Used in KDR, basically low amount of deaths (1 or 2) are generally RDMer's in your server.
 //This variable allows for you to scale this to your liking, default is set to 30.
 $deathLimit = 30;
-$hourLimit = 36000; //10 hours
+$hourLimit = 36000; //10 hours#$init = 685;
+$statHours = floor($hourLimit / 3600);
 $statType = $_GET['type'];
 
 /*Stats SQL queries all go here */
@@ -202,7 +203,7 @@ echo "</table>";
 }
 
 if ($statType == 'kdr' or $statType == 'all'){
-echo"<h3>Top 10 KDR ( " . $deathLimit . " deaths & " . $hourLimit . " Seconds of playtime before tracked.)</h3><table border ='1'><tr><th>Nickname</th><th>K/D Ratio</th></tr>";
+echo"<h3>Top 10 KDR ( " . $deathLimit . " deaths & " . $statHours . " Hours of playtime before tracked.)</h3><table border ='1'><tr><th>Nickname</th><th>K/D Ratio</th></tr>";
 
 while($row6 = mysql_fetch_array( $top10KDR )) {
 		
