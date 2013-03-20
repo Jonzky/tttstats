@@ -16,7 +16,7 @@ include("./includes/config.php");
 //Used in KDR, basically low amount of deaths (1 or 2) are generally RDMer's in your server.
 //This variable allows for you to scale this to your liking, default is set to 30.
 $deathLimit = 30;
-$hourLimit = 36000; //10 hours#$init = 685;
+$hourLimit = 36000; //10 hours
 $statHours = floor($hourLimit / 3600);
 $statType = $_GET['type'];
 
