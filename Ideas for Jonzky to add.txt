@@ -1,2 +1,35 @@
 Number of rounds won as either Traitor or innocent? So on round end grab all the alive innocents and all the alive traitors and increase this value by 1? or just all the innocents and all the traitors but i think keeping it to alive would limit potential lag and that's when you technically won and not died and allowed others to win for you...
 
+===***===
+Points system!
+
+lets get our ideas of a points system that will be custom to the server and not just using the inbuilt score system, all of these things should be controlled by variables and be subject to easy change.
+
+
+Action	Points
+Innocent KILL Traitor	+5
+Innocent KILL Innocent	-10
+Innocent Kill Detective -20
+
+ 
+Traitor KILL Innocent	+5
+Traior KILL Detective +10?
+Traitor KILL Traitor	-20
+
+
+Detective KILL Traitor	+5
+Detective KILL Innocent	-5
+Detective KILL Detective -20
+
+
+Surviving the Round +2
+Dying	-1 (during active round phase)
+
+So assuming that you play a game and die in a game dealing 0 damage to anyone your default is -1
+good things = +5 - 10 
+bad things =-5 - 20
+This allows for basically easy backtracking/ minus points where posotive points are harder to come by/ keep ahold of. 
+
+
+===***===
+
