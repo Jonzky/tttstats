@@ -14,15 +14,11 @@ include("./includes/superonly.php");
 include("./includes/header.php");
 include("./includes/config.php");	
 
-$allAdmins = mysql_query("SELECT * FROM `admin_users` ORDER BY `admin_users`.`ID` DESC");
-$multiResult = mysql_num_rows($allAdmins);
+$editID = $_POST['adminID'];
 
-
+$editingAdmin = mysql_query("SELECT * FROM `admin_users` WHERE `ID` = '$editID'");
 ?>
 <div id="primary_content">
-
-<h4><? echo $multiResult . " Registered users.";?></h4>
-
 <table border ="1">
 						<tr>
 						<th>E-mail</th>
@@ -31,21 +27,19 @@ $multiResult = mysql_num_rows($allAdmins);
 						<th>Last IP</th>
 						<th>SteamID</th>
 						<th>Admin Type</th>
-						<th>Edit</th>
 						</tr>
 
 <?
 
 
-while($adminArray = mysql_fetch_array( $allAdmins )) {
-echo "<form action='./edit-admin.php' method='post'>";
-$adminID = $adminArray['ID'];
-$adminEmail = $adminArray['email'];
-$adminUsername = $adminArray['user'];
-$adminLast = $adminArray['last_login'];
-$adminIP = $adminArray['last_ip'];
-$adminSID = $adminArray['steamID'];
-$adminType = $adminArray['isadmin'];
+while($adminArrayEdit = mysql_fetch_array( $editingAdmin )) {
+$adminID = $adminArrayEdit['ID'];
+$adminEmail = $adminArrayEdit['email'];
+$adminUsername = $adminArrayEdit['user'];
+$adminLast = $adminArrayEdit['last_login'];
+$adminIP = $adminArrayEdit['last_ip'];
+$adminSID = $adminArrayEdit['steamID'];
+$adminType = $adminArrayEdit['isadmin'];
 
 echo "<tr>";
 echo "<td>" . $adminEmail . "</td>";
@@ -54,14 +48,15 @@ echo "<td>" . $adminLast . "</td>";
 echo "<td>" . $adminIP . "</td>";
 echo "<td>" . $adminSID . "</td>";
 echo "<td>" . $adminType . "</td>";
-echo "<td>" . "<input type='hidden' name='adminID' id='adminID' value='" . $adminID . "'><button class='button' type='submit'>Edit</button>" . "</td>";
 echo "</tr>";
-echo "</form>";
 
 	
 } 
 
-echo "</table> </div>";
+echo "</table>";
+
+
+echo"</div>";
 
 include("./includes/footer.php");
 ?>
