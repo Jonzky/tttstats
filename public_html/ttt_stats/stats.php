@@ -17,7 +17,7 @@ include("./includes/config.php");
 //This variable allows for you to scale this to your liking, default is set to 30.
 $deathLimit = 30;
 $hourLimit = 36000; //10 hours
-$statHours = floor($hourLimit / 3600);
+$statHours = floor($hourLimit / 3600); //simple maths to convert our seconds into hours for user friendly reading.
 $statType = $_GET['type'];
 
 /*Stats SQL queries all go here */

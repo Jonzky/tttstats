@@ -21,7 +21,7 @@ include("./includes/header.php");
 	<p>The project currently only has 2 developers working in their spare time to make this add-on to the popular Garry's Mod gamemode Trouble in Terrorist Town. If you want to learn more about Trouble in Terrorist Town please see these links. <a href="http://ttt.badking.net/">TTT Homepage</a> <a href="http://www.moddb.com/mods/trouble-in-terrorist-town">MOD DB</a><p>
 	<p>The Stat Tracker currently tracks the following stats for every player in the server: SteamID, Nickname, Playtime, Rounds played, Number of times Innocent, Detective & Traitor, Deaths, Kills, Highest score (per map/ session), First time seen on the server.</p>
 
-<p>There are a few other stats that are being planned to be tracked but are not currently in implementation, these include: Last time seen in the server & Points (custom point system to be determined based on kills, deaths, innocent vs. innocent kills etc becoming a large persistent number).</p>
+<p>There are a few other stats that are being planned to be tracked but are not currently in implementation, these include: Points (custom point system to be determined based on kills, deaths, innocent vs. innocent kills etc becoming a large persistent number).</p>
 
 <p>There are also plans to implement in the search bar the number of bans a user has incurred on the server, this interfaces with SourceBans as it's the ban method used by <a href="http://www.sngaming.org">SNGaming.org</a> and will be included on release as an optional feature.</p>
 
