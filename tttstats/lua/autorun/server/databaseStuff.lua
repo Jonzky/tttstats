@@ -33,8 +33,9 @@ function connectToDatabase()
 	db.onConnectionFailed = function(self, err)
 		databaseFailed = true;
 		print("[Awesome Stats]Failed to connect to the database: ", err, ". Retrying in 60 seconds.");
-		timer.Simple(60, self.connect, self);
-	end
+		timer.Simple(60, function()
+			db:connect()
+		end);
 	db:connect()
 end
 hook.Add( "Initialize", "connectToDatabase111", connectToDatabase ); 

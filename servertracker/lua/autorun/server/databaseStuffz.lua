@@ -21,22 +21,28 @@ STATUS_WORKING  = mysqloo.DATABASE_CONNECTING;
 STATUS_OFFLINE  = mysqloo.DATABASE_NOT_CONNECTED;
 STATUS_ERROR    = mysqloo.DATABASE_INTERNAL_ERROR;
 
-function connectToDatabase()
+function connectToDatabaseAgain()
 
 	db = mysqloo.connect(ServerStatsDB.Host, ServerStatsDB.Username, ServerStatsDB.Password, ServerStatsDB.Database_name, ServerStatsDB.Database_port)
 	db.onConnected = function() 
+		print("[Awesome Stats]************************************************") 
+		print("[Awesome Stats]************************************************") 
 		print("[Awesome Stats]******************Database linked!******************************") 
+		print("[Awesome Stats]************************************************") 
+		print("[Awesome Stats]************************************************") 
 		databaseFailed = false;
 		loadServerStats();
 	end
-	db.onConnectionFailed = function(self, err)
+	db.onConnectionFailed = function(err)
 		databaseFailed = true;
 		print("[Awesome Stats]Failed to connect to the database: ", err, ". Retrying in 60 seconds.");
-		timer.Simple(60, self.connect, self);
+		timer.Simple(60, function()
+			connectToDatabaseAgain()
+		end);
 	end
 	db:connect()
 end
-hook.Add( "Initialize", "connectToDatabase111", connectToDatabase ); 
+hook.Add( "Initialize", "connectToDatabase11111", connectToDatabaseAgain ); 
 
 function checkQuery(query)
     local playerInfo = query:getData()
@@ -55,7 +61,7 @@ function CheckStatus()
     elseif (status == STATUS_ERROR) then
 		databaseFailed = true;
         print("[Awesome Stats]The database object has suffered an inernal error and will be recreated.");
-        connectToDatabase();
+        connectToDatabaseAgain();
     else
 		databaseFailed = true;
 		db:abortAllQueries();
@@ -63,4 +69,4 @@ function CheckStatus()
         db:connect();
     end
 end
-timer.Create("serverCheckz", 60, 0, CheckStatus);
+timer.Create("serverCheckz11", 60, 0, CheckStatus);
