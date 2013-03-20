@@ -53,6 +53,10 @@ $head = mysql_query('SELECT SUM(headshots) FROM ttt_stats');
 $headarray = mysql_fetch_array($head);
 $headtotal = array_sum($headarray);
 
+$point = mysql_query('SELECT SUM(points) FROM ttt_stats');
+$pointarray = mysql_fetch_array($point);
+$pointtotal = array_sum($pointarray);
+
 $time = mysql_query('SELECT SUM(playtime) FROM ttt_stats');
 $timearray = mysql_fetch_array($time);
 $timetotal = array_sum($timearray);
@@ -67,6 +71,7 @@ $top10Score = mysql_query("SELECT nickname, maxfrags FROM `ttt_stats` ORDER BY `
 $top10Deaths = mysql_query("SELECT nickname, deaths FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
 $top10Kills = mysql_query("SELECT nickname, kills FROM `ttt_stats` ORDER BY `ttt_stats`.`kills` DESC LIMIT 0, 10 ");
 $top10Head = mysql_query("SELECT nickname, headshots FROM `ttt_stats` ORDER BY `ttt_stats`.`headshots` DESC LIMIT 0, 10 ");
+$top10Points = mysql_query("SELECT nickname, points FROM `ttt_stats` ORDER BY `ttt_stats`.`points` DESC LIMIT 0, 10 ");
 $top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FROM `ttt_stats` WHERE deaths >= '$deathLimit' AND playtime >= '$hourLimit' ORDER BY `KDR` DESC LIMIT 0, 10");
 
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
@@ -102,6 +107,7 @@ echo"<form name='input' action='stats.php' method='get'>
 <input type='radio' name='type' value='kills'>Kills
 <input type='radio' name='type' value='deaths'>Deaths
 <input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='points'>Points
 <input type='radio' name='type' value='headshots'>Head-Shots
 <input type='radio' name='type' value='kdr'>KDR
 <button class='button' type='submit'>Filter</button>
@@ -115,6 +121,7 @@ echo "<img src='./static/images/icon_det.png' alt='TTT Detective icon' title='To
 echo "<img src='./static/images/icon_traitor.png' alt='TTT Traitor icon' title='Total Traitors'/> : " . $traitortotal;
 echo "<img src='./static/images/icon_corpse.png' alt='Deadbody icon' title='Total Deaths'/> : " . $deathtotal;
 echo "<img src='./static/images/icon_head.png' alt='Headshot icon' title='Total Headshots'/> : " . $headtotal . "<br/>";
+echo "<img src='./static/images/icon_head.png' alt='Points icon' title='Total Points'/> : " . $pointtotal . "<br/>";
 //echo "Total number of rounds played : " . $roundstotal . "<br/>"; //bad stat, multiple players can play the same round thus it's untrue.
 //echo "<img src='./static/images/icon_time.png'/> Total number of " . $hours . " Hours, " . $minutes . " Minutes, and " . $seconds . " seconds spent on SNGaming's TTT servers.<br/>";
 echo "<br />The highest score on the server is: " . $topscorefinal . ",  held by " . $topscorenick . "! Think you can beat him?";
@@ -197,6 +204,20 @@ while($row5 = mysql_fetch_array( $top10Head )) {
 	echo "<tr><td>"; 
 	echo $row5['nickname']; 
 	echo "</td><td> " . $row5['headshots'] . "</td></tr>";
+	
+} 
+echo "</table>";
+}
+
+if ($statType == 'points' or $statType == 'all'){
+echo"<h3>Top 10 Points</h3><table border ='1' class='stattable'><tr><th>Nickname</th><th>Points</th></tr>";
+
+
+while($row5 = mysql_fetch_array( $top10Points )) {
+		
+	echo "<tr><td>"; 
+	echo $row5['nickname']; 
+	echo "</td><td> " . $row5['points'] . "</td></tr>";
 	
 } 
 echo "</table>";
