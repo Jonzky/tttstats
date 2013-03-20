@@ -105,7 +105,8 @@ local adverts = {
 "Somone RDM'ing? Use /report name message to report them :)",
 "Want to play a different gamemode? Type /servers in chat!",
 "Having a good time? Then add this server to your favourites - Type !favourites to find out how!",
-"Seen someone breaking the rules? Then use /report name message to report them!"
+"Seen someone breaking the rules? Then use /report name message to report them!",
+"Type !rank or !rank playername to check out a players rank!!!"
 }
 
 function superAd()

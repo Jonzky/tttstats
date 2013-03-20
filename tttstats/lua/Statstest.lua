@@ -312,13 +312,66 @@ local function reportPlayer(ply, tabl, repName)
 
 end
 
+function getRank(ply, caller)
+
+	if databaseFailed then
+		caller:ChatPrint("The ranking system is currently unavailable :(");
+		return
+	end
+
+	local rankCheck = db:query( "SELECT points FROM ttt_stats WHERE steamid ='" .. ply:SteamID() .. "'" )
+    rankCheck.onSuccess = function(q, sdata)
+		
+		if (#sdata != 1) then
+			caller:ChatPrint("Something went wrong, if this persists please inform an admin.");
+			return
+		end	
+		row = sdata[1];
+		
+		local rankStat = db:query( "SELECT COUNT(*) AS allcnt FROM ttt_stats")
+		rankStat.onSuccess = function(q, stdata)
+			
+			countRow = stdata[1];		
+			local anRankStat = db:query( "SELECT COUNT(*) AS cnt FROM ttt_stats WHERE points >= '" ..row['points'].. "'")
+			anRankStat.onSuccess = function(q, stddata)
+				
+				RankRow = stddata[1];
+				for k,v in pairs(player.GetAll()) do
+					v:ChatPrint(ply:Nick() .. " is currently rank " .. RankRow['cnt'] .. " out of " .. countRow['allcnt'] .. " with a score of " .. row['points'] .. "!"  )
+				end
+			end
+			anRankStat.onError = function(q,e)
+				print("[Awesome Stats]Something went wrong")
+				print(e)
+			end
+			anRankStat:start()
+			
+		end
+		
+		rankStat.onError = function(q,e)
+			print("[Awesome Stats]Something went wrong")
+			print(e)
+		end
+		rankStat:start()
+		
+		
+	end
+	rankCheck.onError = function(q,e)
+		print("[Awesome Stats]Something went wrong")
+		print(e)
+	end
+	rankCheck:start();
+
+end
+
+
+
 local function repCom( ply, text, toall )
 
 	local tLen = string.len(text);
 
 	alFound = false;
 	rPly = nil;
-	
 	
     local tab = string.Explode( " ", text );
     if tab[1] == "!report" or tab[1] == "/report" then
@@ -353,6 +406,36 @@ local function repCom( ply, text, toall )
 		end
 		
 		return false;
+		
+    elseif tab[1] == "!rank" or tab[1] == "/rank" then
+		
+		if #tab < 2 then
+			getRank(ply,ply)
+			return
+		end
+			
+		for k,v in pairs(player.GetAll()) do
+			
+			if string.find(string.lower(v:Nick()),string.lower(tab[2])) then
+
+				if alFound then
+					ply:ChatPrint("Two 2 or more players found with that name")
+					return
+				end
+				
+				alFound = true;
+				rPly = v;
+			end	
+		end
+		
+		if alFound then
+			getRank(rPly,ply)
+		else	
+			ply:ChatPrint("Player not found!");			
+		end
+		
+		return;
+		
     elseif tab[1] == "!join" then
 		ply:SendLua("LocalPlayer():ConCommand('connect "..curServ.."')")
 	end
