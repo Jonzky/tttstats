@@ -27,4 +27,5 @@ $myAdminType = 0;
 $check = mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `user` = '$myusername', 'email' = '$myemail', 'steamID' = '$mySteam', 'isadmin' = '$myAdminType' WHERE `admin_users`.`ID` = '$adminUID';");
 header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/control/edit-admin.php');
 
+
 ?>
