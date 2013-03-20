@@ -1,5 +1,19 @@
 local peopleToUpdate = {}
 
+--- Scores for killing
+Inno_Kill_T = 5;
+Inno_Kill_Inno = -10;
+Inno_Kill_D = -20;
+T_Kill_Inno = 5;
+T_Kill_D = 10;
+T_Kill_T = -20;
+D_Kill_T = 5;
+D_Kill_Inno = -5;
+D_Kill_D = -20;
+Surviving_the_Round = 2;
+death = -1;
+
+
 function loadPlyStats( ply )
 
 	if databaseFailed then return; end
@@ -10,7 +24,7 @@ function loadPlyStats( ply )
     tquery1.onSuccess = function(q)
         if not checkQuery(q) then
 
-			local tquery2 = db:query("INSERT INTO ttt_stats(steamid, nickname, playtime, roundsplayed, innocenttimes, detectivetimes, traitortimes, deaths, kills, maxfrags, headshots, last_seen, isadmin) VALUES ('" .. ply:SteamID() .. "', '" .. escpName .. "', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')")
+			local tquery2 = db:query("INSERT INTO ttt_stats(steamid, nickname, playtime, roundsplayed, innocenttimes, detectivetimes, traitortimes, deaths, kills, maxfrags, headshots, last_seen, isadmin, points) VALUES ('" .. ply:SteamID() .. "', '" .. escpName .. "', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')")
 			tquery2.onSuccess = function(q)  
 			
 				print("[Awesome Stats]Created: " .. ply:Nick()) 
@@ -25,7 +39,8 @@ function loadPlyStats( ply )
 				ply.maxfrags = 0;
 				ply.headshots = 0;
 				ply.opKills = 0;
-				ply.dbReady = true;			
+				ply.dbReady = true;
+				ply.points = 0;
 			end
 			
 			tquery2.onError = function(q,e) 
@@ -52,6 +67,7 @@ function loadPlyStats( ply )
 					ply.roundsplayed = row['roundsplayed'];
 					ply.maxfrags = row['maxfrags'];
 					ply.headshots = row['headshots'];
+					ply.points = row['points'];
 					ply.timeCheck = CurTime();
 					ply.dbReady = true;
 					ply.lKarma = 1000;
@@ -85,14 +101,42 @@ local function DeathStat( victim, weapon, killer )
 					killer.headshots = killer.headshots + 1;
 				end
 				
+				
+				-- Bellow are 'rdm' kills.
 				if killer:GetTraitor() == victim:GetTraitor() then
+				
+					if killer:GetTraitor() then
+						killer.points = killer.points + T_Kill_T;
+					elseif killer:GetDetective() and victim:GetDetective() then
+						killer.points = killer.points + D_Kill_D;
+					elseif killer:GetDetective() then
+						killer.points = killer.points + D_Kill_Inno;
+					elseif not (killer:GetTraitor() or killer:GetDetective()) and not (victim:GetTraitor() or victim:GetDetective()) then
+						killer.points = killer.points + Inno_Kill_Inno;
+					elseif not (killer:GetTraitor() or killer:GetDetective()) then
+						killer.points = killer.points + Inno_Kill_D;
+					end		
+
+					
 					killer.opKills = killer.opKills + 1;
+				-- These are 'legitimate' kills
 				else
+					
+					if killer:GetTraitor() and victim:GetDetective() then
+						killer.points = killer.points + T_Kill_D;
+					elseif killer:GetTraitor() then
+						killer.points = killer.points + T_Kill_Inno;
+					elseif killer:GetDetective() then
+						killer.points = killer.points + D_Kill_T;
+					elseif not (killer:GetTraitor() or killer:GetDetective()) then
+						killer.points = killer.points + Inno_Kill_T;
+					end	
+				
 					killer.murders = killer.murders + 1;
 				end
 			end
 		end	
-			
+				
 		if not victim.dbReady then return; end
 		victim.deaths = victim.deaths + 1;
 		savePlyStats(victim);
@@ -118,6 +162,11 @@ end
 local function roundEnd(result)
 	for _, ply in pairs(player.GetAll()) do
 		if ply.dbReady then
+			if ply:Alive() then
+				ply.points = ply.points + Surviving_the_Round; 
+			else
+				ply.points = ply.points + death; 
+			end
 			if ply:Frags() > ply.maxfrags or ply:Alive() then
 				savePlyStats(ply);
 			end
@@ -150,7 +199,7 @@ function savePlyStatsSQL()
 		else
 			ply.isAdminz = 0
 		end	
-		updateString = "UPDATE ttt_stats SET nickname='%s', playtime='%d', roundsplayed='%d', innocenttimes='%d', detectivetimes='%d', traitortimes='%d', deaths='%d', kills='%d', maxfrags='%d', headshots='%d', last_seen='%s', isadmin='%d' WHERE steamid ='%s'"		
+		updateString = "UPDATE ttt_stats SET nickname='%s', playtime='%d', roundsplayed='%d', innocenttimes='%d', detectivetimes='%d', traitortimes='%d', deaths='%d', kills='%d', maxfrags='%d', headshots='%d', last_seen='%s', isadmin='%d', points='%d' WHERE steamid ='%s'"		
 		local EcName = db:escape( ply:Nick() );		
 		local formQ = string.format(updateString,
 						EcName,
@@ -165,6 +214,7 @@ function savePlyStatsSQL()
 						tonumber(ply.headshots),
 						tostring(os.date()),
 						tonumber(ply.isAdminz),
+						tonumber(ply.points),
 						ply:SteamID()
 					)
 		
@@ -191,6 +241,7 @@ function PrintStats(ply, cmd, arg )
 	if ply.dbReady then
 	
 		ply:PrintMessage( HUD_PRINTCONSOLE, "Time played: " .. (math.Round(getPlayTime(ply)/60)) );
+		ply:PrintMessage( HUD_PRINTCONSOLE, "Score: " .. ply.points );
 		ply:PrintMessage( HUD_PRINTCONSOLE, "Rounds played: " .. ply.roundsplayed );
 		ply:PrintMessage( HUD_PRINTCONSOLE, "Innocent times: " .. ply.timesInno );
 		ply:PrintMessage( HUD_PRINTCONSOLE, "Detective Times: " .. ply.timesDetective );
