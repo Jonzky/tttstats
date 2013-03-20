@@ -36,33 +36,37 @@ if (!connect) {
 $var1 = mysql_query('SELECT * FROM `ttt_stats');
 $uniqueusers = mysql_num_rows($var1);
 
-$kills = mysql_query('SELECT SUM(kills) FROM ttt_stats');
-$killsarray = mysql_fetch_array($kills);
-$killstotal = array_sum($killsarray);
-
-$innocent = mysql_query('SELECT SUM(innocenttimes) FROM ttt_stats');
+$innocent = mysql_query('SELECT SUM(innocenttimes) AS innocent_sum FROM ttt_stats');
 $innocentarray = mysql_fetch_array($innocent);
-$innocenttotal = array_sum($innocentarray);
+$innocenttotal = $innocentarray['innocent_sum'];
 
-$traitor = mysql_query('SELECT SUM(traitortimes) FROM ttt_stats');
+$traitor = mysql_query('SELECT SUM(traitortimes) AS traitor_sum FROM ttt_stats');
 $traitorarray = mysql_fetch_array($traitor);
-$traitortotal = array_sum($traitorarray);
+$traitortotal = $traitorarray['traitor_sum'];
 
-$detective = mysql_query('SELECT SUM(detectivetimes) FROM ttt_stats');
+$detective = mysql_query('SELECT SUM(detectivetimes) AS detective_sum FROM ttt_stats');
 $detectivearray = mysql_fetch_array($detective);
-$detectivetotal = array_sum($detectivearray);
+$detectivetotal = $detectivearray['detective_sum'];
 
-$death = mysql_query('SELECT SUM(deaths) FROM ttt_stats');
+$death = mysql_query('SELECT SUM(deaths) AS deaths_sum FROM ttt_stats');
 $deatharray = mysql_fetch_array($death);
-$deathtotal = array_sum($deatharray);
+$deathtotal = $deatharray['deaths_sum'];
 
-$kills = mysql_query('SELECT SUM(kills) FROM ttt_stats');
+$kills = mysql_query('SELECT SUM(kills) AS kills_sum FROM ttt_stats');
 $killsarray = mysql_fetch_array($kills);
-$killstotal = array_sum($killsarray);
+$killstotal = $killsarray['kills_sum'];
 
-$head = mysql_query('SELECT SUM(headshots) FROM ttt_stats');
+$head = mysql_query('SELECT SUM(headshots) AS headshots_sum FROM ttt_stats');
 $headarray = mysql_fetch_array($head);
-$headtotal = array_sum($headarray);
+$headtotal = $headarray['headshots_sum'];
+
+$point = mysql_query('SELECT SUM(points) AS points_sum FROM ttt_stats');
+$pointarray = mysql_fetch_array($point);
+$pointtotal = $pointarray['points_sum'];
+
+$time = mysql_query('SELECT SUM(playtime) AS playtime_sum FROM ttt_stats');
+$timearray = mysql_fetch_array($time);
+$timetotal = $timearray['playtime_sum'];
 
 $totalReturn = '<img src="../images/icon_id.png"> <font face="arial" color="#30a5f0">Unique Users:</font><font face="arial" color="#828282"> ' . $uniqueusers . '</font><br>';
 $killsReturn = '<img src="../images/icon_bullet.png"> <font face="arial" color="#30a5f0">Players Killed:</font><font face="arial" color="#828282"> ' . $killstotal . '</font><br>';
