@@ -14,6 +14,9 @@ include("./includes/superonly.php");
 include("./includes/header.php");
 include("./includes/config.php");	
 
+
+
+
 $editID = $_POST['adminID'];
 
 $editingAdmin = mysql_query("SELECT * FROM `admin_users` WHERE `ID` = '$editID'");

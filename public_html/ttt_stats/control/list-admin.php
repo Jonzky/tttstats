@@ -14,6 +14,11 @@ include("./includes/superonly.php");
 include("./includes/header.php");
 include("./includes/config.php");	
 
+if ($_SESSION['added'] == true){
+echo "<script type='text/javascript' language='JavaScript'> alert('User updated successfully')</script>";
+$_SESSION['added'] = false;
+}
+
 $allAdmins = mysql_query("SELECT * FROM `admin_users` ORDER BY `admin_users`.`ID` DESC");
 $multiResult = mysql_num_rows($allAdmins);
 
