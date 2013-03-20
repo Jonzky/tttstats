@@ -45,14 +45,15 @@ $adminType = "superAdmin";
 </p>
 
 <form action='edit-admin-process.php' method='post' onsubmit='return checkEmail(this);'>
+<input type='hidden' name='ID' id='ID' value='" . $adminID . "'>
 <span class="formData">Admin Login</span>
 <input name="nick" type="text" id="nick" value="<?PHP echo $adminUsername;?>">
 <br/>
 <span class="formData">Admin E-mail</span>
-<input name="steamID" type="text" id="steamID" value="<?PHP echo $adminEmail;?>">
+<input name="e-mail" type="text" id="e-mail" value="<?PHP echo $adminEmail;?>">
 <br/>
 <span class="formData">Admin SteamID</span>
-<input name="e-mail" type="text" id="e-mail" value="<?PHP echo $adminSID;?>">
+<input name="steamID" type="text" id="steamID" value="<?PHP echo $adminSID;?>">
 <br/>
 <span class="formData">Admin Type</span>
 <select name="admin">
