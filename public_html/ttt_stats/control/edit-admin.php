@@ -45,7 +45,7 @@ $adminType = "superAdmin";
 </p>
 
 <form action='edit-admin-process.php' method='post' onsubmit='return checkEmail(this);'>
-<input type='hidden' name='ID' id='ID' value='" . $adminID . "'>
+<input type='hidden' name='ID' id='ID' value="<?PHP echo $adminID;?>">
 <span class="formData">Admin Login</span>
 <input name="nick" type="text" id="nick" value="<?PHP echo $adminUsername;?>">
 <br/>

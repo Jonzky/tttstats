@@ -1,5 +1,5 @@
 <?PHP
-require("./includes/session_start.php");
+include("./includes/superonly.php");
 include("./includes/config.php");
 
 // username and password sent from form
@@ -8,8 +8,6 @@ $myusername=$_POST['nick'];
 $myemail=$_POST['e-mail'];
 $mySteam=$_POST['steamID'];
 $myAdminType=$_POST['admin']; //admin, superadmin and None only please :D 
-
-
 // To protect MySQL injection (more detail about MySQL injection)
 $myusername = mysql_real_escape_string($myusername);
 $myemail = mysql_real_escape_string($myemail);
@@ -24,7 +22,7 @@ $myAdminType = 2;
 else{
 $myAdminType = 0;
 }
-$check = mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `user` = '$myusername', 'email' = '$myemail', 'steamID' = '$mySteam', 'isadmin' = '$myAdminType' WHERE `admin_users`.`ID` = '$adminUID';");
+$check = mysql_query("UPDATE `admin_users` SET`email`='$myemail',`user`='$myusername',`steamID`='$mySteam',`isadmin`=$myAdminType WHERE `ID` = $adminUID");
 header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/control/edit-admin.php');
 
 
