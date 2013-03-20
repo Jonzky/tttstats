@@ -76,6 +76,7 @@ mysql_close($connect);
 						<th>Total Kills</th>
 						<th>K/D Ratio</th>
 						<th>Total Head-Shots</th>
+						<th>Total Points</th>
 						<th>Highest Score</th>
 						<th>First Joined</th>
 						<th>Last Seen</th>
@@ -97,6 +98,7 @@ $playerTraitortimes = $playerarray['traitortimes'];
 $playerDeaths = $playerarray['deaths'];
 $playerKills = $playerarray['kills'];
 $playerHeadshots = $playerarray['headshots'];
+$playerPoints = $playerarray['points'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
 $playerLastSeen = $playerarray['last_seen'];
@@ -139,6 +141,7 @@ echo "<td>" . $playerDeaths . "</td>";
 echo "<td>" . $playerKills . "</td>";
 echo "<td>" . $playerKDR . "</td>";
 echo "<td>" . $playerHeadshots . "</td>";
+echo "<td>" . $playerPoints . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td>" . $playerLastSeen . "</td>";

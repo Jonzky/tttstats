@@ -31,7 +31,7 @@ echo"<form name='input' action='admin.php' method='get'>
 <input type='radio' name='type' value='sb'>SB
 <button class='button' type='submit'>Filter</button>
 </form>";
-echo "<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Highest Score</th><th>First seen in the server</th><th>Last Seen</th></tr>";
+echo "<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Points</th><th>Highest Score</th><th>First seen in the server</th><th>Last Seen</th></tr>";
 include("./includes/config.php");
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `isadmin` = '1'");
 
@@ -59,6 +59,7 @@ $playerTraitortimes = $playerarray['traitortimes'];
 $playerDeaths = $playerarray['deaths'];
 $playerKills = $playerarray['kills'];
 $playerHeadshots = $playerarray['headshots'];
+$playerPoints = $playerarray['points'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
 $playerLastSeen = $playerarray['last_seen'];
@@ -97,6 +98,7 @@ echo "<td>" . $playerDeaths . "</td>";
 echo "<td>" . $playerKills . "</td>";
 echo "<td>" . $playerKDR . "</td>";
 echo "<td>" . $playerHeadshots . "</td>";
+echo "<td>" . $playerPoints . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td>" . $playerLastSeen . "</td>";
