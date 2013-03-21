@@ -19,7 +19,7 @@ require("./includes/session_start.php");
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<meta name="description=" content="Trouble in Terrorist Town Stat tracker, provides a series of Stats for game servers running the popular TTT Gamemode for Garry's Mod.">
 		<meta name="author" content="Nathan Hand, www.thehiddennation.com">
-		<meta name="keywords" content="TTT, Trouble in terrorist town, Garry's mod, Gmod, TTTS, Stats, TTTStats, Stat Tracker, thehiddennation, Innocent, Detective, Traitor, Steam, valve, sngaming.org, sky-netgaming.com, skynet, gameservers, tracking">
+		<meta name="keywords" content="TTT, Trouble in terrorist town, Garry's mod, Gmod, TTTS, Stats, statistics, TTTStats, Stat Tracker, thehiddennation, Innocent, Detective, Traitor, Steam, valve, sngaming.org, sky-netgaming.com, skynet, gameservers, tracking">
 		<link href="static/main.css" media="screen" rel="stylesheet" type="text/css" />
 		<title>[TTTS] Trouble in Terrorist Town Stats</title>
 	</head>
