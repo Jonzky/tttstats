@@ -147,7 +147,24 @@ echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td>" . $bannedTotal . "</td>";
 echo "</tr>";
 echo "</table>";
-echo "<div id='chart_div'></div>";
+echo "<div id='chart_div'>";
+echo "</div>";
+?>
+<div class="fleft">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-6665064114968712";
+/* motd */
+google_ad_slot = "9737180196";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<?PHP
+
 }
 else{
 echo "<h3>Looks like you've never joined the server before! Welcome, remember to check out the MOTD in game!</h3>";
