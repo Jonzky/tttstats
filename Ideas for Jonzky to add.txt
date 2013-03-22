@@ -33,3 +33,13 @@ This allows for basically easy backtracking/ minus points where posotive points 
 
 ===***===
 
+Changes to rank system? 
+
+So it's starting to look like that Rank is going to tend to be those who spend the most amount of time on the server.
+
+Perhaps we can write an algorhythm that takes multiple stats into account? such as KDR (positive KDR + some rank, negative - some rank) 
+
+Or other methods, it could become quite complex. However writing that might be harder in LUA and it might cause strain on the server to compute that between everyone...
+
+Perhaps another method?? who knows.
+
