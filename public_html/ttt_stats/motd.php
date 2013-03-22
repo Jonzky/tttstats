@@ -124,7 +124,6 @@ $seconds = $playerPlaytime;
       }
     </script>
 <div id="primary_content">
-<h3>TTT Stat tracker! Here are your TTT stats for Sngaming.org's TTT servers.</h3>
 </br>
 <?PHP
 if ($multiResult == 1){ 
@@ -150,13 +149,13 @@ echo "</table>";
 echo "<div id='chart_div'>";
 echo "</div>";
 ?>
-<div class="fleft">
+<div class="subsection">
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-6665064114968712";
-/* motd */
-google_ad_slot = "9737180196";
-google_ad_width = 336;
-google_ad_height = 280;
+/* motd-long */
+google_ad_slot = "9318377799";
+google_ad_width = 468;
+google_ad_height = 60;
 //-->
 </script>
 <script type="text/javascript"
