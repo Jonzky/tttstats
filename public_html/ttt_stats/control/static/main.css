@@ -255,6 +255,17 @@ text-align: right;
 			margin: auto auto auto auto;
 }
 
+table.stattable{
+    width: 100%;
+    border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0; 
+	table-layout:fixed;
+}
+td.stattable{
+width: 50%;
+}
+
+
 table{
     width: 100%;
     border-collapse: collapse; /* IE7 and lower */
