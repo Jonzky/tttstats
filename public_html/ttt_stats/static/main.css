@@ -185,8 +185,8 @@ div#advert_foot
 {
 margin-top: 5%;
 margin-bottom: 20px;
-margin-left:30%;
-margin-right: 30%;
+margin-left:auto;
+margin-right: auto;
 width: 728px;
 
 	/* ROUNDED CORNERS */
