@@ -22,6 +22,8 @@ $statType = $_GET['type'];
 
 /*Stats SQL queries all go here */
 
+if(!isset($statType)){
+
 $var1 = mysql_query('SELECT * FROM `ttt_stats');
 $uniqueusers = mysql_num_rows($var1);
 
@@ -61,7 +63,8 @@ $topscore = mysql_query("SELECT nickname, maxfrags FROM `ttt_stats` ORDER BY `tt
 $topscorearray = mysql_fetch_array ( $topscore );
 $topscorefinal = $topscorearray['maxfrags'];
 $topscorenick = $topscorearray['nickname'];
-
+}
+else{
 $top10Time = mysql_query("SELECT nickname, playtime FROM `ttt_stats` ORDER BY `ttt_stats`.`playtime` DESC LIMIT 0, 10 ");
 $top10Score = mysql_query("SELECT nickname, maxfrags FROM `ttt_stats` ORDER BY `ttt_stats`.`maxfrags` DESC LIMIT 0, 10 ");
 $top10Deaths = mysql_query("SELECT nickname, deaths FROM `ttt_stats` ORDER BY `ttt_stats`.`deaths` DESC LIMIT 0, 10 ");
@@ -73,7 +76,7 @@ $top10KDR = mysql_query("SELECT nickname, kills, deaths, (kills / deaths) KDR FR
 $rounds = mysql_query('SELECT SUM(roundsplayed) FROM ttt_stats');
 $roundsarray = mysql_fetch_array($rounds);
 $roundstotal = array_sum($roundsarray);
-
+}
 /*Stats SQL queries end here */
 
 /*Maths for any functions go here */
