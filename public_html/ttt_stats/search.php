@@ -196,6 +196,9 @@ echo "</table>";
 if ($multiResult == 1){
 echo  "<div id='chart_div'></div>";
 }
+else if ($multiResult == 0 && isset($inputPlayer)){
+echo "<p class='noexist'>No user found under that name.</p>";
+}
 ?>
 
 </div>
