@@ -266,6 +266,16 @@ td.stattable{
 width: 50%;
 }
 
+table.servertable{
+	margin-left: auto;
+	margin-right: auto;
+    width: 60%;
+    border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0; 
+	table-layout:auto;
+
+}
+
 table{
     width: 100%;
     border-collapse: collapse; /* IE7 and lower */
