@@ -63,6 +63,7 @@ require("./includes/session_start.php");
 							<li><a href="search.php">All</a></li>
 							<li><a href="admin.php">Admins</a></li>
 							<li><a href="reports.php">Reports</a></li>
+							<li><a href="servers.php">Servers</a></li>
 							</ul>
 						</li>
 						<li>
