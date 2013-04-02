@@ -24,7 +24,7 @@ $server_list = mysql_query("SELECT * FROM `server_track`");
 
 /*print statements */
 
-echo"<p class='noexist'>This is a live list of the game servers running the server tracker module!</p><table border ='1' class='servertable'><tr><th>Hostname</th><th>Players</th><th>Current Map</th><th>Connect to server</th></tr>";
+echo"<p class='noexist'>This is a live list of the game servers running the server tracker module!</p><table border ='0' class='servertable'><tr><th>Hostname</th><th>Players</th><th>Current Map</th><th>Connect to server</th></tr>";
 
 while($row2 = mysql_fetch_array( $server_list )) {
 		

@@ -272,8 +272,14 @@ table.servertable{
     width: auto;
     border-collapse: collapse; /* IE7 and lower */
     border-spacing: 0; 
+	border-left: 1px;
 	table-layout:auto;
 }
+
+.servertable td, .servertable th {
+border-left: 1px solid #ccc;
+}
+
 
 table{
     width: 100%;
