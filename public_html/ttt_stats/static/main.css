@@ -273,7 +273,6 @@ table.servertable{
     border-collapse: collapse; /* IE7 and lower */
     border-spacing: 0; 
 	table-layout:auto;
-
 }
 
 table{
