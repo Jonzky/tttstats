@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	"name"				"tttstats"
+	"name"				"dblogging"
 	"version"			"1.0"
 	"up_date"			"00/00/00"
 	"author_name"			"Jonzky/Handy_man"

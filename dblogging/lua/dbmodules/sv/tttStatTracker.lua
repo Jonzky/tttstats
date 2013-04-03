@@ -16,7 +16,26 @@ death = -1;
 
 function loadPlyStats( ply )
 
-	if databaseFailed then return; end
+
+	if not ServerStatsDB.connected then 
+		
+		timer.Simple( 10, loadServerStats(ply) )
+		ply.plytTime = 0;
+		ply.roundsplayed = 0;
+		ply.timesInno = 0;
+		ply.timesDetective = 0;
+		ply.timesTraitor = 0;
+		ply.deaths = 0;
+		ply.murders = 0;
+		ply.maxfrags = 0;
+		ply.headshots = 0;
+		ply.opKills = 0;
+		ply.ignore_messages = 0;
+		ply.dbReady = true;
+		ply.points = 0;
+		
+		return; 
+	end
 	if not ply:IsValid() then return; end
 
 	local escpName = db:escape( ply:Nick() )
@@ -39,6 +58,7 @@ function loadPlyStats( ply )
 				ply.maxfrags = 0;
 				ply.headshots = 0;
 				ply.opKills = 0;
+				ply.ignore_messages = 0;
 				ply.dbReady = true;
 				ply.points = 0;
 			end
@@ -68,6 +88,7 @@ function loadPlyStats( ply )
 					ply.maxfrags = row['maxfrags'];
 					ply.headshots = row['headshots'];
 					ply.points = row['points'];
+					ply.ignore_messages = row['ignore_messages']
 					ply.timeCheck = CurTime();
 					ply.dbReady = true;
 					ply.lKarma = 1000;
@@ -185,7 +206,7 @@ function savePlyStatsSQL()
 
 	if #peopleToUpdate == 0 then return; end
 
-	if databaseFailed then return; end
+	if not ServerStatsDB.connected then return; end
 	
 	ply = peopleToUpdate[1];
 	table.remove(peopleToUpdate, 1)
@@ -199,7 +220,7 @@ function savePlyStatsSQL()
 		else
 			ply.isAdminz = 0
 		end	
-		updateString = "UPDATE ttt_stats SET nickname='%s', playtime='%d', roundsplayed='%d', innocenttimes='%d', detectivetimes='%d', traitortimes='%d', deaths='%d', kills='%d', maxfrags='%d', headshots='%d', last_seen='%s', isadmin='%d', points='%d' WHERE steamid ='%s'"		
+		updateString = "UPDATE ttt_stats SET nickname='%s', playtime='%d', roundsplayed='%d', innocenttimes='%d', detectivetimes='%d', traitortimes='%d', deaths='%d', kills='%d', maxfrags='%d', headshots='%d', last_seen='%s', isadmin='%d', points='%d', ignore_messages='%d' WHERE steamid ='%s'"		
 		local EcName = db:escape( ply:Nick() );		
 		local formQ = string.format(updateString,
 						EcName,
@@ -215,6 +236,7 @@ function savePlyStatsSQL()
 						tostring(os.date()),
 						tonumber(ply.isAdminz),
 						tonumber(ply.points),
+						tonumber(ply.ignore_messages),
 						ply:SteamID()
 					)
 		
@@ -252,7 +274,6 @@ function PrintStats(ply, cmd, arg )
 		ply:PrintMessage( HUD_PRINTCONSOLE, "High Score: " .. ply.maxfrags );
 	else
 		ply:PrintMessage( HUD_PRINTCONSOLE, "An error has occured please rejoin in order to be tracked" );
-
 	end
 end
 concommand.Add( "printStats", PrintStats )
@@ -271,7 +292,7 @@ end
 
 local function reportPlayer(ply, tabl, repName)
 
-	if databaseFailed then
+	if not ServerStatsDB.connected then
 		repName:ChatPrint("Something went wrong and the player wasn't reported :(");
 		return
 	end
@@ -314,7 +335,7 @@ end
 
 function getRank(ply, caller)
 
-	if databaseFailed then
+	if not ServerStatsDB.connected then
 		caller:ChatPrint("The ranking system is currently unavailable :(");
 		return
 	end
@@ -336,9 +357,15 @@ function getRank(ply, caller)
 			anRankStat.onSuccess = function(q, stddata)
 				
 				RankRow = stddata[1];
-				for k,v in pairs(player.GetAll()) do
-					v:ChatPrint(ply:Nick() .. " is currently rank " .. RankRow['cnt'] .. " out of " .. countRow['allcnt'] .. " with a score of " .. row['points'] .. "!"  )
-				end
+				if caller.ignore_messages == 1 then
+					caller:ChatPrint(ply:Nick() .. " is currently rank " .. RankRow['cnt'] .. " out of " .. countRow['allcnt'] .. " with a score of " .. row['points'] .. "!"  )
+				else
+					for k,v in pairs(player.GetAll()) do
+						if v.ignore_messages != 1 then 
+							v:ChatPrint(ply:Nick() .. " is currently rank " .. RankRow['cnt'] .. " out of " .. countRow['allcnt'] .. " with a score of " .. row['points'] .. "!"  )
+						end
+					end
+				end	
 			end
 			anRankStat.onError = function(q,e)
 				print("[Awesome Stats]Something went wrong")
@@ -438,17 +465,22 @@ local function repCom( ply, text, toall )
 		
     elseif tab[1] == "!join" then
 		ply:SendLua("LocalPlayer():ConCommand('connect "..curServ.."')")
-	end
- 
-end
-hook.Add( "PlayerSay", "ReportCommands", repCom)
 
+    elseif tab[1] == "!ignore" then
+		if ply.ignore_messages == 1 then
+			ply.ignore_messages = 0;
+		else
+			ply.ignore_messages = 1;
+		end
+	end
+end
+
+hook.Add( "PlayerSay", "ReportCommands", repCom)
 hook.Add( "PlayerInitialSpawn", "playerComes", pCome )
 hook.Add( "PlayerDisconnected", "playerGoes", pGone )
 hook.Add( "PlayerDeath", "DeathState", DeathStat )
 hook.Add( "TTTBeginRound", "bBeginsstats", roundStart)
 hook.Add( "TTTEndRound", "endsstats", roundEnd)
-
 hook.Add("ScalePlayerDamage", "ScalePlayerDamage.Headshot", function(plp, hitGroup)
     plp.lastHitGroup = hitGroup
 end)

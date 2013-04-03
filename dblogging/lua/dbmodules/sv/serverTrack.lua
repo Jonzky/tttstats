@@ -13,22 +13,26 @@ end
 function loadServerStats( )
 
 
-	if databaseFailed then 
+	if not ServerStatsDB.connected then
 		timer.Simple( 10, loadServerStats )
+		return
 	end
+	
 	lHost = GetConVarString("hostname");
 	ipPort = string.format("%s:%s", ServerStatsDB.ServerIP, ServerStatsDB.ServerPort);
 	curServ = tostring(ipPort);
 	currentMap = game.GetMap();
+	
+	print("SELECT * FROM server_track WHERE hostip = '" .. ipPort .. "'")
 
-    local Statquery1 = db:query("SELECT * FROM server_track WHERE hostip = '" .. ipPort .. "'")
+    loadQuery = db:query("SELECT * FROM server_track WHERE hostip = '" .. ipPort .. "'")
 	    
-	Statquery1.onError = function(q,e)
+	loadQuery.onError = function(q,e)
 		print("[Awesome Tracker]Something went wrong")
 		print(e)
 	end
 	
-	Statquery1.onSuccess = function(q)
+	loadQuery.onSuccess = function(q)
         if not checkQuery(q) then
 
 			local Statquery2 = db:query("INSERT INTO server_track(hostip, hostname, maxplayers, map, players, lastupdate) VALUES ('" .. ipPort .. "', '" .. lHost .. "', '" .. tonumber(GetConVarString("sv_visiblemaxplayers")) .. "', '" .. currentMap .. "', '" .. getPlyCount() .. "', '" .. os.time() .. "')")
@@ -48,7 +52,7 @@ function loadServerStats( )
 		end	
 		updateReady = true
 	end 
-	Statquery1:start()
+	loadQuery:start()
 	
 end
 
@@ -56,9 +60,10 @@ end
 function updateServers ()
 	
 	if not updateReady then return; end
-	if databaseFailed then return; end
+	if not ServerStatsDB.connected then return; end
 
-	updateString = "UPDATE server_track SET hostname='%s', maxplayers='%d', map='%s', players='%d', lastupdate='%d' WHERE hostip ='%s'"		
+	updateString = "UPDATE server_track SET hostname='%s', maxplayers='%d', map='%s', players='%d', lastupdate='%d' WHERE hostip ='%s'"	
+	
 	local formQ = string.format(updateString,
 					GetConVarString("hostname"),
 					tonumber(GetConVarString("sv_visiblemaxplayers")),
@@ -77,12 +82,12 @@ function updateServers ()
 	updateQuery:start()	
 
 end
-timer.Create("serverUpdater", 15, 0, updateServers);
+timer.Create("Tracker - Updater", 15, 0, updateServers);
 
 
 function getServers(ply)
 
-	if databaseFailed then
+	if not ServerStatsDB.connected then
 		ply:PrintMessage( HUD_PRINTTALK, "The server browser is currently unavailable - please try again soon");
 		return
 	end	
@@ -102,8 +107,11 @@ end
 
 local adverts = {
 "To view the server browser type /servers in chat!",
+"Somone RDM'ing? Use /report name message to report them :)",
 "Want to play a different gamemode? Type /servers in chat!",
 "Having a good time? Then add this server to your favourites - Type !favourites to find out how!",
+"Seen someone breaking the rules? Then use /report name message to report them!",
+"Type !rank or !rank playername to check out a players rank!"
 }
 
 function superAd()
@@ -116,7 +124,7 @@ timer.Create( "SuperADD", 120, 0, superAd)
 
 function awsomeAdd()
 	
-	if databaseFailed then return; end
+	if not ServerStatsDB.connected then return; end
 	local updateCheck = os.time() - 60;
 	local AddQ = db:query( "SELECT * FROM server_track WHERE players > 0 AND lastupdate > '" .. updateCheck .. "'")
     AddQ.onSuccess = function(q, sdata)
@@ -149,17 +157,18 @@ local function chatCom( ply, text, toall )
 				
 		ply:SendLua("LocalPlayer():ConCommand('connect "..curServ.."')")
 	
-	elseif tab[1] == "!favourites" then
+	elseif tab[1] == ("!favourites" or "!fav" or "!favor" or "!favorite") then
 		
-		ply:ChatPrint("To add this server to your favourites:")
-		ply:ChatPrint("Copy 72.5.195.150")
+		ply:ChatPrint("To add this server to your favourites, then:")
 		ply:ChatPrint("Go to the main menu (without leaving the server) by pushing Esc.")
 		ply:ChatPrint("Click Legacy Browser - then select the Favourites tab.")
-		ply:ChatPrint("Click the Add server, paste in the IP and select the servers :)")		
+		ply:ChatPrint("Click the button, \"Add Current Server\" - Then your done :)")		
 
 		
 	end
 	
  
 end
-hook.Add( "PlayerSay", "JonZChatCommands", chatCom)
+hook.Add( "PlayerSay", "JonZChatCommandsTracker", chatCom)
+
+loadServerStats()
