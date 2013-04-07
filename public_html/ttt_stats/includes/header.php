@@ -24,6 +24,7 @@ require("./includes/session_start.php");
 		<title>[TTTS] Trouble in Terrorist Town Stats</title>
 	</head>
 			<body>
+			<?PHP	include("analytics.php");	?>
 				<div id="page">
 				
 			
