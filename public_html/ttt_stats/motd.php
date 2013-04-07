@@ -29,6 +29,8 @@ $authid = (bcsub($communityid, '76561197960265728')-$authserver)/2;
 //Concatenate the STEAM_ prefix and the first number, which is always 0, as well as colons with the other two numbers
 $steamid = "STEAM_0:$authserver:$authid";
 
+
+
 /*Getting our player data!*/
 $inputPlayer = $steamid;
 if(isset($inputPlayer)){
@@ -82,7 +84,15 @@ $seconds = $playerPlaytime;
 				$divisor_for_seconds = $divisor_for_minutes % 60;
 				$seconds = ceil($divisor_for_seconds);
 				
-/*Maths for functions end here */	
+/*Maths for functions end here */
+
+           
+$link = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=CA269D3FE157CBEA7386C9830FCC218D&steamids=' . $playerSteamid . '&format=json');
+ 
+$myarray = json_decode($link, true);
+ 
+
+//$avatar = "<img class='avatar' src='<?php print $myarray['response']['players'][0]['avatarmedium']; ?> />";	
 
 
 ?>
@@ -127,6 +137,7 @@ $seconds = $playerPlaytime;
 </br>
 <?PHP
 if ($multiResult == 1){ 
+echo $avatar;
 echo"<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Total Points</th><th>Highest Score</th><th>First seen in the server</th><th># of Bans</th></tr>";
 echo "<tr>";
 echo "<td>" . $playerSteamid . "</td>";
