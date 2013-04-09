@@ -86,12 +86,13 @@ $seconds = $playerPlaytime;
 				
 /*Maths for functions end here */
 
-           
-$link = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=CA269D3FE157CBEA7386C9830FCC218D&steamids=' . $communityid . '&format=json');
+//Commented out the JSON API from Steam that grabs the users avatar and displays it in hopes to make a faster loading page.           
+//$link = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=CA269D3FE157CBEA7386C9830FCC218D&steamids=' . $communityid . '&format=json');
  
-$myarray = json_decode($link, true);
-
- 
+//$myarray = json_decode($link, true);
+/* This code outputs our avatar wherever it's placed.
+<img class='avatar' src='<?php print $myarray['response']['players'][0]['avatarmedium']; ?>'/>
+*/
 ?>
  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -132,7 +133,6 @@ $myarray = json_decode($link, true);
     </script>
 <div id="primary_content">
 </br>
-<img class='avatar' src='<?php print $myarray['response']['players'][0]['avatarmedium']; ?>'/>
 <?PHP
 if ($multiResult == 1){ 
 echo $avatar;
