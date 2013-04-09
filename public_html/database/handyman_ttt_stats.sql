@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2013 at 07:17 AM
+-- Generation Time: Apr 09, 2013 at 10:53 AM
 -- Server version: 5.5.23
 -- PHP Version: 5.2.17
 
@@ -23,6 +23,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin_issues`
+--
+
+CREATE TABLE IF NOT EXISTS `admin_issues` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ply_nick` text COLLATE utf8_unicode_ci NOT NULL,
+  `ply_steam` text COLLATE utf8_unicode_ci NOT NULL,
+  `ply_message` text COLLATE utf8_unicode_ci NOT NULL,
+  `start_time` int(11) NOT NULL,
+  `last_update` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `admin_name` text COLLATE utf8_unicode_ci NOT NULL,
+  `admin_steam` text COLLATE utf8_unicode_ci NOT NULL,
+  `admin_message` text COLLATE utf8_unicode_ci NOT NULL,
+  `server_name` text COLLATE utf8_unicode_ci NOT NULL,
+  `server_ip` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=30 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `admin_users`
 --
 
@@ -31,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
   `email` text COLLATE utf8_unicode_ci NOT NULL,
   `user` text COLLATE utf8_unicode_ci NOT NULL,
   `pass` text COLLATE utf8_unicode_ci NOT NULL,
-  `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_ip` text COLLATE utf8_unicode_ci NOT NULL,
   `steamID` text COLLATE utf8_unicode_ci NOT NULL,
   `isadmin` int(11) NOT NULL,
@@ -39,7 +61,24 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
   `active` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `unique usernames` (`user`(100))
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=54 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=63 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `issue_log`
+--
+
+CREATE TABLE IF NOT EXISTS `issue_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `issue_id` int(11) NOT NULL,
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `steamid` text COLLATE utf8_unicode_ci NOT NULL,
+  `action` int(11) NOT NULL,
+  `message` text COLLATE utf8_unicode_ci NOT NULL,
+  `isadmin` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -74,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `ttt_report` (
   `repNick` text COLLATE utf8_unicode_ci NOT NULL,
   `report_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=75 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=145 ;
 
 -- --------------------------------------------------------
 
@@ -83,6 +122,7 @@ CREATE TABLE IF NOT EXISTS `ttt_report` (
 --
 
 CREATE TABLE IF NOT EXISTS `ttt_stats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `steamid` text NOT NULL,
   `nickname` text NOT NULL,
   `playtime` bigint(20) NOT NULL DEFAULT '1',
@@ -98,8 +138,9 @@ CREATE TABLE IF NOT EXISTS `ttt_stats` (
   `first_joined` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_seen` text NOT NULL,
   `isadmin` int(11) NOT NULL,
-  PRIMARY KEY (`steamid`(15))
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `ignore_messages` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6640 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
