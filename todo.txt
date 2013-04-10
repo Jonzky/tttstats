@@ -1,11 +1,7 @@
 ==HTML/ PHP coding===
 
-discuss idea of multiple tables - one per server, rather then 1 big one
-
-create a tool that allows a user to search their steamid and if they're able to apply for admin (based on bans, timeplayed & first seen comparrison?)
-
-Interface with the SteamAPI so that when we have details of a single user from search we can get their other steam stats such as avatar etc. (I'm not strong on my JSON yet, will take a little while to test etc)
-
 Play with the idea of using RCON in TTT stats for certain things... not sure what i would really do for the moment :/ but hey it might be fun.
+
+Advanced search! i want lots of different ways to search, via < or > amounts in kills, deaths, KDR, various other things basically advanced search via everything!
 
 ===HTML/ PHP coding===
