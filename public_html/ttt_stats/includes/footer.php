@@ -1,6 +1,4 @@
 <?php
-include("advert_foot.php");
-
 /*------------------------\
 |        TTT STATS        |
 |	       Beta           |
