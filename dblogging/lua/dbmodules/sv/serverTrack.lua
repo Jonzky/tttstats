@@ -18,18 +18,16 @@ function loadServerStats( )
 		return
 	end
 	
-	lHost = GetConVarString("hostname");
+	lHost = db:escape(GetConVarString("hostname"));
 	ipPort = string.format("%s:%s", ServerStatsDB.ServerIP, ServerStatsDB.ServerPort);
 	curServ = tostring(ipPort);
 	currentMap = game.GetMap();
 	
-	print("SELECT * FROM server_track WHERE hostip = '" .. ipPort .. "'")
-
     loadQuery = db:query("SELECT * FROM server_track WHERE hostip = '" .. ipPort .. "'")
 	    
 	loadQuery.onError = function(q,e)
-		print("[Awesome Tracker]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Tracker]Something went wrong")
+		notifyerror(e)
 	end
 	
 	loadQuery.onSuccess = function(q)
@@ -39,14 +37,14 @@ function loadServerStats( )
 
 			Statquery2.onSuccess = function(q)  
 			
-				print("[Awesome Tracker]Added this server to the table!") 
+				notifymessage("[Awesome Tracker]Added this server to the table!") 
 				
 				playerCount = getPlyCount();
 				
 			end
 			Statquery2.onError = function(q,e) 
-				print("[Awesome Tracker]Something went wrong")
-				print(e)
+				notifymessage("[Awesome Tracker]Something went wrong")
+				notifyerror(e)
 			end
 			Statquery2:start()
 		end	
@@ -65,7 +63,7 @@ function updateServers ()
 	updateString = "UPDATE server_track SET hostname='%s', maxplayers='%d', map='%s', players='%d', lastupdate='%d' WHERE hostip ='%s'"	
 	
 	local formQ = string.format(updateString,
-					GetConVarString("hostname"),
+					db:escape(GetConVarString("hostname")),
 					tonumber(GetConVarString("sv_visiblemaxplayers")),
 					game.GetMap(),
 					getPlyCount(),
@@ -76,8 +74,8 @@ function updateServers ()
 	local updateQuery = db:query(formQ)
 	updateQuery.onSuccess = function(q) end; 
 	updateQuery.onError = function(q,e)
-		print("[Awesome Tracker]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Tracker]Something went wrong")
+		notifyerror(e)
 	end
 	updateQuery:start()	
 
@@ -99,8 +97,8 @@ function getServers(ply)
 		net.Send(ply)
 	end
 	getAllQ.onError = function(q,e)
-		print("[Awesome Tracker]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Tracker]Something went wrong")
+		notifyerror(e)
 	end
 	getAllQ:start()
 end
@@ -139,8 +137,8 @@ function awsomeAdd()
 		end
 	end	
 	AddQ.onError = function(q,e)
-		print("[Awesome Tracker]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Tracker]Something went wrong")
+		notifyerror(e)
 	end
 	AddQ:start()
 end
@@ -157,7 +155,7 @@ local function chatCom( ply, text, toall )
 				
 		ply:SendLua("LocalPlayer():ConCommand('connect "..curServ.."')")
 	
-	elseif tab[1] == ("!favourites" or "!fav" or "!favor" or "!favorite") then
+	elseif tab[1] == "!favourites" or tab[1] == "!fav" or tab[1] == "!favor" or tab[1] == "!favorite" then
 		
 		ply:ChatPrint("To add this server to your favourites, then:")
 		ply:ChatPrint("Go to the main menu (without leaving the server) by pushing Esc.")

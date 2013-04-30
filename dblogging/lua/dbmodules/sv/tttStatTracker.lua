@@ -1,5 +1,8 @@
 local peopleToUpdate = {}
 
+util.AddNetworkString( "Staty" )
+
+
 --- Scores for killing
 Inno_Kill_T = 5;
 Inno_Kill_Inno = -10;
@@ -19,7 +22,7 @@ function loadPlyStats( ply )
 
 	if not ServerStatsDB.connected then 
 		
-		timer.Simple( 10, loadServerStats(ply) )
+		timer.Simple( 10, loadServerStats, ply )
 		ply.plytTime = 0;
 		ply.roundsplayed = 0;
 		ply.timesInno = 0;
@@ -46,7 +49,7 @@ function loadPlyStats( ply )
 			local tquery2 = db:query("INSERT INTO ttt_stats(steamid, nickname, playtime, roundsplayed, innocenttimes, detectivetimes, traitortimes, deaths, kills, maxfrags, headshots, last_seen, isadmin, points) VALUES ('" .. ply:SteamID() .. "', '" .. escpName .. "', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')")
 			tquery2.onSuccess = function(q)  
 			
-				print("[Awesome Stats]Created: " .. ply:Nick()) 
+				notifymessage("[Awesome Stats]Created: " .. ply:Nick()) 
 				
 				ply.plytTime = 0;
 				ply.roundsplayed = 0;
@@ -64,14 +67,14 @@ function loadPlyStats( ply )
 			end
 			
 			tquery2.onError = function(q,e) 
-				print("[Awesome Stats]Something went wrong")
-				print(e)
+				notifymessage("[Awesome Stats]Something went wrong")
+				notifyerror(e)
 			end
 			tquery2:start()
 			
         else
 			
-			print("[Awesome Stats]Loading: " .. ply:Nick())
+			notifymessage("[Awesome Stats]Loading: " .. ply:Nick())
 			local tquery3 = db:query( "SELECT * FROM ttt_stats WHERE steamid = '" .. ply:SteamID() .. "'")
 			
 			tquery3.onSuccess = function(q, sdata)
@@ -99,15 +102,15 @@ function loadPlyStats( ply )
 			end	
 
 			tquery3.onError = function(q,e)
-				print("[Awesome Stats]Something went wrong")
-				print(e)
+				notifymessage("[Awesome Stats]Something went wrong")
+				notifyerror(e)
 			end
 			tquery3:start()
 		end
 	end 
 	tquery1.onError = function(q,e)
-		print("[Awesome Stats]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Stats]Something went wrong")
+		notifyerror(e)
 	end
 	tquery1:start()
 end
@@ -215,7 +218,7 @@ function savePlyStatsSQL()
 		if ply:Frags() > ply.maxfrags then
 			ply.maxfrags = ply:Frags();
 		end	
-		if ply:IsAdmin() then
+		if ply:IsAdmin() or ply:CheckGroup("trialadmin") then
 			ply.isAdminz = 1
 		else
 			ply.isAdminz = 0
@@ -240,12 +243,11 @@ function savePlyStatsSQL()
 						ply:SteamID()
 					)
 		
-		--print(formQ)
 		local updateQuery = db:query(formQ)
 		updateQuery.onSuccess = function(q) end; 
 		updateQuery.onError = function(q,e)
-			print("[Awesome Stats]Something went wrong")
-			print(e)
+			notifymessage("[Awesome Stats]Something went wrong")
+			notifyerror(e)
 		end
 		updateQuery:start()	
 	
@@ -326,10 +328,54 @@ local function reportPlayer(ply, tabl, repName)
 	
 	updateQuery.onError = function(q,e) 
 		repName:ChatPrint("Something went wrong and the player wasn't reported :(");
-		print("[Awesome Stats]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Stats]Something went wrong")
+		notifyerror(e)
 	end
 	updateQuery:start()
+
+end
+
+function topTen(ply, limit)
+
+	if not ServerStatsDB.connected then
+		ply:ChatPrint("The ranking system is currently unavailable :(");
+		return
+	end
+	
+	if limit == nil then
+		limit = 5
+	elseif limit == 1337 then
+		limit = 5
+	elseif limit > 20 then
+		ply:ChatPrint("You cannot view more than 20!")
+		limit = 5
+	end	
+	
+	local topTenQ = db:query( "SELECT * FROM ttt_stats ORDER BY points desc LIMIT "..limit.."" )
+    topTenQ.onSuccess = function(q, sdata)
+		
+		if (#sdata == 0) then
+			caller:ChatPrint("Something went wrong, if this persists please inform an admin.");
+			return
+		end	
+		
+		ply:ChatPrint("Rankings:")
+		local pie = 1
+		for k,srow in pairs(sdata) do
+			
+			local toPrint = string.format("(%d) - %s with a score of %d!", pie, srow['nickname'], srow['points']);
+			ply:ChatPrint(toPrint);
+			
+			pie = pie + 1
+			
+		end
+
+	end
+	topTenQ.onError = function(q,e)
+		notifymessage("[Awesome Stats]Something went wrong")
+		notifyerror(e)
+	end
+	topTenQ:start();
 
 end
 
@@ -368,24 +414,24 @@ function getRank(ply, caller)
 				end	
 			end
 			anRankStat.onError = function(q,e)
-				print("[Awesome Stats]Something went wrong")
-				print(e)
+				notifymessage("[Awesome Stats]Something went wrong")
+				notifyerror(e)
 			end
 			anRankStat:start()
 			
 		end
 		
 		rankStat.onError = function(q,e)
-			print("[Awesome Stats]Something went wrong")
-			print(e)
+			notifymessage("[Awesome Stats]Something went wrong")
+			notifyerror(e)
 		end
 		rankStat:start()
 		
 		
 	end
 	rankCheck.onError = function(q,e)
-		print("[Awesome Stats]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Stats]Something went wrong")
+		notifyerror(e)
 	end
 	rankCheck:start();
 
@@ -463,15 +509,99 @@ local function repCom( ply, text, toall )
 		
 		return;
 		
+	elseif tab[1] == "!stats" or tab[1] == "/stats" then
+		
+		if #tab < 2 then
+			
+			print(ply:SteamID64())
+			net.Start( "Staty")
+				net.WriteEntity(ply)
+			net.Send(ply)
+			return
+		end
+			
+		for k,v in pairs(player.GetAll()) do
+			
+			if string.find(string.lower(v:Nick()),string.lower(tab[2])) then
+
+				if alFound then
+					ply:ChatPrint("Two 2 or more players found with that name")
+					return
+				end
+				
+				alFound = true;
+				rPly = v;
+			end	
+		end
+		
+		if alFound then
+			net.Start( "Staty")
+				net.WriteEntity(rPly)
+			net.Send(ply)
+		else	
+			ply:ChatPrint("Player not found!");			
+		end
+		
+		return;
+		
     elseif tab[1] == "!join" then
 		ply:SendLua("LocalPlayer():ConCommand('connect "..curServ.."')")
 
     elseif tab[1] == "!ignore" then
 		if ply.ignore_messages == 1 then
+			ply:ChatPrint("You are no longer ingorning rank messages");
 			ply.ignore_messages = 0;
 		else
+			ply:ChatPrint("You are now ignoring rank messages")
 			ply.ignore_messages = 1;
 		end
+	elseif tab[1] == "!top" then
+		
+		if( tonumber(tab[2]) == nil ) then
+			topTen(ply,1337)
+			return;
+		end		
+		
+		topTen(ply,tonumber(tab[2]))
+		
+	elseif tab[1] == "!top10" then
+		
+		topTen(ply,10)
+		
+	elseif tab[1] == "!rtv" then
+	
+		ply:ConCommand( "voteforchange" )
+	
+	elseif tab[1] == "!resetkarma" then
+			
+		if not ply:IsSuperAdmin() then return; end
+		
+		for k,v in pairs(player.GetAll()) do
+			
+			if string.find(string.lower(v:Nick()),string.lower(tab[2])) then
+
+				if alFound then
+					ply:ChatPrint("Two 2 or more players found with that name")
+					return
+				end
+				
+				alFound = true;
+				rPly = v;
+			end	
+		end
+		
+		if alFound then
+
+			rPly:SetBaseKarma( 1000 )
+			rPly:SetLiveKarma( 1000 )
+
+		else	
+			ply:ChatPrint("Player not found!");			
+		end
+		
+		return false;
+		
+	
 	end
 end
 

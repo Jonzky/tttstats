@@ -19,12 +19,52 @@ local function adminChecks()
 	end
 	
 	adminIssues.onError = function(q,e) 
-		print("[Awesome Issues]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
 	end
 	adminIssues:start()
 
 end
+
+local function logIssue(id, ply, action, isadmin, message)
+
+	if not ServerStatsDB.connected then 
+		return; 
+	end
+
+	if not ServerStatsDB.connected then	return;	end
+
+	if action == 1 then
+		upMessage = db:escape(message);
+	elseif action == 3 then
+		upMessage = "closed the issue.";
+	else
+		upMessage = "Something went wrong";
+	end
+	
+	issueLogStr = "INSERT INTO issue_log(issue_id, name, steamid, action, message, isadmin) VALUES ('%d', '%s', '%s', '%d', '%s', '%d')"
+	local issueReporter = db:escape( ply:Nick() );
+	local issueLogStrF = string.format(issueLogStr,
+					id,
+					db:escape(ply:Nick()),
+					ply:SteamID(),
+					action,
+					upMessage,
+					0
+				)
+	
+	local issueLog = db:query(issueLogStrF);
+
+	issueLog.onSuccess = function(q) end
+	
+	issueLog.onError = function(q,e) 
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
+	end
+	issueLog:start()
+end
+
+
 
 local function clientShown(id)
 
@@ -34,8 +74,8 @@ local function clientShown(id)
 	end
 	
 	clientShown.onError = function(q,e)
-		print("[Awesome Issues]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
 	end
 	clientShown:start()	
 
@@ -61,16 +101,49 @@ local function issueResponse()
 	end
 	
 	adminIssues.onError = function(q,e) 
-		print("[Awesome Issues]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
 	end
 	adminIssues:start()
 
 end
 
+local function showLogs(id, ply)
+		
+	if not ServerStatsDB.connected then 
+		ply:ChatPrint("The database is currently down, please try again later")
+		return; 
+	end		
+		
+	local showLogs = db:query( "SELECT * FROM issue_log where issue_id='"..id.."'" )
+
+	showLogs.onSuccess = function(q, sdata) 
+
+		if #sdata == 0 then
+			ply:ChatPrint("No logs found for this issue.")
+			return
+		end	
+	
+		for k,srow in pairs(sdata) do
+			local issueString = string.format("[Issue #%d] (%s - %s): %s", srow['issue_id'], srow['name'], srow['steamid'], srow['message']);
+			ply:ChatPrint(issueString)
+		end		
+	end
+	
+	showLogs.onError = function(q,e)
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
+	end
+	showLogs:start()
+
+end
 
 local function adminPrint(ply)
 	
+	if not ServerStatsDB.connected then 
+		ply:ChatPrint("The database is currently down, please try again later")
+		return; 
+	end
 	
 	local timeLimit = os.time() - 600;
 	local adminPrint = db:query( "SELECT * FROM admin_issues WHERE status=0 OR start_time > '" .. timeLimit .. "'" )
@@ -105,8 +178,8 @@ local function adminPrint(ply)
 	end
 	
 	adminPrint.onError = function(q,e) 
-		print("[Awesome Issues]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
 	end
 	adminPrint:start()
 
@@ -114,7 +187,13 @@ end
 
 
 local function gotoIssue(ply, id)
-		
+	
+	if not ServerStatsDB.connected then 
+		ply:ChatPrint("The database is currently down, please try again later")
+		return; 
+	end
+
+	
 	local gotoIssue = db:query( "SELECT server_ip FROM admin_issues WHERE id='" .. id .. "' " )
 
 	gotoIssue.onSuccess = function(q, sdata)  
@@ -129,8 +208,8 @@ local function gotoIssue(ply, id)
 	end
 	
 	gotoIssue.onError = function(q,e) 
-		print("[Awesome Issues]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
 	end
 	gotoIssue:start()
 
@@ -138,6 +217,11 @@ end
 
 local function updateIssue(ply, id, text)
 
+	if not ServerStatsDB.connected then 
+		ply:ChatPrint("The database is currently down, please try again later")
+		return; 
+	end
+	
 	local adminEscp = db:escape( ply:Nick() );
 	local escpMessage = db:escape( text );
 
@@ -158,12 +242,13 @@ local function updateIssue(ply, id, text)
 			ply:ChatPrint("No issue found")
 		else
 			ply:ChatPrint("The issue has been updated.")
+			logIssue(id, ply, 1, 1, text)
 		end	
 	end
 	
 	updateIssue.onError = function(q,e)
-		print("[Awesome Issues]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
 	end
 	updateIssue:start()	
 
@@ -172,6 +257,10 @@ end
 
 local function closeIssue(ply, id)
 
+	if not ServerStatsDB.connected then 
+		ply:ChatPrint("The database is currently down, please try again later")
+		return; 
+	end
 
 	local closeMe = "UPDATE admin_issues SET status='%d', last_update='%d' WHERE id='%d'"		
 	local formQ = string.format(closeMe,
@@ -187,12 +276,13 @@ local function closeIssue(ply, id)
 			ply:ChatPrint("No issue found")
 		else
 			ply:ChatPrint("The issue has been closed.")
+			logIssue(id, ply, 3, 1, "")
 		end
 	end
 	
 	closeIssue.onError = function(q,e)
-		print("[Awesome Issues]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
 	end
 	closeIssue:start()	
 
@@ -217,8 +307,8 @@ local function maintainIssues()
 	local maintainIssues = db:query(formQ)
 	maintainIssues.onSuccess = function(q) end; 
 	maintainIssues.onError = function(q,e)
-		print("[Awesome Tracker]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Tracker]Something went wrong")
+		notifyerror(e)
 	end
 	maintainIssues:start()	
 	
@@ -269,7 +359,6 @@ local function fileReport(ply, tabl)
 					ipPort
 				)
 	
-	print(formQ)
 	local issueCreateQ = db:query(formQ)
 
 	issueCreateQ.onSuccess = function(q)  
@@ -279,8 +368,8 @@ local function fileReport(ply, tabl)
 	
 	issueCreateQ.onError = function(q,e) 
 		ply:ChatPrint("Something went wrong and the issue wansn't filed :(");
-		print("[Awesome Stats]Something went wrong")
-		print(e)
+		notifymessage("[Awesome Issues]Something went wrong")
+		notifyerror(e)
 	end
 	issueCreateQ:start()
 end
@@ -311,7 +400,6 @@ local function issueCom( ply, text, toall )
 		
 	elseif tab[1] == "!update" or tab[1] == "/update" then
 	
-		print(type(tab[2]))
 		if( tonumber(tab[2]) == nil ) then
 			ply:ChatPrint("Thats some crazy ID you typed in, try again.");
 			return			
@@ -336,7 +424,7 @@ local function issueCom( ply, text, toall )
 		return false
 
 	
-	elseif tab[1] == ("!close" or "/close") then
+	elseif tab[1] == "!close" or tab[1] == "/close" then
 	
 		if( tonumber(tab[2]) == nil ) then
 			ply:ChatPrint("Thats some crazy ID you typed in, try again.");
@@ -358,7 +446,7 @@ local function issueCom( ply, text, toall )
 		return false
 
 				
-	elseif tab[1] == ("!ajoin" or "/ajoin") then
+	elseif tab[1] == "!ajoin" or tab[1] == "/ajoin" then
 
 		if( tonumber(tab[2]) == nil ) then
 			ply:ChatPrint("Thats some crazy ID you typed in, try again.");
@@ -375,7 +463,7 @@ local function issueCom( ply, text, toall )
 		return false
 	
 	
-	elseif tab[1] == ("!ashow" or "/ashow") then
+	elseif tab[1] == "!ashow" or tab[1] == "/ashow" then
 
 		if not ply:IsAdmin() then
 			ply:ChatPrint("Your not an admin.. You tard.");
@@ -383,6 +471,20 @@ local function issueCom( ply, text, toall )
 		end		
 		adminPrint(ply)
 		return false
+		
+	elseif tab[1] == "!sshow" then
+
+		if not ply:IsSuperAdmin() then
+			ply:ChatPrint("Your not an admin.. You tard.");
+			return
+		end		
+
+		if( tonumber(tab[2]) == nil ) then
+			ply:ChatPrint("Thats some crazy ID you typed in, try again.");
+			return			
+		end		
+		
+		showLogs(tab[2], ply)
 
 	end	
 end

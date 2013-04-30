@@ -6,7 +6,6 @@ local client_modules = file.Find( "dbmodules/client/*.lua", "LUA" )
 Msg( "**Loading the datase module**" )	
 
 include("dbmodules/database/database.lua")
---include("modules/database/shstuff.lua")
 
 local function load_modules()
 	
