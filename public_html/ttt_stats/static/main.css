@@ -235,6 +235,19 @@ div#to-right
 text-align: right;
 }
 
+.siteFooter
+{
+	background: url(../static/images/siteFooterPattern.png) left top repeat;
+	padding-top: 30px;
+}
+
+.siteFooter .center
+{
+	padding-bottom: 30px;
+	font-size: 14px;
+	color:white;
+}
+
 /* FOOTER LAYOUT */
 #content_box_bottom /*footer of the page*/ 
 {
@@ -331,7 +344,7 @@ position: relative;
 }
 
 .clearfooter {
-height: 30px;
+height: 50px;
 clear: both;
 }
 
