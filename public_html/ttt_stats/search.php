@@ -54,14 +54,148 @@ $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscap
 mysql_close($connect);
 }
 ?>
+  <script type="text/javascript">
+   function showDiv() {
+   document.getElementById('advanced-search').style.display = "block";
+   hideDivNormal();
+}
+function hideDiv() {
+   document.getElementById('advanced-search').style.display = "none";
+}
+function hideDivNormal() {
+   document.getElementById('normal-search').style.display = "none";
+}
+
+  
+  </script>
+
 <div id="primary_content">
 <h4>Search for your TTT stats!</h4>
-<form name="input" action="search.php" method="get">
+<div id="normal-search" style="display:block;">
+<form id="advanced-show" name="input" action="search.php" method="get">
 <input type="text" name="STEAMID" placeholder="Steamid / Nickname" value required>
-<input type="radio" name="stype" value="STEAM_ID">SteamID
-<input type="radio" name="stype" value="NICK" checked>Nickname
+<input type="radio" name="stype" value="STEAM_ID" onclick="hideDiv()">SteamID
+<input type="radio" name="stype" value="NICK" onclick="hideDiv()" checked>Nickname
+<input type="radio" name="stype" value="1" onclick="showDiv()">Advanced
 <button class="button" type="submit">Search</button>
 </form>
+</div>
+
+<div id="advanced-search" style="display:none;">
+<form name="input" action="search.php" method="get">
+<input id="plyTime_" type="radio" name="atype" value="plyTime">
+<input type="text" name="plyTime" onclick="plyTime_.checked=true;" placeholder="Playtime (hours)" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="plyTimeNumber" onclick="plyTime_.checked=true;" size="1" placeholder="0" value>
+</br>
+<input id="rounds_" type="radio" name="atype" value="rounds">
+<input type="text" name="rounds" onclick="rounds_.checked=true;" placeholder="rounds" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="roundsNumber" onclick="rounds_.checked=true;" size="1" placeholder="0" value>
+</br>
+<input id="timeInno_" type="radio" name="atype" value="timeInno">
+<input type="text" name="timeInno" onclick="timeInno_.checked=true;" placeholder="timeInno" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="timeInnoNumber" onclick="timeInno_.checked=true;" size="1" placeholder="0" value>
+
+</br>
+
+<input id="timeTrait_" type="radio" name="atype" value="timeTrait">
+<input type="text" name="timeTrait" onclick="timeTrait_.checked=true;" placeholder="timeTrait" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="timeTraitNumber" onclick="timeTrait_.checked=true;" size="1"  placeholder="0" value>
+
+</br>
+<input id="timeDetect_" type="radio" name="atype" value="timeDetect">
+<input type="text" name="timeDetect" onclick="timeDetect_.checked=true;" placeholder="timeDetect" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="timeDetectNumber" onclick="timeDetect_.checked=true;" size="1" placeholder="0" value>
+
+</br>
+<input id="deaths_" type="radio" name="atype" value="deaths">
+<input type="text" name="deaths" onclick="deaths_.checked=true;" placeholder="deaths" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="deathsNumber" onclick="deaths_.checked=true;" size="1" placeholder="0" value>
+
+</br>
+<input id="kills_" type="radio" name="atype" value="kills">
+<input type="text" name="kills" onclick="kills_.checked=true;" placeholder="kills" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="killsNumber" onclick="kills_.checked=true;" size="1" placeholder="0" value>
+
+</br>
+<input id="kd_" type="radio" name="atype" value="kd">
+<input type="text" name="kd" onclick="kd_.checked=true;" placeholder="KDR (K/D)" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="kdNumber" onclick="kd_.checked=true;" size="1" placeholder="0" value>
+
+</br>
+<input id="headshots_" type="radio" name="atype" value="headshots">
+<input type="text" name="headshots" onclick="headshots_.checked=true;" placeholder="headshots" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="headshotsNumber" onclick="headshots_.checked=true;" size="1" placeholder="0" value>
+
+</br>
+<input id="points_" type="radio" name="atype" value="points">
+<input type="text" name="points" onclick="points_.checked=true;" placeholder="points" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="pointsNumber" onclick="points_.checked=true;" size="1" placeholder="0" value>
+
+</br>
+<input id="highScore_" type="radio" name="atype" value="highScore">
+<input type="text" name="highScore" onclick="highScore_.checked=true;" placeholder="highScore" value>
+<select id="GreatOrLower">
+    <option value="=">=</option>
+    <option value=">">></option>
+    <option value="<"><</option>
+</select>
+<input type="text" name="highScoreNumber" onclick="highScore_.checked=true;" size="1" placeholder="0" value>
+
+</br>
+
+<button class="button" type="submit">Advanced Search</button>
+</form>
+</div>
 
 <table border ="1">
 						<tr>
