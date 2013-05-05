@@ -25,9 +25,8 @@ require("./includes/session_start.php");
 	</head>
 			<body>
 			<?PHP	include("analytics.php");	?>
-				<div id="page">
 				
-			
+				<div id="page">
 
 				<div id="logo">
 				<a href="http://www.sngaming.org"><img src="./static/images/skynet_logo.png" alt="www.sngaming.org" title="www.sngaming.org"/></a>
