@@ -43,3 +43,9 @@ Or other methods, it could become quite complex. However writing that might be h
 
 Perhaps another method?? who knows.
 
+
+**New things to track**
+
+Wins (innocents win all innocent get + 1 win, visa versa)
+loss (traitors loose, all traitors get +1 loss
+Win/ loss ration (wins / loss) can be done via SQL command.

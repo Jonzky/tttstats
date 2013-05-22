@@ -78,12 +78,13 @@ $text = $playerNickname . "'s TTT Playtime H:" . $hours . " M:" . $minutes . " S
 else if ($inputType == "all"){
 $text = $playerNickname . "'s TTT Stats H:" . $hours . " M:" . $minutes . " S:" . $seconds;
 $text_rounds = "Rounds Played:" . $playerRoundsplayed . " Highest score:" . $playerMaxfrags . " Points:" . $playerPoints;
-$text_kill = "Kills:" . $playerKills . " Deaths:" . $playerDeaths . " Headshots: " . $playerHeadshots . " KDR: " . $playerKDR;
+$text_kill = "Kills:" . $playerKills . " Deaths:" . $playerDeaths . " Headshots:" . $playerHeadshots . " KDR:" . $playerKDR;
 }
 else{
 $text = "No input type defined, please try again.";
 }
 $test_length = strlen($text);
+if ($inputType == "all"){
 $test_length_kill = strlen($text_kill);
 $test_length_rounds = strlen($text_rounds);
 
@@ -95,6 +96,7 @@ $test_length = strlen($text_kill);
 }
 else{
 $test_length = strlen($text_rounds);
+}
 }
 
 
