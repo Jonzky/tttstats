@@ -67,4 +67,5 @@ $font_color = imagecolorallocate($image, 0,0,0);
 imagestring($image, $font_size, 0, 0, $text, $font_color);
 
 imagepng($image);	
+ImageDestroy($image);
 ?>
