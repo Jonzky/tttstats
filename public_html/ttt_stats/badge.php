@@ -10,10 +10,29 @@
 |      beta testing       |
 |      by Handy_man       |
 \------------------------*/			
+include("./includes/config.php");
+header('Content-type: image/png');
 
-header('Content-type: image/jpeg');
+/**
+$id_source = imagecreatefrompng('./static/images/icon_id.png');
+$id_height = $imagesx($id_source);
+$id_width = $iamgesx($id_source);
 
-$text = 'tesing123';
+$id_create = imagecreatetruecolor($id_width, $id_height);
+$id_create = imagecreatefrompng($id_source);
+*/
+
+$input = $_GET[i];
+
+if ($input == "users"){
+$var1 = mysql_query('SELECT * FROM `ttt_stats');
+$uniqueusers = mysql_num_rows($var1);
+$text = "Unique Trouble In Terrorist Town users:" . $uniqueusers;
+}	
+else
+{
+	$text = "No input found, please refer to documentation.";
+}
 $test_length = strlen($text);
 
 $font_size = 4;
@@ -29,6 +48,5 @@ $font_color = imagecolorallocate($image, 0,0,0);
 	
 imagestring($image, $font_size, 0, 0, $text, $font_color);
 
-imagejpeg($image);
-	
+imagepng($image);	
 ?>
