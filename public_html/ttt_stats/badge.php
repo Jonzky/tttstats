@@ -71,9 +71,16 @@ $seconds = $playerPlaytime;
 				$seconds = ceil($divisor_for_seconds);
 				
 /*Maths for functions end here */
-
-$text = $playerNickname . "'s TTT Playtime H:" . $hours . " M: " . $minutes . " S: " . $seconds;
-
+$inputType = $_GET['t'];
+if ($inputType == "time"){
+$text = $playerNickname . "'s TTT Playtime H:" . $hours . " M:" . $minutes . " S:" . $seconds;
+}
+else if ($inputType == "all"){
+$text = $playerNickname . "'s TTT Stats H: " . $hours . " M: " . $minutes . " S: " . $seconds;
+}
+else{
+$text = "No input type defined, please try again.";
+}
 $test_length = strlen($text);
 
 $font_size = 4;
