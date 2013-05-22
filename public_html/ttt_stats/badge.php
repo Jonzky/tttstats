@@ -76,16 +76,34 @@ if ($inputType == "time"){
 $text = $playerNickname . "'s TTT Playtime H:" . $hours . " M:" . $minutes . " S:" . $seconds;
 }
 else if ($inputType == "all"){
-$text = $playerNickname . "'s TTT Stats H: " . $hours . " M: " . $minutes . " S: " . $seconds;
+$text = $playerNickname . "'s TTT Stats H:" . $hours . " M:" . $minutes . " S:" . $seconds;
+$text_rounds = "Rounds Played:" . $playerRoundsplayed . " Highest score:" . $playerMaxfrags . " Points:" . $playerPoints;
+$text_kill = "Kills:" . $playerKills . " Deaths:" . $playerDeaths . " Headshots: " . $playerHeadshots . " KDR: " . $playerKDR;
 }
 else{
 $text = "No input type defined, please try again.";
 }
 $test_length = strlen($text);
+$test_length_kill = strlen($text_kill);
+$test_length_rounds = strlen($text_rounds);
+
+if ($test_length > $test_length_kill & $test_length_rounds){
+
+}
+else if ($test_length_kill  > $test_length_rounds){
+$test_length = strlen($text_kill);
+}
+else{
+$test_length = strlen($text_rounds);
+}
+
 
 $font_size = 4;
+$font_double = 42;
 
-$image_height = ImageFontHeight($font_size);
+//$image_height = ImageFontHeight($font_double);
+$image_height = $font_double;
+
 $image_width = ImageFontWidth($font_size) * $test_length;
 
 	$image = imagecreate($image_width, $image_height);
@@ -95,6 +113,8 @@ $font_color = imagecolorallocate($image, 0,0,0);
 	
 	
 imagestring($image, $font_size, 0, 0, $text, $font_color);
+imagestring($image, $font_size, 0, 12, $text_rounds, $font_color);
+imagestring($image, $font_size, 0, 24, $text_kill, $font_color);
 
 imagepng($image);	
 ImageDestroy($image);
