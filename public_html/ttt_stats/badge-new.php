@@ -45,6 +45,7 @@ $playerPoints = $playerarray['points'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerHeadshots = $playerarray['headshots'];
 $playerFirstjoined = $playerarray['first_joined'];
+$playerLastSeen = $playerarray['last_seen'];
 }
 
 if ($playerKills or $playerDeaths != 0){
@@ -94,6 +95,7 @@ $traitor = "Traitor:" . $playerTraitortimes;
 $innocent = "Innocent:" . $playerInnocenttimes;
 $detective = "Detective:" . $playerDetectivetimes;
 $url = "www.thehiddennation.com/ttt_stats";
+$lastseen = "Last Seen: " . $playerLastSeen;
 }
 else{
 $text = "No input type defined, please try again.";
@@ -130,19 +132,20 @@ $font_color = imagecolorallocate($image, 139,134,131);
 	
 	
 imagestring($image, $font_size, 120, 0, $title, $font_color);
-imagestring($image, $font_size, 80, 24, $name, $font_color);
-imagestring($image, $font_size, 80, 36, $playtime, $font_color);
-imagestring($image, $font_size, 180, 24, $membersince, $font_color);
-imagestring($image, $font_size, 180, 36, $kills, $font_color);
-imagestring($image, $font_size, 180, 48, $deaths, $font_color);
-imagestring($image, $font_size, 180, 60, $KDR, $font_color);
-imagestring($image, $font_size, 280, 36, $round, $font_color);
-imagestring($image, $font_size, 280, 48, $high, $font_color);
-imagestring($image, $font_size, 280, 60, $points, $font_color);
-imagestring($image, $font_size, 280, 72, $headshots, $font_color);
-imagestring($image, $font_size, 80, 60, $traitor, $font_color);
-imagestring($image, $font_size, 80, 72, $innocent, $font_color);
-imagestring($image, $font_size, 80, 84, $detective, $font_color);
+imagestring($image, $font_size, 20, 24, $name, $font_color);
+imagestring($image, $font_size, 20, 36, $playtime, $font_color);
+imagestring($image, $font_size, 120, 24, $membersince, $font_color);
+imagestring($image, $font_size, 120, 36, $lastseen, $font_color);
+imagestring($image, $font_size, 120, 60, $kills, $font_color);
+imagestring($image, $font_size, 120, 72, $deaths, $font_color);
+imagestring($image, $font_size, 120, 84, $KDR, $font_color);
+imagestring($image, $font_size, 340, 60, $round, $font_color);
+imagestring($image, $font_size, 220, 60, $high, $font_color);
+imagestring($image, $font_size, 220, 72, $points, $font_color);
+imagestring($image, $font_size, 220, 84, $headshots, $font_color);
+imagestring($image, $font_size, 20, 60, $traitor, $font_color);
+imagestring($image, $font_size, 20, 72, $innocent, $font_color);
+imagestring($image, $font_size, 20, 84, $detective, $font_color);
 imagestring($image, $font_size, 260, 115, $url, $font_color);
 
 imagepng($image);	
