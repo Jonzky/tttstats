@@ -45,6 +45,7 @@ $playerPoints = $playerarray['points'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerHeadshots = $playerarray['headshots'];
 $playerFirstjoined = $playerarray['first_joined'];
+$playerLastSeen = $playerarray['last_seen'];
 }
 
 if ($playerKills or $playerDeaths != 0){
@@ -76,9 +77,25 @@ if ($inputType == "time"){
 $text = $playerNickname . "'s TTT Playtime H:" . $hours . " M:" . $minutes . " S:" . $seconds;
 }
 else if ($inputType == "all"){
-$text = $playerNickname . "'s TTT Stats H:" . $hours . " M:" . $minutes . " S:" . $seconds;
-$text_rounds = "Rounds Played:" . $playerRoundsplayed . " Highest score:" . $playerMaxfrags . " Points:" . $playerPoints;
-$text_kill = "Kills:" . $playerKills . " Deaths:" . $playerDeaths . " Headshots:" . $playerHeadshots . " KDR:" . $playerKDR;
+//$text = $playerNickname . "'s TTT Stats H:" . $hours . " M:" . $minutes . " S:" . $seconds;
+//$text_rounds = "Rounds Played:" . $playerRoundsplayed . " Highest score:" . $playerMaxfrags . " Points:" . $playerPoints;
+//$text_kill = "Kills:" . $playerKills . " Deaths:" . $playerDeaths . " Headshots:" . $playerHeadshots . " KDR:" . $playerKDR;
+$title = "Trouble In Terrorist Town Stats";
+$name = $playerNickname;
+$playtime = "H:" . $hours . " M:" . $minutes . " S:" . $seconds;
+$membersince = "Member since: " . $playerFirstjoined;
+$round = "Round played:" . $playerRoundsplayed;
+$high = "Highest score:" . $playerMaxfrags;
+$points = "Points:" . $playerPoints;
+$kills = "Kills:" . $playerKills;
+$deaths = "Deaths:" . $playerDeaths;
+$headshots = "Headshots:" . $playerHeadshots;
+$KDR = "KDR:" . $playerKDR;
+$traitor = "Traitor:" . $playerTraitortimes;
+$innocent = "Innocent:" . $playerInnocenttimes;
+$detective = "Detective:" . $playerDetectivetimes;
+$url = "www.thehiddennation.com/ttt_stats";
+$lastseen = "Last Seen: " . $playerLastSeen;
 }
 else{
 $text = "No input type defined, please try again.";
@@ -100,23 +117,36 @@ $test_length = strlen($text_rounds);
 }
 
 
-$font_size = 4;
+$font_size = 2;
 $font_double = 42;
 
 //$image_height = ImageFontHeight($font_double);
-$image_height = $font_double;
+$image_height = 128;
 
-$image_width = ImageFontWidth($font_size) * $test_length;
+$image_width = 460;
 
 	$image = imagecreate($image_width, $image_height);
 	
-imagecolorallocate($image, 255, 255, 255);
-$font_color = imagecolorallocate($image, 0,0,0);
+imagecolorallocate($image, 51, 51, 51);
+$font_color = imagecolorallocate($image, 139,134,131);
 	
 	
-imagestring($image, $font_size, 0, 0, $text, $font_color);
-imagestring($image, $font_size, 0, 12, $text_rounds, $font_color);
-imagestring($image, $font_size, 0, 24, $text_kill, $font_color);
+imagestring($image, $font_size, 120, 0, $title, $font_color);
+imagestring($image, $font_size, 20, 24, $name, $font_color);
+imagestring($image, $font_size, 20, 36, $playtime, $font_color);
+imagestring($image, $font_size, 220, 24, $membersince, $font_color);
+imagestring($image, $font_size, 220, 36, $lastseen, $font_color);
+imagestring($image, $font_size, 120, 60, $kills, $font_color);
+imagestring($image, $font_size, 120, 72, $deaths, $font_color);
+imagestring($image, $font_size, 120, 84, $KDR, $font_color);
+imagestring($image, $font_size, 340, 60, $round, $font_color);
+imagestring($image, $font_size, 220, 60, $high, $font_color);
+imagestring($image, $font_size, 220, 72, $points, $font_color);
+imagestring($image, $font_size, 220, 84, $headshots, $font_color);
+imagestring($image, $font_size, 20, 60, $traitor, $font_color);
+imagestring($image, $font_size, 20, 72, $innocent, $font_color);
+imagestring($image, $font_size, 20, 84, $detective, $font_color);
+imagestring($image, $font_size, 260, 115, $url, $font_color);
 
 imagepng($image);	
 ImageDestroy($image);
