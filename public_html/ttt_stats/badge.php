@@ -125,7 +125,8 @@ $image_width = 460;
 	$image = imagecreate($image_width, $image_height);
 	
 imagecolorallocate($image, 51, 51, 51);
-$font_color = imagecolorallocate($image, 139,134,131);
+//$font_color = imagecolorallocate($image, 139,134,131);
+$font_color = imagecolorallocate($image, 202,74,15);
 	
 	
 imagestring($image, $font_size, 120, 0, $title, $font_color);

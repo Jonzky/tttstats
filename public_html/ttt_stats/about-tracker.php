@@ -33,16 +33,5 @@ include("./includes/header.php");
 <input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal — The safer, easier way to pay online.">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
 </form>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-6665064114968712";
-/* THN 2012 */
-google_ad_slot = "8373947203";
-google_ad_width = 336;
-google_ad_height = 280;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
 	</div>
 <?PHP include("./includes/footer.php");?>
