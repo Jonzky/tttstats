@@ -80,7 +80,7 @@ float: right;
 /* basic #header */
 #header {
   background: url(../static/images/siteFooterPattern.png) left top repeat;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ca4a0f;
   color: #fff;
   position: absolute;
   top:0;left:0;right:0;
@@ -264,6 +264,8 @@ text-align: right;
 {
 	background: url(../static/images/siteFooterPattern.png) left top repeat;
 	padding-top: 30px;
+	border-top: 1px solid #ca4a0f;
+
 }
 
 .siteFooter .center
