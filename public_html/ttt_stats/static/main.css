@@ -77,10 +77,35 @@ float: left;
 float: right;
 }
 
+/* basic #header */
+#header {
+  background: url(../static/images/siteFooterPattern.png) left top repeat;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  position: absolute;
+  top:0;left:0;right:0;
+}
+#header .login{
+	font-size: 16px;
+	padding: 20px;
+	margin-left: 15%;
+	float: left;
+}
+#header div {
+  margin:0 auto;
+  width: 960px;
+  padding:  10px; /* control the hight of the header */
+  overflow: hidden;
+}
+#header #logo {
+  float: left;
+  width: 550px;
+}
+
 /* LAYOUT */
 div#page /*Sets entire page contents to be 80% use 100% inside of this div*/
 {
-	margin: 0 auto 10px auto;
+	margin: 120px auto 10px auto;
 	width: 90%;
 	margin-bottom:-30px;
 	min-height: 100%; /*forces footer to the bottom of the page*/

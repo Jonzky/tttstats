@@ -25,22 +25,15 @@ require("./includes/session_start.php");
 	</head>
 			<body>
 			<?PHP	include("analytics.php");	?>
-				
-				<div id="page">
 
-				<div id="logo">
-				<a href="http://www.sngaming.org"><img src="./static/images/skynet_logo.png" alt="www.sngaming.org" title="www.sngaming.org"/></a>
+				<div id="header">
+				  <div>
+					<a href="http://www.sngaming.org" id="logo"><img src="./static/images/skynet_logo.png" alt="www.sngaming.org" title="www.sngaming.org" style="width: 550px; height: 90px;"/></a>
+					<p class="login"><a href="./login.php">Login</a> &nbsp;|&nbsp;<a href="./register.php">Register</a></p>
+				  </div>
 				</div>
-						<div id='search'>
-							<a href="http://www.facebook.com/sngaming2013"><img src="./static/images/iconFacebook.png" alt="Follus us on Facebook" title="Follow us on Facebook"/></a>
-							<a href="http://www.twitter.com/skynet_gaming"><img src="./static/images/iconTwitter.png" alt="Follus us on Twitter" title="Follow us on Twitter"/></a>
-							<a href="http://www.youtube.com/SkyNetNation"><img src="./static/images/iconYoutube.png" alt="Subscribe to us on YouTube" title="Subscribe to us on YouTube"/></a>
-							<a href="http://steamcommunity.com/groups/Sky-NetGaming"><img src="./static/images/iconSteam.png" alt="Join our Steam group!" title="Join our Steam group!"/></a>
-							<a href="http://twitch.tv/skynetgaming"><img src="./static/images/iconTwitch.png" alt="Follow us on Twitch!" title="Follow us on Twitch!"/></a>
-							
-							
-						</div>
-					
+				
+				<div id="page">		
 					<nav>
 						<ul>
 						<li>
@@ -77,7 +70,6 @@ require("./includes/session_start.php");
 							echo "<a href='./control/index.php'>Control</a>";
 							}
 							else{
-							echo "<a href='login.php'>Login</a>";
 							}
 							?>
 							</li>

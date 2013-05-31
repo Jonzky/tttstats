@@ -77,9 +77,6 @@ if ($inputType == "time"){
 $text = $playerNickname . "'s TTT Playtime H:" . $hours . " M:" . $minutes . " S:" . $seconds;
 }
 else if ($inputType == "all"){
-//$text = $playerNickname . "'s TTT Stats H:" . $hours . " M:" . $minutes . " S:" . $seconds;
-//$text_rounds = "Rounds Played:" . $playerRoundsplayed . " Highest score:" . $playerMaxfrags . " Points:" . $playerPoints;
-//$text_kill = "Kills:" . $playerKills . " Deaths:" . $playerDeaths . " Headshots:" . $playerHeadshots . " KDR:" . $playerKDR;
 $title = "Trouble In Terrorist Town Stats";
 $name = $playerNickname;
 $playtime = "H:" . $hours . " M:" . $minutes . " S:" . $seconds;
