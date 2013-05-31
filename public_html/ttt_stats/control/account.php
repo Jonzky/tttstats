@@ -62,7 +62,9 @@ else{
 <?PHP echo "<form action='".$_SERVER['PHP_SELF']."' method='post'>";?>
 <strong>SteamID</strong>
 <input name="steamID" type="text" id="steamID" placeholder="SteamID">
+<div class="fright">
 <button class='button' type='submit'>Apply</button>
+</div>
 </form>
 </div>
 <div id="primary_content_new">
@@ -89,15 +91,16 @@ function checkPass(theForm) {
 
 <?PHP echo "<form action='".$_SERVER['PHP_SELF']."' method='post' onsubmit='return checkPass(this);'>";?>
 <strong>Current password</strong>
-<input name="prevPass" type="password" id="prevPass" placeholder="Current password">
+<input name="prevPass" type="password" id="prevPass" placeholder="Current password" style="margin-left: 30px;">
 <br/>
 <strong>New password</strong>
-<input name="newPass" type="password" id="newPass" placeholder="New password">
+<input name="newPass" type="password" id="newPass" placeholder="New password" style="margin-left: 55px;">
 <br/>
 <strong>Repeat new password</strong>
 <input name="newPass1" type="password" id="newPass1" placeholder="Repeat new password">
+<div class="fright">
 <button class='button' type='submit'>Apply</button>
-
+</div>
 </form>
 </div>
 <?PHP
