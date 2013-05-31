@@ -162,7 +162,7 @@ margin: auto auto auto auto;
 
 div#primary_content_new
 {
-margin: 20px auto auto 20px;
+margin: 20px auto auto auto;
 
 	/* ROUNDED CORNERS */
 	-moz-border-radius: 24px;
