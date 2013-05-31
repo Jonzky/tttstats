@@ -52,6 +52,28 @@ else{
 		
 }
 }
+
+if(isset($_POST['prevPassDel']) && isset($_POST['delAccount'])){
+$prevPassDel = $_POST['prevPassDel'];
+$prevPassDel = mysql_real_escape_string($prevPassDel);
+$delAccount = $_POST['delAccount'];
+
+$checkDel = mysql_query("SELECT * FROM admin_users WHERE user='$myusername' and pass=MD5('$prevPassDel')");
+$usersDel = mysql_num_rows($checkDel);
+
+if ($usersDel == 1){
+mysql_query("DELETE FROM `handyman_ttt_stats`.`admin_users` WHERE `admin_users`.`user` = '$myUsername'");
+include("./logout.php");
+}
+else{
+	echo "<script LANGUAGE='JavaScript'>";
+	echo "window.alert('Incorrect current password! please enter the correct current password!')";
+	echo "</script>";
+		unset($prevPassDel);
+		unset($delAccount);
+		
+}
+}
 	
 
 ?>
@@ -68,8 +90,6 @@ else{
 </form>
 </div>
 <div id="primary_content_new">
-
-
 <script type="text/javascript" language="JavaScript">
 <!--
 //--------------------------------
@@ -103,6 +123,21 @@ function checkPass(theForm) {
 </div>
 </form>
 </div>
+
+<div id="primary_content_new">
+<?PHP echo "<form action='".$_SERVER['PHP_SELF']."' method='post'>";?>
+<strong>Current password</strong>
+<input name="prevPassDel" type="password" id="prevPassDel" placeholder="Current password" style="margin-left: 30px;">
+<br/>
+<strong>Delete account?</strong>
+<input name="delAccount" type="checkbox" id="delAccount" style="margin-left: 55px;">
+
+<div class="fright">
+<button class='button' type='submit'>Apply</button>
+</div>
+</form>
+</div>
+
 <?PHP
 include("./includes/footer.php");
 ?>
