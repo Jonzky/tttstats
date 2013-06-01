@@ -100,6 +100,7 @@ $seconds = $timetotal;
 
 echo "<div id='primary_content'>";
 
+if(isset($statType) && $statType == "all"){
 echo"<form name='input' action='stats.php' method='get'>
 <input type='radio' name='type' value='all' checked>All
 <input type='radio' name='type' value='time'>Time
@@ -111,6 +112,111 @@ echo"<form name='input' action='stats.php' method='get'>
 <input type='radio' name='type' value='kdr'>KDR
 <button class='button' type='submit'>Filter</button>
 </form>";
+}
+else if(isset($statType) && $statType == "time"){
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='all'>All
+<input type='radio' name='type' value='time' checked>Time
+<input type='radio' name='type' value='kills'>Kills
+<input type='radio' name='type' value='deaths'>Deaths
+<input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='points'>Points
+<input type='radio' name='type' value='headshots'>Head-Shots
+<input type='radio' name='type' value='kdr'>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
+}
+else if(isset($statType) && $statType == "kills"){
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='all'>All
+<input type='radio' name='type' value='time'>Time
+<input type='radio' name='type' value='kills' checked>Kills
+<input type='radio' name='type' value='deaths'>Deaths
+<input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='points'>Points
+<input type='radio' name='type' value='headshots'>Head-Shots
+<input type='radio' name='type' value='kdr'>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
+}
+else if(isset($statType) && $statType == "deaths"){
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='all'>All
+<input type='radio' name='type' value='time'>Time
+<input type='radio' name='type' value='kills'>Kills
+<input type='radio' name='type' value='deaths' checked>Deaths
+<input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='points'>Points
+<input type='radio' name='type' value='headshots'>Head-Shots
+<input type='radio' name='type' value='kdr'>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
+}
+else if(isset($statType) && $statType == "score"){
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='all'>All
+<input type='radio' name='type' value='time'>Time
+<input type='radio' name='type' value='kills'>Kills
+<input type='radio' name='type' value='deaths'>Deaths
+<input type='radio' name='type' value='score' checked>Score
+<input type='radio' name='type' value='points'>Points
+<input type='radio' name='type' value='headshots'>Head-Shots
+<input type='radio' name='type' value='kdr'>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
+}
+else if(isset($statType) && $statType == "points"){
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='all'>All
+<input type='radio' name='type' value='time'>Time
+<input type='radio' name='type' value='kills'>Kills
+<input type='radio' name='type' value='deaths'>Deaths
+<input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='points' checked>Points
+<input type='radio' name='type' value='headshots'>Head-Shots
+<input type='radio' name='type' value='kdr'>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
+}
+else if(isset($statType) && $statType == "headshots"){
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='all'>All
+<input type='radio' name='type' value='time'>Time
+<input type='radio' name='type' value='kills'>Kills
+<input type='radio' name='type' value='deaths'>Deaths
+<input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='points'>Points
+<input type='radio' name='type' value='headshots' checked>Head-Shots
+<input type='radio' name='type' value='kdr'>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
+}
+else if(isset($statType) && $statType == "kdr"){
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='all'>All
+<input type='radio' name='type' value='time'>Time
+<input type='radio' name='type' value='kills'>Kills
+<input type='radio' name='type' value='deaths'>Deaths
+<input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='points'>Points
+<input type='radio' name='type' value='headshots'>Head-Shots
+<input type='radio' name='type' value='kdr' checked>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
+}
+else{
+echo"<form name='input' action='stats.php' method='get'>
+<input type='radio' name='type' value='all'>All
+<input type='radio' name='type' value='time'>Time
+<input type='radio' name='type' value='kills'>Kills
+<input type='radio' name='type' value='deaths'>Deaths
+<input type='radio' name='type' value='score'>Score
+<input type='radio' name='type' value='points'>Points
+<input type='radio' name='type' value='headshots'>Head-Shots
+<input type='radio' name='type' value='kdr'>KDR
+<button class='button' type='submit'>Filter</button>
+</form>";
+}
 
 if (!isset($statType)){
 echo "<img src='./static/images/icon_id.png' alt='ID icon' title='unique users' /> : " . $uniqueusers;
