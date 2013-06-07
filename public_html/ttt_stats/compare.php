@@ -211,7 +211,7 @@ $playerMaxfrags2 = $playerarray['maxfrags'];
 $playerFirstjoined2 = $playerarray['first_joined'];
 $playerLastSeen2 = $playerarray['last_seen'];
 $sb_search_string2 = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid2 . "&Submit=";
-if ($playerKills and $playerDeaths != 0){
+if ($playerKills2 and $playerDeaths2 != 0){
 $playerKDRTrun2 = $playerKills2 / $playerDeaths2;
 $playerKDR2 = round($playerKDRTrun2, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
 }
