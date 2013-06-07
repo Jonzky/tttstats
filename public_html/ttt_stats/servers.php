@@ -13,8 +13,11 @@
 include("./includes/header.php");
 include("./includes/config.php");	
 /*Setup variables for SQL statements */
+$time = time();
+$update_time = 240;
+$longAgo = $time - $update_time;
+$server_list = mysql_query("SELECT * FROM `server_track` WHERE `lastupdate` >= '$longAgo'");
 
-$server_list = mysql_query("SELECT * FROM `server_track`");
 
 /*Stats SQL queries end here */
 
