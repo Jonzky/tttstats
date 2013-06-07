@@ -19,7 +19,7 @@ $inputType = $_GET['stype'];
 /*Regex, we love regex to stop potential SQL injection :D */
 $regex = "/^STEAM_0:[01]:[0-9]{7,8}$/";
 $nickRegex = "/^[a-zA-Z0-9_. ]+((\s|\-) [a-zA-Z0-9_. ]+)?$/";
-if (isset($inputPlayer)){
+if (isset($inputPlayer) && isset($inputPlayer2)){
 if ($inputType == "NICK"){
 if(!preg_match($nickRegex, $inputPlayer) || !preg_match($nickRegex, $inputPlayer2)) {
     echo "<script LANGUAGE='JavaScript'>";
@@ -42,7 +42,7 @@ if(!preg_match($regex, $inputPlayer) || !preg_match($regex, $inputPlayer2)) {
 /*End of Regex*/
 
 
-if(isset($inputPlayer) && isset($imputPlayer2)){
+if(isset($inputPlayer) && isset($inputPlayer2)){
 $playerEscaped = mysql_real_escape_string($inputPlayer);
 $playerEscaped2 = mysql_real_escape_string($inputPlayer2);
 
@@ -58,14 +58,13 @@ else{
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped' LIMIT 0, 30 "); //default to steamid, we should never be here.
 $player2 = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscaped2' LIMIT 0, 30 "); //default to steamid, we should never be here.
 }
-
 mysql_close($connect);
 }
 ?>
 <div id="primary_content">
 <h4>Search for your TTT stats!</h4>
 <div id="normal-search" style="display:block;">
-<form id="advanced-show" name="input" action="search.php" method="get">
+<form id="advanced-show" name="input" action="compare.php" method="get">
 <input type="text" name="STEAMID" placeholder="Your SteamID / Nickname" value required>
 <input type="text" name="STEAMID2" placeholder="Your friends Steamid / Nickname" value required>
 <input type="radio" name="stype" value="STEAM_ID">SteamID
@@ -97,8 +96,7 @@ mysql_close($connect);
 <?
 //start of player1 get data
 if(isset($inputPlayer) && isset($inputPlayer2)){
-$multiResult = mysql_num_rows($player);
-$multiResult2 = mysql_num_rows($player2);
+
 while($playerarray = mysql_fetch_array( $player )) {
 $playerSteamid = $playerarray['steamid'];
 $playerNickname = $playerarray['nickname'];
@@ -135,7 +133,7 @@ $seconds = $playerPlaytime;
 				$seconds = ceil($divisor_for_seconds);
 
 		
-include("./includes/config_sb.php");
+include_once("./includes/config_sb.php");
 
 $banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerSteamid'");
 $bannedTotal = mysql_num_rows($banned);
@@ -168,71 +166,91 @@ echo "</tr>";
 echo "</table>";
 
 //end of player 1 get and print of data
+?>
 
-
+</br>
+</br>
+</br>
+</br>
+<table border ="1">
+						<tr>
+						<th>SteamID</th>
+						<th>Nickname</th>
+						<th>Playtime<br/>(hours, minutes, seconds)</th>
+						<th>Rounds Played</th>
+						<th>Times Innocent</th>
+						<th>Times Detective</th>
+						<th>Times Traitor</th>
+						<th>Total Deaths</th>
+						<th>Total Kills</th>
+						<th>K/D Ratio</th>
+						<th>Total Head-Shots</th>
+						<th>Total Points</th>
+						<th>Highest Score</th>
+						<th>First Joined</th>
+						<th>Last Seen</th>
+						<th># of Bans</th>
+						</tr>
+<?
 //start of player 2 get and print data
 if(isset($inputPlayer) && isset($inputPlayer2)){
-$multiResult = mysql_num_rows($player);
-$multiResult2 = mysql_num_rows($player2);
-while($playerarray = mysql_fetch_array( $player )) {
-$playerSteamid = $playerarray['steamid'];
-$playerNickname = $playerarray['nickname'];
-$playerPlaytime = $playerarray['playtime'];
-$playerRoundsplayed = $playerarray['roundsplayed'];
-$playerInnocenttimes = $playerarray['innocenttimes'];
-$playerDetectivetimes = $playerarray['detectivetimes'];
-$playerTraitortimes = $playerarray['traitortimes'];
-$playerDeaths = $playerarray['deaths'];
-$playerKills = $playerarray['kills'];
-$playerHeadshots = $playerarray['headshots'];
-$playerPoints = $playerarray['points'];
-$playerMaxfrags = $playerarray['maxfrags'];
-$playerFirstjoined = $playerarray['first_joined'];
-$playerLastSeen = $playerarray['last_seen'];
-$sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
+
+while($playerarray = mysql_fetch_array( $player2 )) {
+$playerSteamid2 = $playerarray['steamid'];
+$playerNickname2 = $playerarray['nickname'];
+$playerPlaytime2 = $playerarray['playtime'];
+$playerRoundsplayed2 = $playerarray['roundsplayed'];
+$playerInnocenttimes2 = $playerarray['innocenttimes'];
+$playerDetectivetimes2 = $playerarray['detectivetimes'];
+$playerTraitortimes2 = $playerarray['traitortimes'];
+$playerDeaths2 = $playerarray['deaths'];
+$playerKills2 = $playerarray['kills'];
+$playerHeadshots2 = $playerarray['headshots'];
+$playerPoints2 = $playerarray['points'];
+$playerMaxfrags2 = $playerarray['maxfrags'];
+$playerFirstjoined2 = $playerarray['first_joined'];
+$playerLastSeen2 = $playerarray['last_seen'];
+$sb_search_string2 = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid2 . "&Submit=";
 if ($playerKills and $playerDeaths != 0){
-$playerKDRTrun = $playerKills / $playerDeaths;
-$playerKDR = round($playerKDRTrun, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
+$playerKDRTrun2 = $playerKills2 / $playerDeaths2;
+$playerKDR2 = round($playerKDRTrun2, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
 }
 else {
-$playerKDR = "N/A";
+$playerKDR2 = "N/A";
 }
-$seconds = $playerPlaytime;
+$seconds2 = $playerPlaytime2;
 			//start of math for hourse, minues and seconds
-				$hours = floor($seconds / (60 * 60));
+				$hours2 = floor($seconds2 / (60 * 60));
  
 			// extract minutes
-				$divisor_for_minutes = $seconds % (60 * 60);
-				$minutes = floor($divisor_for_minutes / 60);
+				$divisor_for_minutes2 = $seconds2 % (60 * 60);
+				$minutes2 = floor($divisor_for_minutes2 / 60);
  
 			// extract the remaining seconds
-				$divisor_for_seconds = $divisor_for_minutes % 60;
-				$seconds = ceil($divisor_for_seconds);
+				$divisor_for_seconds2 = $divisor_for_minutes2 % 60;
+				$seconds2 = ceil($divisor_for_seconds2);
 
-		
-include("./includes/config_sb.php");
-
-$banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerSteamid'");
-$bannedTotal = mysql_num_rows($banned);
+$banned2 = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerSteamid2'");
+$bannedTotal2 = mysql_num_rows($banned);
 				
 
 echo "<tr>";
-echo "<td>" . $playerSteamid . "</td>";
-echo "<td>" . $playerNickname . "</td>";
-echo "<td> H:" . $hours . " M:" . $minutes . " S:" . $seconds . "</td>";
-echo "<td>" . $playerRoundsplayed . "</td>";
-echo "<td>" . $playerInnocenttimes . "</td>";
-echo "<td>" . $playerDetectivetimes . "</td>";
-echo "<td>" . $playerTraitortimes . "</td>";
-echo "<td>" . $playerDeaths . "</td>";
-echo "<td>" . $playerKills . "</td>";
-echo "<td>" . $playerKDR . "</td>";
-echo "<td>" . $playerHeadshots . "</td>";
-echo "<td>" . $playerPoints . "</td>";
-echo "<td>" . $playerMaxfrags . "</td>";
-echo "<td>" . $playerFirstjoined . "</td>";
-echo "<td>" . $playerLastSeen . "</td>";
-echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
+echo "<td>" . $playerSteamid2 . "</td>";
+echo "<td>" . $playerNickname2 . "</td>";
+echo "<td> H:" . $hours2 . " M:" . $minutes2 . " S:" . $seconds2 . "</td>";
+echo "<td>" . $playerRoundsplayed2 . "</td>";
+echo "<td>" . $playerInnocenttimes2 . "</td>";
+echo "<td>" . $playerDetectivetimes2 . "</td>";
+echo "<td>" . $playerTraitortimes2 . "</td>";
+echo "<td>" . $playerDeaths2 . "</td>";
+echo "<td>" . $playerKills2 . "</td>";
+echo "<td>" . $playerKDR2 . "</td>";
+echo "<td>" . $playerHeadshots2 . "</td>";
+echo "<td>" . $playerPoints2 . "</td>";
+echo "<td>" . $playerMaxfrags2 . "</td>";
+echo "<td>" . $playerFirstjoined2 . "</td>";
+echo "<td>" . $playerLastSeen2 . "</td>";
+echo "<td> <a href=" . $sb_search_string2 . "/>" . $bannedTotal2 . "</td>";
 echo "</tr>";
 
 	
@@ -242,51 +260,6 @@ echo "</tr>";
 }
 echo "</table>";
 //end of player 2 start and get data
-?>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-
-      // Load the Visualization API and the piechart package.
-      google.load('visualization', '1.0', {'packages':['corechart']});
-
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.setOnLoadCallback(drawChart);
-
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Innocent', <?echo$playerInnocenttimes;?>],
-          ['Detective', <?echo$playerDetectivetimes;?>],
-          ['Traitor', <?echo$playerTraitortimes;?>]
-        ]);
-
-        // Set chart options
-        var options = {'title':'Traitor, Detective, Innocent Times.',
-                       'width':400,
-                       'height':300,
-					   'colors': ['green', 'blue', 'red'],
-					   'is3D': true
-					   };
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
-<?
-if ($multiResult == 1){
-echo  "<div id='chart_div'></div>";
-}
-else if ($multiResult == 0 && isset($inputPlayer)){
-echo "<p class='noexist'>No user found under that name.</p>";
-}
 ?>
 
 </div>
