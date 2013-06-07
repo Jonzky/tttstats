@@ -260,9 +260,10 @@ echo "</tr>";
 }
 echo "</table>";
 //end of player 2 start and get data
+if (isset($player) && isset($player2)){
 $multiResult = mysql_num_rows($player);
 $multiResult2 = mysql_num_rows($player2);
-
+}
 if ($multiResult == 0 && isset($inputPlayer) || $multiResult2 == 0 && isset($inputPlayer2)){
 echo "<p class='noexist'>One of more users doesn't exist, please try again.</p>";
 }
