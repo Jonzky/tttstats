@@ -18,13 +18,6 @@ $update_time = 240;
 $longAgo = $time - $update_time;
 $server_list = mysql_query("SELECT * FROM `server_track` WHERE `lastupdate` >= '$longAgo'");
 
-
-/*Stats SQL queries end here */
-
-/*Maths for any functions go here */
-				
-/*Maths for functions end here */
-
 /*print statements */
 
 echo"<p class='noexist'>This is a live list of the game servers running the server tracker module!</p><table border ='0' class='servertable'><tr><th>Hostname</th><th>Players</th><th>Current Map</th><th>Connect to server</th></tr>";
