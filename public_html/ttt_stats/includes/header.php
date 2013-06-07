@@ -54,6 +54,7 @@ require("./includes/session_start.php");
 							<a href="#">Search</a>
 							<ul>
 							<li><a href="search.php">All</a></li>
+							<li><a href="compare.php">Compare</a></li>
 							<li><a href="admin.php">Admins</a></li>
 							<li><a href="reports.php">Reports</a></li>
 							<li><a href="servers.php">Servers</a></li>
