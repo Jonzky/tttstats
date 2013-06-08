@@ -27,7 +27,7 @@ $youtube_link = "SkyNetNation";
 $steam_link = "sky-netgaming";
 $twitch_link = "skynetgaming";
 
-$logo_path = "/static/images/skynet_logo.png";
+$logo_path = "./static/images/skynet_logo.png";
 
 $badge_ref = "www.thehiddennation.com/ttt_stats";
 
