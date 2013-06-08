@@ -11,7 +11,7 @@
 | 	   by Handy_man       |
 \------------------------*/
 
-$sb_enabled = true;
+$sb_enabled = false;
 $sb_search_build = "http://bans.sngaming.org/index.php?p=banlist&searchText=";
 
 $base_address = "http://www.sngaming.org";
