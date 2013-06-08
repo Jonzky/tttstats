@@ -13,7 +13,7 @@
 
 $sb_enabled = true;
 
-$base_address = "www.sngaming.org"
+$base_address = "http://www.sngaming.org";
 
 $reports_enabled = true;
 

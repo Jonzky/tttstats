@@ -29,8 +29,8 @@ include_once("./includes/variables.php");
 
 				<div id="header">
 				  <div>
-					<a href="http://www.sngaming.org" id="logo"><img src="./static/images/skynet_logo.png" alt="www.sngaming.org" title="www.sngaming.org" style="width: 550px; height: 90px;"/></a>
-					<p class="login"><a href="./login.php">Login</a> &nbsp;|&nbsp;<a href="./register.php">Register</a></p>
+					<a href="<?PHP echo $base_address; ?>" id="logo"><img src="<?PHP echo $logo_path; ?>" alt="<?PHP echo $base_address; ?>" title="<?PHP echo $base_address; ?>" style="width: 550px; height: 90px;"/></a>
+					<p class="login"><a href="./login.php">Login</a> <?PHP if($register_enabled == true){echo "&nbsp;|&nbsp;<a href='./register.php'>Register</a></p>";}else{echo "</p>";}	?>
 				  </div>
 				</div>
 				
@@ -57,8 +57,15 @@ include_once("./includes/variables.php");
 							<li><a href="search.php">All</a></li>
 							<li><a href="compare.php">Compare</a></li>
 							<li><a href="admin.php">Admins</a></li>
-							<li><a href="reports.php">Reports</a></li>
-							<li><a href="servers.php">Servers</a></li>
+							<?PHP
+							if ($reports_enabled == true){
+							echo "<li><a href='reports.php'>Reports</a></li>";
+							}		
+							if ($servers_enabled == true){
+							echo "<li><a href='servers.php'>Servers</a></li>";
+							}
+							?>
+							
 							</ul>
 						</li>
 						<li>
