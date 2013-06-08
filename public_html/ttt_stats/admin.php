@@ -13,8 +13,8 @@
 include("./includes/header.php");
 $searchType = $_GET['type'];
 /*Search variable go here */
-include("./includes/config_sb.php");
-if ($searchType == "sb"){	
+if ($sb_enabled == true && $searchType == "sb"){
+include("./includes/config_sb.php");	
 $getAdmin = mysql_query("SELECT authid FROM sb_admins WHERE `srv_group` = 'admin' OR srv_group= 'SuperAdmin'");
 $multiResult = mysql_num_rows($getAdmin);
 }
@@ -25,12 +25,14 @@ $multiResult = mysql_num_rows($getAdmin);
 }
 
 echo "<div id='primary_content'>";
+if ($sb_enabled == true){
 echo "Filter the Admin list based on the awesome tracker database or SourceBans below!";
 echo"<form name='input' action='admin.php' method='get'>
 <input type='radio' name='type' value='stats' checked>Stats
 <input type='radio' name='type' value='sb'>SB
 <button class='button' type='submit'>Filter</button>
 </form>";
+}
 echo "<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Points</th><th>Highest Score</th><th>First seen in the server</th><th>Last Seen</th></tr>";
 include("./includes/config.php");
 $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `isadmin` = '1'");

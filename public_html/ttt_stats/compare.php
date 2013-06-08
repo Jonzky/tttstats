@@ -90,7 +90,11 @@ mysql_close($connect);
 						<th>Highest Score</th>
 						<th>First Joined</th>
 						<th>Last Seen</th>
-						<th># of Bans</th>
+						<?PHP
+						if ($sb_enabled == true){
+						echo "<th># of Bans</th>";
+						}
+						?>
 						</tr>
 
 <?
@@ -112,7 +116,7 @@ $playerPoints = $playerarray['points'];
 $playerMaxfrags = $playerarray['maxfrags'];
 $playerFirstjoined = $playerarray['first_joined'];
 $playerLastSeen = $playerarray['last_seen'];
-$sb_search_string = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid . "&Submit=";
+$sb_search_string = $sb_search_build . $playerSteamid . "&Submit=";
 if ($playerKills and $playerDeaths != 0){
 $playerKDRTrun = $playerKills / $playerDeaths;
 $playerKDR = round($playerKDRTrun, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
@@ -132,12 +136,12 @@ $seconds = $playerPlaytime;
 				$divisor_for_seconds = $divisor_for_minutes % 60;
 				$seconds = ceil($divisor_for_seconds);
 
-		
+if ($sb_enabled == true){
 include_once("./includes/config_sb.php");
 
 $banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerSteamid'");
 $bannedTotal = mysql_num_rows($banned);
-				
+}
 
 echo "<tr>";
 echo "<td>" . $playerSteamid . "</td>";
@@ -155,7 +159,9 @@ echo "<td>" . $playerPoints . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
 echo "<td>" . $playerLastSeen . "</td>";
+if ($sb_enabled == true){
 echo "<td> <a href=" . $sb_search_string . "/>" . $bannedTotal . "</td>";
+}
 echo "</tr>";
 
 	
@@ -189,7 +195,11 @@ echo "</table>";
 						<th>Highest Score</th>
 						<th>First Joined</th>
 						<th>Last Seen</th>
-						<th># of Bans</th>
+						<?PHP
+						if ($sb_enabled == true){
+						echo "<th># of Bans</th>";
+						}
+						?>
 						</tr>
 <?
 //start of player 2 get and print data
@@ -210,7 +220,9 @@ $playerPoints2 = $playerarray['points'];
 $playerMaxfrags2 = $playerarray['maxfrags'];
 $playerFirstjoined2 = $playerarray['first_joined'];
 $playerLastSeen2 = $playerarray['last_seen'];
-$sb_search_string2 = "http://bans.sngaming.org/index.php?p=banlist&searchText=" . $playerSteamid2 . "&Submit=";
+if ($sb_enabled == true){
+$sb_search_string2 = $sb_search_build . $playerSteamid2 . "&Submit=";
+}
 if ($playerKills2 and $playerDeaths2 != 0){
 $playerKDRTrun2 = $playerKills2 / $playerDeaths2;
 $playerKDR2 = round($playerKDRTrun2, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
@@ -229,10 +241,10 @@ $seconds2 = $playerPlaytime2;
 			// extract the remaining seconds
 				$divisor_for_seconds2 = $divisor_for_minutes2 % 60;
 				$seconds2 = ceil($divisor_for_seconds2);
-
+if ($sb_enabled == true){
 $banned2 = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerSteamid2'");
-$bannedTotal2 = mysql_num_rows($banned);
-				
+$bannedTotal2 = mysql_num_rows($banned2);
+}
 
 echo "<tr>";
 echo "<td>" . $playerSteamid2 . "</td>";
@@ -250,7 +262,9 @@ echo "<td>" . $playerPoints2 . "</td>";
 echo "<td>" . $playerMaxfrags2 . "</td>";
 echo "<td>" . $playerFirstjoined2 . "</td>";
 echo "<td>" . $playerLastSeen2 . "</td>";
+if ($sb_enabled == true){
 echo "<td> <a href=" . $sb_search_string2 . "/>" . $bannedTotal2 . "</td>";
+}
 echo "</tr>";
 
 	

@@ -11,6 +11,7 @@
 |      by Handy_man       |
 \------------------------*/
 include("./includes/header.php");
+if ($reports_enabled == true){
 include("./includes/config.php");	
 
 $allreports = mysql_query("SELECT * FROM `ttt_report` ORDER BY `ttt_report`.`id` DESC");
@@ -62,6 +63,9 @@ echo "</tr>";
 } 
 
 echo "</table> </div>";
-
+}
+else{
+echo "<p class='center'>Reports has been disabled by the system administrator.</p>";
+}
 include("./includes/footer.php");
 ?>

@@ -11,7 +11,8 @@
 | 	   by Handy_man   |
 \------------------------*/
 include("./includes/header.php");
-include("./includes/config.php");	
+if($servers_enabled == true){	
+include("./includes/config.php");
 /*Setup variables for SQL statements */
 $time = time();
 $update_time = 240;
@@ -35,5 +36,9 @@ while($row2 = mysql_fetch_array( $server_list )) {
 
 
 echo "</table>";
+}
+else{
+echo "<p class='center'>Servers has been disabled by the system administrator.</p>";
+}
 include("./includes/footer.php");
 ?>

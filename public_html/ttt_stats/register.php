@@ -12,7 +12,7 @@
 \------------------------*/				
 
 include("./includes/header.php");
-
+if ($register_enabled == true){
 if (isset($_SESSION['failedReg'])){
 echo "<script type='text/javascript' language='JavaScript'> alert('That Username or E-mail address already exists!')</script>";
 session_destroy();
@@ -83,4 +83,11 @@ function checkEmail(theForm) {
 <button class='button' type='submit'>Register</button>
 </form>
 </p>
-<?PHP include("./includes/footer.php");?>
+<?PHP
+}
+else{
+echo "<p class='center'>Register has been disabled by the system administrator.</p>";
+}
+
+
+ include("./includes/footer.php");?>
