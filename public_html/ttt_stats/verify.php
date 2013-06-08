@@ -25,6 +25,10 @@ $usersemailactive = mysql_num_rows($checkemailactive);
 if($usersemail==1){ //great they exist, lets send that e-mail with a new hash.
 $myHash = md5( rand(0,1000) );
 $newHash = mysql_query("UPDATE `admin_users` SET `hash`='$myHash' WHERE `email` = '$verifyEmail'");
+$usernameGrab = mysql_query("SELECT * FROM admin_users WHERE email = '$verifyEmail'");
+while($userArray = mysql_fetch_array( $usernameGrab )) {
+$myusername = $userArray['user'];
+}
 
 $to = $verifyEmail;
 $subject = '[TTT STATS] Account Verification';
@@ -69,7 +73,7 @@ $search = mysql_query("SELECT * FROM `admin_users` WHERE `email` = '$adminEmail'
 $results = mysql_num_rows($search);  
 
 if ($results == 1){
-$search = mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `last_login` = now(), `active` = '1' WHERE `admin_users`.`email` = '$adminEmail'");
+$search = mysql_query("UPDATE `admin_users` SET `last_login` = now(), `active` = '1' WHERE `admin_users`.`email` = '$adminEmail'");
 echo "<p class ='noexist'>Your account is now active, please login at the <a href='./login.php'>login</a> page</p>";
 }
 else{
