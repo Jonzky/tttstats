@@ -22,6 +22,9 @@ $servers_enabled = true;
 
 $register_enabled = true;
 
+$badge_enabled = true;
+$badge_ref = "www.thehiddennation.com/ttt_stats";
+
 $facebook_link = "sngaming2013";
 $twitter_link = "skynet_gaming";
 $youtube_link = "SkyNetNation";
@@ -30,7 +33,7 @@ $twitch_link = "skynetgaming";
 
 $logo_path = "./static/images/skynet_logo.png";
 
-$badge_ref = "www.thehiddennation.com/ttt_stats";
+
 
 
 ?>

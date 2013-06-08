@@ -9,7 +9,9 @@
 |   Website printout      |
 |      beta testing       |
 |      by Handy_man       |
-\------------------------*/			
+\------------------------*/
+include ("./includes/variables.php");
+if($badge_enabled == true){
 include("./includes/config.php");
 header('Content-type: image/png');
 /*Getting our player data!*/
@@ -91,7 +93,7 @@ $KDR = "KDR:" . $playerKDR;
 $traitor = "Traitor:" . $playerTraitortimes;
 $innocent = "Innocent:" . $playerInnocenttimes;
 $detective = "Detective:" . $playerDetectivetimes;
-$url = "www.thehiddennation.com/ttt_stats";
+$url = $badge_ref;
 $lastseen = "Last Seen: " . $playerLastSeen;
 }
 else{
@@ -144,8 +146,10 @@ imagestring($image, $font_size, 220, 84, $headshots, $font_color);
 imagestring($image, $font_size, 20, 60, $traitor, $font_color);
 imagestring($image, $font_size, 20, 72, $innocent, $font_color);
 imagestring($image, $font_size, 20, 84, $detective, $font_color);
-imagestring($image, $font_size, 260, 115, $url, $font_color);
+imagestring($image, $font_size, 120, 115, $url, $font_color);
 
 imagepng($image);	
 ImageDestroy($image);
+}
+
 ?>
