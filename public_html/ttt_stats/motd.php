@@ -39,12 +39,12 @@ $player = mysql_query("SELECT * FROM `ttt_stats` WHERE `steamid` = '$playerEscap
 $multiResult = mysql_num_rows($player);
 $playerarray = mysql_fetch_array($player);
 mysql_close($connect);
-
+if ($sb_enabled == true){
 include("./includes/config_sb.php");
 
 $banned = mysql_query("SELECT * FROM sb_bans WHERE authid = '$playerEscaped'");
 $bannedTotal = mysql_num_rows($banned);
-
+}
 $playerSteamid = $playerarray['steamid'];
 $playerNickname = $playerarray['nickname'];
 $playerPlaytime = $playerarray['playtime'];
@@ -136,7 +136,7 @@ $seconds = $playerPlaytime;
 <?PHP
 if ($multiResult == 1){ 
 echo $avatar;
-echo"<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Total Points</th><th>Highest Score</th><th>First seen in the server</th><th># of Bans</th></tr>";
+echo"<table border ='1'><tr><th>SteamID</th><th>Nickname</th><th>Playtime(hours, minutes, seconds)</th><th>Rounds played</th><th>Times innocent</th><th>Times detective</th><th>Times traitor</th><th>Total Deaths</th><th>Total Kills</th><th>KDR K/D</th><th>Total Headshots</th><th>Total Points</th><th>Highest Score</th><th>First seen in the server</th>"; if ($sb_enabled == true){echo "<th># of Bans</th></tr>";}
 echo "<tr>";
 echo "<td>" . $playerSteamid . "</td>";
 echo "<td>" . $playerNickname . "</td>";
@@ -152,7 +152,9 @@ echo "<td>" . $playerHeadshots . "</td>";
 echo "<td>" . $playerPoints . "</td>";
 echo "<td>" . $playerMaxfrags . "</td>";
 echo "<td>" . $playerFirstjoined . "</td>";
+if ($sb_enabled == true){
 echo "<td>" . $bannedTotal . "</td>";
+}
 echo "</tr>";
 echo "</table>";
 echo "<div id='chart_div'>";

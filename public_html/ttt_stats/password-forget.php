@@ -81,7 +81,7 @@ $headers = 'From: no-reply@' . $_SERVER['HTTP_HOST'] . '' . "\r\n" .
 mail($to, $subject, $message, $headers);
 echo "<p class ='noexist'>Success! e-mail sent to " . $to . "</p>";
 
-$check = mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `pass` = MD5('$newpassword') WHERE `admin_users`.`ID` ='$userID'");
+$check = mysql_query("UPDATE `admin_users` SET `pass` = MD5('$newpassword') WHERE `admin_users`.`ID` ='$userID'");
 
 }
 else{
