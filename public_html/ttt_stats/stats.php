@@ -226,7 +226,7 @@ echo "<img src='./static/images/icon_det.png' alt='TTT Detective icon' title='To
 echo "<img src='./static/images/icon_traitor.png' alt='TTT Traitor icon' title='Total Traitors'/> : " . $traitortotal;
 echo "<img src='./static/images/icon_corpse.png' alt='Deadbody icon' title='Total Deaths'/> : " . $deathtotal;
 echo "<img src='./static/images/icon_head.png' alt='Headshot icon' title='Total Headshots'/> : " . $headtotal . "<br/>";
-echo "<img src='./static/images/icon_head.png' alt='Points icon' title='Total Points'/> : " . $pointtotal . "<br/>";
+echo "<img src='./static/images/icon_points.png' alt='Points icon' title='Total Points'/> : " . $pointtotal . "<br/>";
 //echo "Total number of rounds played : " . $roundstotal . "<br/>"; //bad stat, multiple players can play the same round thus it's untrue.
 //echo "<img src='./static/images/icon_time.png'/> Total number of " . $hours . " Hours, " . $minutes . " Minutes, and " . $seconds . " seconds spent on SNGaming's TTT servers.<br/>";
 echo "<br />The highest score on the server is: " . $topscorefinal . ",  held by " . $topscorenick . "! Think you can beat him?";
