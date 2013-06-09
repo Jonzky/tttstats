@@ -1,8 +1,4 @@
-
 <?php
-
-
-
 $string = '<?php 
 
 $sb_enabled = '. $_POST["sb_enabled"]. ';
@@ -11,13 +7,13 @@ $sb_search_build = "'. $_POST["sb_search_build"]. '";
 
 $base_address = "'. $_POST["base_address"]. '";
 
-$reports_enabled = "'. $_POST["reports_enabled"]. '";
+$reports_enabled = '. $_POST["reports_enabled"]. ';
 
-$servers_enabled = "'. $_POST["server_enabled"]. '";
+$servers_enabled = '. $_POST["servers_enabled"]. ';
 
-$register_enabled = "'. $_POST["register_enabled"]. '";
+$register_enabled = '. $_POST["register_enabled"]. ';
 
-$badge_enabled = "'. $_POST["badge_enabled"]. '";
+$badge_enabled = '. $_POST["badge_enabled"]. ';
 
 $badge_ref = "'. $_POST["badge_ref"]. '";
 
@@ -37,12 +33,12 @@ $logo_path = "'. $_POST["logo_path"]. '";
 
 
 
-$fp = fopen("./variables1.php", "w");
+$fp = fopen("../includes/variables.php", "w");
 
 fwrite($fp, $string);
 
 fclose($fp);
 
-
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/control/variablesSuccess.php');
 
 ?>
