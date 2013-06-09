@@ -91,6 +91,7 @@ $adminLevel = $_SESSION['isadmin']; //0 is non admin, 1 = admin and 2 = superadm
 								echo "<ul>";
 								echo "<li><a href='add-admin.php'>Add Admin</a></li>";
 								echo "<li><a href='list-admin.php'>List Admins</a></li>";
+								echo "<li><a href='settings.php'>Settings</a></li>";
 								echo "</ul>";
 								echo "</li>";
 							}
