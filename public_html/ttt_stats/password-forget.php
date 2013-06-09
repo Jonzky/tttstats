@@ -103,6 +103,8 @@ echo "<form action='".$_SERVER['PHP_SELF']."' method='post'>";
 <button class='button' type='submit'>send</button>
 </form>
 
-<p class="center">Have no login? Why not try and <a href="register.php">register</a>?</p>
+<?PHP
+if ($register_enabled == true){ echo"<p class='center'>Have no login? Why not try and <a href='register.php'>register</a>?</p>";}
+?>
 </p>
 <?PHP include("./includes/footer.php");?>

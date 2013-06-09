@@ -30,7 +30,7 @@ include_once("./includes/variables.php");
 				<div id="header">
 				  <div>
 					<a href="<?PHP echo $base_address; ?>" id="logo"><img src="<?PHP echo $logo_path; ?>" alt="<?PHP echo $base_address; ?>" title="<?PHP echo $base_address; ?>" style="width: 550px; height: 90px;"/></a>
-					<p class="login"><a href="./login.php">Login</a> <?PHP if($register_enabled == true){echo "&nbsp;|&nbsp;<a href='./register.php'>Register</a></p>";}else{echo "</p>";}	?>
+					<?PHP if (isset($_SESSION['myusername'])){ echo "<p class='login'>Welcome, " . $_SESSION['myusername'] . "&nbsp;|&nbsp;<a href='./control'>Conrol</a>";} elseif ($register_enabled == true){ echo "<p class='login'><a href='./login.php'>Login</a>&nbsp;|&nbsp;<a href='./register.php'>Register</a></p>";} else{echo "<p class='login'><a href='./login.php'>Login</a>"; }?>
 				  </div>
 				</div>
 				
@@ -73,15 +73,6 @@ include_once("./includes/variables.php");
 							<ul>
 							<li><a href="http://www.thehiddennation.com/maplistttt/index.php">Maps</a></li>
 							</ul>
-						</li>
-							<li>
-							<?PHP if (isset($_SESSION['myusername'])){
-							echo "<a href='./control/index.php'>Control</a>";
-							}
-							else{
-							}
-							?>
-							</li>
 						</li>
 						</ul>
 					</nav>

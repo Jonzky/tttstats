@@ -78,7 +78,7 @@ UNLESS OTHERWISE MUTUALLY AGREED TO BY THE PARTIES IN WRITING AND TO THE FULLEST
 <input type="checkbox" name="accept" id="accept" /><span class="center" style="cursor:pointer;" onclick=""> I have read, and accept the license</span>
 </center>
 <div align="center">
-<input type="button" TABINDEX=2 onclick="" name="button" class="btn ok" id="button" value="Ok" /></div>
-</div>
+<button class='button' type='submit'>Ok</button></div>
+
 
 <?PHP include("./includes/footer.php")?>

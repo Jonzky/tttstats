@@ -42,8 +42,9 @@ session_destroy();
 <input name="p" type="password" id="p" required>
 <button class='button' type='submit'>Login</button>
 </form>
-
-<p class="center">Have no login? Why not try and <a href="register.php">register</a>?</p>
+<?PHP
+if ($register_enabled == true){ echo"<p class='center'>Have no login? Why not try and <a href='register.php'>register</a>?</p>";}
+?>
 <p class="centerSmall"><a href="./login-forget.php">Forgotten your login?</a>  |  <a href="./password-forget.php">Forgotten your password?</a> |  <a href="./verify.php">resend verification?</a></p>
 </p>
 <?PHP include("./includes/footer.php");?>
