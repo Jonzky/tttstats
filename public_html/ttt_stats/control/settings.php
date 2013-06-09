@@ -16,51 +16,33 @@ include("./includes/config.php");
 
 //Save our settings! get all the data we're potentially changing!
 
-	
-	
-//Get current server settings
-$settings = mysql_query("SELECT * FROM ttt_settings");
-
-$source = mysql_data_seek($settings, 10);
-while($settingsArray = mysql_fetch_array( $settings )) {
-$sbEnabled = $settingsArray['value'];
-}
-
-
-
 ?>
 <div id="primary_content">
 <h4>Welcome to the settings page, <?PHP echo $_SESSION['myusername'];?></h4>
-<p>Here you can update a number of details about your stat tracker links.</p>
-<?PHP 
-//echo $sbEnabled;
-echo $source;
+<p>Here you can update a large number of variables that the ttt_stats relies on.</p>
+<?PHP echo "<form action='../includes/variableUpdate.php' method='post'>";?>
+<strong>Sourcebans enable/ disable</strong>
+<input name="sb_enabled" type="radio" value="true">Enabled</br>
+<input name="sb_enabled" type="radio" value="false">Disabled</br>
+<strong>Reports enable/ disable</strong>
+</br>
+<input name="reports_enabled" type="radio" value="true">Enabled</br>
+<input name="reports_enabled" type="radio" value="false">Disabled</br>
+<strong>Server online tracker enable/ disable</strong>
+</br>
+<input name="servers_enabled" type="radio" value="true">Enabled</br>
+<input name="servers_enabled" type="radio" value="false">Disabled</br>
+<strong>Badge system enable/ disable</strong>
+</br>
+<input name="badge_enabled" type="radio" value="true">Enabled</br>
+<input name="badge_enabled" type="radio" value="false">Disabled</br>
 
-?>
-<?PHP echo "<form action='".$_SERVER['PHP_SELF']."' method='post'>";?>
-<strong>SteamID</strong>
-<input name="steamID" type="text" id="steamID" placeholder="SteamID">
 <div class="fright">
 <button class='button' type='submit'>Apply</button>
 </div>
 </form>
 </div>
-<div id="primary_content_new">
 
-<?PHP echo "<form action='".$_SERVER['PHP_SELF']."' method='post' onsubmit='return checkPass(this);'>";?>
-<strong>Current password</strong>
-<input name="prevPass" type="password" id="prevPass" placeholder="Current password" style="margin-left: 30px;">
-<br/>
-<strong>New password</strong>
-<input name="newPass" type="password" id="newPass" placeholder="New password" style="margin-left: 55px;">
-<br/>
-<strong>Repeat new password</strong>
-<input name="newPass1" type="password" id="newPass1" placeholder="Repeat new password">
-<div class="fright">
-<button class='button' type='submit'>Apply</button>
-</div>
-</form>
-</div>
 
 <?PHP
 include("./includes/footer.php");
