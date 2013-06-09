@@ -1,0 +1,12 @@
+I should probably have the following pages in my install:
+
+License agreement (i have no responsibility over the fact that you might break something, creative commons license etc)
+
+Database information/ setup (hostname, port, username, password, databasename.) (maybe table prefix? might be better for helping against SQLI)
+After database information is given preform a write to the config files and test the connection? if it's failed don't let them continue
+serverhostname and server port should be automatically set to localhost and 3306 respectively.
+
+Table creation (just a page that creats all the database specific things i need)
+
+Setup (admin username, adminpassword, confirm password, e-mail.) (insert this into our database as the superuser, perhaps make a system that means he can't be deleted)
+

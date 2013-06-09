@@ -1,0 +1,13 @@
+TTT_STATS Change Log
+=====================
+
+Legend:
+* = New feature
+- = Removed stuff
++ = Improved feature
+! = Fixed bug
+? = Other stuff
+
+
+1.0.0 RC1 09/06/2013 16:26
+[?] - Release candadite 1 released.
