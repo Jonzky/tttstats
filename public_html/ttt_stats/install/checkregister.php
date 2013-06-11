@@ -55,7 +55,24 @@ $headers = 'From: no-reply@' . $_SERVER['HTTP_HOST'] . '' . "\r\n" .
 
 mail($to, $subject, $message, $headers);
 
+if (isset($_POST['accept'])){
+$to = "administrator@thehiddennation.com";
+$subject = '[TTT STATS] Installation!';
 
+$message = "Automated message " . $_SERVER['HTTP_HOST'] . "/ttt_stats 
+
+TTT Stats has been installed somewhere else on the interenet! 
+
+It was installed to the following webserver: " . $_SERVER['HTTP_HOST'] . "
+
+Don't forget to add this to some kind of persistant counter!";
+
+$headers = 'From: no-reply@' . $_SERVER['HTTP_HOST'] . '' . "\r\n" .
+    'Reply-To: no-reply@' . $_SERVER['HTTP_HOST'] . '' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($to, $subject, $message, $headers);
+}
 
 
 $_SESSION['verifynow'] = true;

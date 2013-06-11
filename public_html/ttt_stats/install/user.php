@@ -93,6 +93,9 @@ function checkEmail(theForm) {
 <span class="formData">Repeat Password :</span>
 <input name="mypassword2" type="password" id="mypassword2" placeholder="Repeat Password" required>
 <br/>
+<center>
+<input type="checkbox" name="accept" id="accept" /><span class="center" style="cursor:pointer;">Do you agree to a notification being sent back to Handy_man that you've installed this software?</span>
+</center>
 <br />
 <div align="center">
 <button class='button' type='submit'>Ok</button></div>
