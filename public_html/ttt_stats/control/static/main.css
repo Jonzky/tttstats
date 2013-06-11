@@ -43,15 +43,15 @@ text-align: center;
 font-size: 18px;
 color:white;
 }
-.noexist{
-text-align: center;
-font-size: 18px;
-color:red;
-}
 .centerSmall	{
 text-align: center;
 font-size: 12px;
 color:white;
+}
+.noexist{
+text-align: center;
+font-size: 18px;
+color:red;
 }
 
 .formData{
@@ -77,10 +77,35 @@ float: left;
 float: right;
 }
 
+/* basic #header */
+#header {
+  background: url(../static/images/siteFooterPattern.png) left top repeat;
+  border-bottom: 1px solid #ca4a0f;
+  color: #fff;
+  position: absolute;
+  top:0;left:0;right:0;
+}
+#header .login{
+	font-size: 16px;
+	padding: 20px;
+	margin-left: 15%;
+	float: left;
+}
+#header div {
+  margin:0 auto;
+  width: 960px;
+  padding:  10px; /* control the hight of the header */
+  overflow: hidden;
+}
+#header #logo {
+  float: left;
+  width: 550px;
+}
+
 /* LAYOUT */
 div#page /*Sets entire page contents to be 80% use 100% inside of this div*/
 {
-	margin: 0 auto 10px auto;
+	margin: 120px auto 10px auto;
 	width: 90%;
 	margin-bottom:-30px;
 	min-height: 100%; /*forces footer to the bottom of the page*/
@@ -180,12 +205,14 @@ margin: 20px auto auto auto;
 
 }
 
+
 div#advert_foot
 {
 margin-top: 5%;
 margin-bottom: 20px;
-margin-left: 40%;
-margin-right: 40%;
+margin-left:auto;
+margin-right: auto;
+width: 728px;
 
 	/* ROUNDED CORNERS */
 	-moz-border-radius: 12px;
@@ -196,9 +223,8 @@ margin-right: 40%;
 	-webkit-box-shadow: 0px 0px 14px #000000;
 	box-shadow: 0px 0px 14px #000000;
 	/* OTHER */
-	background-color: white;
+	background-color: none;
 	padding: 2px;
-	opacity: 0.1;
 	text-align: center;
 
 }
@@ -234,6 +260,21 @@ div#to-right
 text-align: right;
 }
 
+.siteFooter
+{
+	background: url(../static/images/siteFooterPattern.png) left top repeat;
+	padding-top: 30px;
+	border-top: 1px solid #ca4a0f;
+
+}
+
+.siteFooter .center
+{
+	padding-bottom: 30px;
+	font-size: 14px;
+	color:white;
+}
+
 /* FOOTER LAYOUT */
 #content_box_bottom /*footer of the page*/ 
 {
@@ -265,12 +306,27 @@ td.stattable{
 width: 50%;
 }
 
+table.servertable{
+	margin-left: auto;
+	margin-right: auto;
+    width: auto;
+    border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0; 
+	border-left: 1px;
+	table-layout:auto;
+}
+
+.servertable td, .servertable th {
+border-left: 1px solid #ccc;
+}
+
 
 table{
     width: 100%;
     border-collapse: collapse; /* IE7 and lower */
     border-spacing: 0; 
 	table-layout:auto;
+
 }
 td{
 }
@@ -315,7 +371,7 @@ position: relative;
 }
 
 .clearfooter {
-height: 30px;
+height: 50px;
 clear: both;
 }
 
@@ -353,7 +409,6 @@ margin: 40px 25% 35px 25%;
 	text-align: center;
 	font-size: 18px;
 }
-
 nav ul ul{
 	display: none;
 	
