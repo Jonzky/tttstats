@@ -1,23 +1,19 @@
 <?PHP
 $string = '<?php 
 
-$server_hostname = '. $_POST["server_hostname"]. ":" . $_POST["server_port"] . ';
+$server_hostname = "'. $_POST["server_hostname"]. ":" . $_POST["server_port"] . '";
 
 $server_user = "'. $_POST["server_user"]. '";
 
 $server_pass = "'. $_POST["server_pass"]. '";
 
-$server_db = "'. $_POST["server_db"]. '";
-
 $connect = mysql_connect($server_hostname, $server_user, $server_pass);
-$db_select = mysql_select_db("$server_db");
-if (!connect) {die("Error, failed to connect to the database . mysql_error());}
+$db_select = mysql_select_db("' . $_POST["server_db"] . '");
+if (!connect) {die(mysql_error());}
 
 ?>';
 
-
-
-$fp = fopen("../includes/config2.php", "w");
+$fp = fopen("../includes/config.php", "w");
 
 fwrite($fp, $string);
 
