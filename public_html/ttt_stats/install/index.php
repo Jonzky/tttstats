@@ -5,7 +5,7 @@ include("./includes/header.php");
 To use this webpanel software, you are required to read and accept the following license. If you do not agree with the license, then go and make your own stat tracker.<br /><br />
 An explanation  of this license is available <a href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank">here</a>.
 </div>
-<form action="DB.php" method="POST" enctype="multipart/form-data">
+<form action="db.php" method="POST" enctype="multipart/form-data">
 <h3 class="center">Creative Commons - Attribution-NonCommercial-ShareAlike 3.0</h3>
 <center><textarea id="license" cols="105" rows="15" name="license">License
 

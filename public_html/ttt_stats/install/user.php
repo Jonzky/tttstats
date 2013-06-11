@@ -1,22 +1,29 @@
-<?php
-/*------------------------\
-|        TTT STATS        |
-|          Beta           |
-|=========================|
-|© 2013 SNGaming.org      |
-|   All Rights Reserved   |
-|=========================|
-|   Website printout      |
-|      beta testing       |
-|      by Handy_man       |
-\------------------------*/				
+<?PHP
+$string = '<?php 
+
+$server_hostname = '. $_POST["server_hostname"]. ":" . $_POST["server_port"] . ';
+
+$server_user = "'. $_POST["server_user"]. '";
+
+$server_pass = "'. $_POST["server_pass"]. '";
+
+$server_db = "'. $_POST["server_db"]. '";
+
+$connect = mysql_connect($server_hostname, $server_user, $server_pass);
+$db_select = mysql_select_db("$server_db");
+if (!connect) {die("Error, failed to connect to the database . mysql_error());}
+
+?>';
+
+
+
+$fp = fopen("../includes/config2.php", "w");
+
+fwrite($fp, $string);
+
+fclose($fp);
 
 include("./includes/header.php");
-if ($register_enabled == true){
-if (isset($_SESSION['failedReg'])){
-echo "<script type='text/javascript' language='JavaScript'> alert('That Username or E-mail address already exists!')</script>";
-session_destroy();
-}
 ?>
 
 <script type="text/javascript" language="JavaScript">
@@ -55,12 +62,8 @@ function checkEmail(theForm) {
 }
 //-->
 </script> 
-
-<form name="form1" method="post" action="checkregister.php" onsubmit="return checkEmail(this);">
-
-<p class="center">
-<strong>Admin User Registration - if for some reason this fails, it's because you didn't setup the database correctly.</strong><br/>
-</p>
+<form action="checkregister.php" method="POST" onsubmit="return checkEmail(this);">
+<h3 class="center">SuperAdmin Setup! Your details will be registered for login to the control panel backend.</h3>
 <span class="formData">E-mail :</span>
 <input name="myemail" type="text" id="myemail" placeholder="E-mail" required>
 <br/>
@@ -79,15 +82,9 @@ function checkEmail(theForm) {
 <span class="formData">Repeat Password :</span>
 <input name="mypassword2" type="password" id="mypassword2" placeholder="Repeat Password" required>
 <br/>
-<p class="center">
-<button class='button' type='submit'>Register</button>
-</form>
-</p>
-<?PHP
-}
-else{
-echo "<p class='center'>Register has been disabled by the system administrator.</p>";
-}
+<br />
+<div align="center">
+<button class='button' type='submit'>Ok</button></div>
 
 
- include("./includes/footer.php");?>
+<?PHP include("./includes/footer.php")?>
