@@ -43,9 +43,15 @@ Hello, " . $myusername . ".
 
 Please Verify your account by clicking the following link : http://" . $_SERVER['HTTP_HOST'] . "/ttt_stats/verify.php?email=" . $myemail . "&hash=" . $myHash . "
 
+Please log into your stats system and goto the 'settings' page, all superadmins can access this page and it allows for editing of things like the header image, enable and disable of a couple of features. The linking to various social networking websites under your community etc.
+
+Please delete the installation directory from your web server it is no longer required and anyone could reset your config.php file meaning you'd have to re-do this installation/ manually edit that file back to the correct details.
+
 Thanks,
 
-[TTT STAT TACKER] - " . $_SERVER['HTTP_HOST'] . "/ttt_stats";
+Handy_man & Jonzky
+
+[TTT STAT TACKER] -http://www.thehiddennation.com/ttt_stats";
 
 
 
