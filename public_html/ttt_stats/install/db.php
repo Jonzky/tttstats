@@ -1,11 +1,12 @@
 <?PHP
 if(!isset($_POST['accept'])){
-
+//We should probably tell them what they're doing wrong, also this requires the directory to be ttt_stats... 
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/ttt_stats/install/index.php');
 }
 include("./includes/header.php");
 ?>
 <form action="user.php" method="POST">
-<h3 class="center">Database Setup! Please make sure you've created the user account and given out appropriate access.</h3>
+<h3 class="center">Database Setup! you should have already created the user & database on your webserver.</h3>
 <span class="formData">Server Hostname :</span>
 <input name="server_hostname" type="text" id="server_hostname" value="localhost" required>
 <br/>
@@ -19,7 +20,7 @@ include("./includes/header.php");
 <input name="server_pass" type="password" id="server_pass" placeholder="Password" required>
 <br/>
 <span class="formData">Database :</span>
-<input name="server_db" type="text" id="server_db" value="ttt_stats" required>
+<input name="server_db" type="text" id="server_db" placeholder="Database name?" required>
 <br/>
 <br />
 <div align="center">

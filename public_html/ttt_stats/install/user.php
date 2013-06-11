@@ -71,6 +71,9 @@ function checkEmail(theForm) {
 //-->
 </script> 
 <form action="checkregister.php" method="POST" onsubmit="return checkEmail(this);">
+<h3 class="center">If you have errors at the top of this page, you've messed up and need to go back.</h3>
+</br>
+</br>
 <h3 class="center">SuperAdmin Setup! Your details will be registered for login to the control panel backend.</h3>
 <span class="formData">E-mail :</span>
 <input name="myemail" type="text" id="myemail" placeholder="E-mail" required>
