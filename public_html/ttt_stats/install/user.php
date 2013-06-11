@@ -19,6 +19,18 @@ fwrite($fp, $string);
 
 fclose($fp);
 
+$dbconn = mysql_connect('' . $_POST["server_hostname"] . '','' . $_POST["server_user"] . '','' . $_POST["server_pass"] . '');
+mysql_select_db('' . $_POST["server_db"] . '',$dbconn);
+
+$file = './struc.sql';
+
+if($fp1 = file_get_contents($file)) {
+  $var_array = explode(';',$fp1);
+  foreach($var_array as $value) {
+    mysql_query($value.';',$dbconn);
+  }
+}  
+
 include("./includes/header.php");
 ?>
 
