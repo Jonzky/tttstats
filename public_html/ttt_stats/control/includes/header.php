@@ -57,11 +57,7 @@ $adminLevel = $_SESSION['isadmin']; //0 is non admin, 1 = admin and 2 = superadm
 					<nav>
 						<ul>
 						<li>
-						<a href="#">Home</a>
-							<ul>
-							<li><a href="../index.php">Normal home</a></li>
-							<li><a href="./index.php">Admin home</a></li>
-							</ul>
+						<a href="../index.php">Home</a>
 						</li>
 						<li>
 							<a href="#">Account</a>
