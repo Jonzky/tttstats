@@ -5,7 +5,7 @@ if(CLIENT) then
 		local DermaPanel = vgui.Create( "DFrame" )
 		DermaPanel:SetPos( ScrW()/2-250, ScrH()/2-250 )
 		DermaPanel:SetSize( 720, 355 )
-		DermaPanel:SetTitle( "SNGaming.org Server Browser:" )
+		DermaPanel:SetTitle( "TTT stats Server Browser:" )
 		DermaPanel:SetVisible( true )
 		DermaPanel:SetDraggable( true )
 		DermaPanel:ShowCloseButton( true )

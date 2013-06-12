@@ -27,7 +27,12 @@ include("./includes/header.php");
 		
 	<h5>The Game server stuffs!</h5>
 
-	<p>Jonzky! You should come over here! and write stuff!</p>
+	<p><b>1.</b> Upload the folder called "dblogging" located in the game_upload directory to your addons folder for your dedicated server.</p>
+	<p><b>2.</b> You will need to make a couple of edits to the code to get the results you require for your server. Below follows the list:</p>
+	<p><b>2a.</b> goto /dblogging/lua/dbmodules/database/database.lua and change the varialbes seen at the top of the file to your oww (database connection information, as well as current game server's ip address and port)</p>
+	<p><b>2b.</b> goto /dblogging/lua/dbmodules/sv Here you will see 4 files (darkRPStats, issueTracker, serverTrack, tttStatTracker) each allow different types of logging, for a ttt server remove darkRPStats.lua issueTracker and serverTrack are addons to the TTT_STATS addon, but not required for it's operation and allow for different features. (/servers and /issue for the client)</p>
+	<p><b>2b.</b> goto /dblogging/lua/dbmodules/client/cl_showstats changing the variable "url" to include your own web servers address to the file called "motd.php" so www.yourwebsitehere.com/ttt_stats/motd.php making sure to add the steamid get statement ("motd.php?steamid=%s") </p>
+
 	
 	<br/>						
 	</div>
