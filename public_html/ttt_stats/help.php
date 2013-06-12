@@ -28,7 +28,7 @@ include("./includes/header.php");
 	<h5>The Game server stuffs!</h5>
 
 	<p><b>1.</b> Upload the folder called "dblogging" located in the game_upload directory to your addons folder for your dedicated server.</p>
-	<p><b>2.</b> You will need to download the mysql00 module found <a href="http://www.facepunch.com/threads/933647">HERE</a> </p>
+	<p><b>2.</b> You will need to download the mysql00 module found <a href="http://www.facepunch.com/threads/933647">HERE</a>Installation instructions for that module can be found on that page. </p>
 	<p><b>3.</b> You will need to make a couple of edits to the code to get the results you require for your server. Below follows the list:</p>
 	<p><b>3a.</b> goto /dblogging/lua/dbmodules/database/database.lua and change the varialbes seen at the top of the file to your oww (database connection information, as well as current game server's ip address and port)</p>
 	<p><b>3b.</b> goto /dblogging/lua/dbmodules/sv Here you will see 4 files (darkRPStats, issueTracker, serverTrack, tttStatTracker) each allow different types of logging, for a ttt server remove darkRPStats.lua issueTracker and serverTrack are addons to the TTT_STATS addon, but not required for it's operation and allow for different features. (/servers and /issue for the client)</p>
