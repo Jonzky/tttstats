@@ -32,7 +32,7 @@ include("./includes/header.php");
 	<p><b>3.</b> You will need to make a couple of edits to the code to get the results you require for your server. Below follows the list:</p>
 	<p><b>3a.</b> goto /dblogging/lua/dbmodules/database/database.lua and change the varialbes seen at the top of the file to your oww (database connection information, as well as current game server's ip address and port)</p>
 	<p><b>3b.</b> goto /dblogging/lua/dbmodules/sv Here you will see 4 files (darkRPStats, issueTracker, serverTrack, tttStatTracker) each allow different types of logging, for a ttt server remove darkRPStats.lua issueTracker and serverTrack are addons to the TTT_STATS addon, but not required for it's operation and allow for different features. (/servers and /issue for the client)</p>
-	<p><b>3c.</b> goto /dblogging/lua/dbmodules/client/cl_showstats changing the variable "url" to include your own web servers address to the file called "motd.php" so www.yourwebsitehere.com/ttt_stats/motd.php making sure to add the steamid get statement ("motd.php?steamid=%s") </p>
+	<p><b>3c.</b> goto /dblogging/lua/dbmodules/client/cl_showstats changing the variable "url" to include your own web servers address to the file called "motd.php" so www.yourwebsitehere.com/ttt_stats/motd.php making sure to add the steamid get statement ("motd.php?steamid=%s") this can also be used for your sv_loadingurl configuration.</p>
 	<p><b>4.</b> Once all of the above steps have been completed your server is ready for stat tracking!</p>
 
 	
