@@ -25,7 +25,7 @@ include_once("./includes/variables.php");
 		<title>[TTTS] Trouble in Terrorist Town Stats</title>
 	</head>
 			<body>
-			<?PHP	include("analytics.php");	?>
+			<?PHP	include("analytics2.php");	?>
 
 				<div id="header">
 				  <div>
