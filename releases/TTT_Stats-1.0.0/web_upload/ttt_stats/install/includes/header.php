@@ -27,7 +27,7 @@
 				<div id="header">
 				  <div>
 				  <center>
-				<a href="http://www.thehiddennation.com/ttt_stats" id="logo"><img src="./static/images/skynet_logo.png" alt="www.thehiddennation.com" title="www.thehiddennation.com" style="width: 550px; height: 90px;"/></a>
+				<a href="http://www.thehiddennation.com/ttt_stats" id="logo"><img src="./static/images/ttt4_logo.png" alt="www.thehiddennation.com" title="www.thehiddennation.com" style="width: 550px; height: 90px;"/></a>
 				</center>
 				  </div>
 				</div>

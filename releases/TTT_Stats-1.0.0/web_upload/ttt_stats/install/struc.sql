@@ -1,11 +1,30 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.5
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jun 12, 2013 at 11:13 AM
+-- Server version: 5.5.30-30.2
+-- PHP Version: 5.3.17
+
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+--
+-- Database: `handyman_ttt_stats`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_issues`
+--
 
 CREATE TABLE IF NOT EXISTS `admin_issues` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -23,6 +42,12 @@ CREATE TABLE IF NOT EXISTS `admin_issues` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0 ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_users`
+--
+
 CREATE TABLE IF NOT EXISTS `admin_users` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `email` text COLLATE utf8_unicode_ci NOT NULL,
@@ -38,6 +63,29 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
   UNIQUE KEY `unique usernames` (`user`(100))
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0 ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `darkrp_stats`
+--
+
+CREATE TABLE IF NOT EXISTS `darkrp_stats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `steamid` text NOT NULL,
+  `nickname` text NOT NULL,
+  `playtime` bigint(20) NOT NULL DEFAULT '1',
+  `first_joined` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_seen` text NOT NULL,
+  `isadmin` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6259 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `issue_log`
+--
+
 CREATE TABLE IF NOT EXISTS `issue_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `issue_id` int(11) NOT NULL,
@@ -49,6 +97,12 @@ CREATE TABLE IF NOT EXISTS `issue_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0 ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `server_track`
+--
+
 CREATE TABLE IF NOT EXISTS `server_track` (
   `hostip` text NOT NULL,
   `hostname` text NOT NULL,
@@ -58,6 +112,12 @@ CREATE TABLE IF NOT EXISTS `server_track` (
   `lastupdate` int(11) NOT NULL,
   PRIMARY KEY (`hostip`(20))
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ttt_report`
+--
 
 CREATE TABLE IF NOT EXISTS `ttt_report` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -71,6 +131,12 @@ CREATE TABLE IF NOT EXISTS `ttt_report` (
   `report_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ttt_stats`
+--
 
 CREATE TABLE IF NOT EXISTS `ttt_stats` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

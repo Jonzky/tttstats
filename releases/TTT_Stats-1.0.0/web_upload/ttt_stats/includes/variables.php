@@ -1,6 +1,6 @@
 <?php 
 
-$sb_enabled = true;
+$sb_enabled = false;
 
 $sb_search_build = "http://bans.sngaming.org/index.php?p=banlist&searchText=";
 
@@ -26,6 +26,6 @@ $steam_link = "sky-netgaming";
 
 $twitch_link = "skynetgaming";
 
-$logo_path = "./static/images/skynet_logo.png";
+$logo_path = "./static/images/ttt4_logo.png";
 
 ?>
