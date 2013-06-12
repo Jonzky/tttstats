@@ -11,7 +11,7 @@
 | 	   by Handy_man       |
 \------------------------*/		
 require("./includes/session_start.php");
-include("./includes/config.php");
+include("../includes/config.php");
 include_once("../includes/variables.php");
 if (isset($_SESSION['myusername'])){
 $myusername = $_SESSION['myusername'];
