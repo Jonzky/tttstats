@@ -67,7 +67,7 @@ $playerFirstjoined = $playerarray['first_joined'];
 $playerLastSeen = $playerarray['last_seen'];
 
 
-if ($playerKills or $playerDeaths != 0){
+if ($playerKills && $playerDeaths != 0){
 $playerKDRTrun = $playerKills / $playerDeaths;
 $playerKDR = round($playerKDRTrun, 2); //rounding to numbers such as 0.12 rather then 0.1259848797 etc. We don't need that many decimal points in our output, no one cares for that level of accuracy. 
 }
