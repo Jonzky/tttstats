@@ -46,6 +46,8 @@ include_once("./includes/variables.php");
 							<ul>
 								<li><a href="about-tracker.php">The Tracker</a></li>
 								<li><a href="about-team.php">Meet the team</a></li>
+								<li><a href="help.php">Help</a></li>
+								<li><a href="faq.php">Faq</a></li>
 							</ul>
 						</li>
 						<li>
