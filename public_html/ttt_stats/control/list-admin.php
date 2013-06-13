@@ -11,8 +11,7 @@
 |      by Handy_man       |
 \------------------------*/
 include("./includes/superonly.php");
-include("./includes/header.php");
-include("./includes/config.php");	
+include("./includes/header.php");	
 
 if ($_SESSION['added'] == true){
 echo "<script type='text/javascript' language='JavaScript'> alert('User updated successfully')</script>";

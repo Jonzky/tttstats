@@ -11,7 +11,6 @@
 |      by Handy_man       |
 \------------------------*/
 include("./includes/header.php");
-include("./includes/config.php");
 
 $plySteamID = $_POST['steamID'];
 $myUsername = $_SESSION['myusername']; //we should probably do this by id, but i know we have this in session data and it works the same.
@@ -27,7 +26,7 @@ if(isset($plySteamID)){
 	echo "</script>";
 	unset($plySteamID);
 	}
-mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `steamID` = '$plySteamID' WHERE `admin_users`.`user` = '$myUsername'");
+mysql_query("UPDATE `admin_users` SET `steamID` = '$plySteamID' WHERE `admin_users`.`user` = '$myUsername'");
 }
 
 if(isset($_POST['prevPass']) && isset($_POST['newPass'])){
@@ -40,7 +39,7 @@ $check = mysql_query("SELECT * FROM admin_users WHERE user='$myusername' and pas
 $users = mysql_num_rows($check);
 
 if ($users == 1){
-mysql_query("UPDATE `handyman_ttt_stats`.`admin_users` SET `pass` =MD5('$newPass') WHERE `admin_users`.`user` = '$myUsername'");
+mysql_query("UPDATE `admin_users` SET `pass` =MD5('$newPass') WHERE `admin_users`.`user` = '$myUsername'");
 
 }
 else{
@@ -62,7 +61,7 @@ $checkDel = mysql_query("SELECT * FROM admin_users WHERE user='$myusername' and 
 $usersDel = mysql_num_rows($checkDel);
 
 if ($usersDel == 1){
-mysql_query("DELETE FROM `handyman_ttt_stats`.`admin_users` WHERE `admin_users`.`user` = '$myUsername'");
+mysql_query("DELETE FROM `admin_users` WHERE `admin_users`.`user` = '$myUsername'");
 include("./logout.php");
 }
 else{

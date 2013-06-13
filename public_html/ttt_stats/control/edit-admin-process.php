@@ -1,6 +1,6 @@
 <?PHP
 include("./includes/superonly.php");
-include("./includes/config.php");
+include("../includes/config.php");
 
 // username and password sent from form
 $adminUID=$_POST['ID'];

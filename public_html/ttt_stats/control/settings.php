@@ -12,7 +12,6 @@
 \------------------------*/
 include("./includes/superonly.php");	
 include("./includes/header.php");
-include("./includes/config.php");
 include("../includes/variables.php");
 
 //Save our settings! get all the data we're potentially changing!
