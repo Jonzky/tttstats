@@ -1,0 +1,21 @@
+TTT_STATS Change Log
+=====================
+
+Legend:
+* = New feature
+- = Removed stuff
++ = Improved feature
+! = Fixed bug
+? = Other stuff
+
+1.0.3 RC1 13/06/2013 19:48 
+[!] - Add-Admin via control panel didn't e-mail verification, while you can re-send this verification it's nicer to have this done.
+
+1.0.2 RC1 12/06/2013 
+[!] - Config file was being included across all control sections, the wrong one no doubt removed as it's in header now.
+
+1.0.1 RC1 12/06/2013 
+[!] - Typo on control section lead to the incorrect config file being included.
+
+1.0.0 RC1 12/06/2013 17:31
+[?] - First packaged release.
