@@ -25,6 +25,14 @@ include("./includes/header.php");
 	<p><b>5.</b> Once you've confirmed your ability to log into the control panel, delete the /install directory from your webserver.</p>	
 	<p><b>6.</b> If your game server is correctly connecting to this database and saving information you should start to see pages fill up with information.</p>	
 		
+	<h5>The web stuff! - Sourcebans inclusion</h5>
+		
+			<p><b>1.</b> This will be sorted in a later revision of the stat tracker, however for now it's a manual process. Download your config.php file from your includes directory.</p>
+			<p><b>2.</b> Edit the information inside to your SB username and password (potentially the same depending on your setup) and select the SB database.</p>
+			<p><b>3.</b> Re-name the file to config_sb.php and re-upload to your includes directory.</p>
+			<p><b>4.</b> Once finished goto your admin login which you created at startup, goto admin - settings on navigation and select enabled for sourcebans.</p>
+
+		
 	<h5>The Game server stuffs!</h5>
 
 	<p><b>1.</b> Upload the folder called "dblogging" located in the game_upload directory to your addons folder for your dedicated server.</p>
