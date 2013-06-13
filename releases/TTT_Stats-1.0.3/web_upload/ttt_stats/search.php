@@ -72,6 +72,12 @@ function hideDivNormal() {
 <div id="primary_content">
 <h4>Search for your TTT stats!</h4>
 <div id="normal-search" style="display:block;">
+<form id="advanced-show" name="input" action="search.php" method="get">
+<input type="text" name="STEAMID" placeholder="Your SteamID / Nickname" size="30" value required>
+<input type="radio" name="stype" value="STEAM_ID">SteamID
+<input type="radio" name="stype" value="NICK" checked>Nickname
+<button class="button" type="submit">Search</button>
+</form>
 </div>
 
 <table border ="1">
