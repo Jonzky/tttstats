@@ -571,40 +571,6 @@ local function repCom( ply, text, toall )
 		
 		topTen(ply,10)
 		
-	elseif tab[1] == "!rtv" then
-	
-		ply:ConCommand( "voteforchange" )
-	
-	elseif tab[1] == "!resetkarma" then
-			
-		if not ply:IsSuperAdmin() then return; end
-		
-		for k,v in pairs(player.GetAll()) do
-			
-			if string.find(string.lower(v:Nick()),string.lower(tab[2])) then
-
-				if alFound then
-					ply:ChatPrint("Two 2 or more players found with that name")
-					return
-				end
-				
-				alFound = true;
-				rPly = v;
-			end	
-		end
-		
-		if alFound then
-
-			rPly:SetBaseKarma( 1000 )
-			rPly:SetLiveKarma( 1000 )
-
-		else	
-			ply:ChatPrint("Player not found!");			
-		end
-		
-		return false;
-		
-	
 	end
 end
 
