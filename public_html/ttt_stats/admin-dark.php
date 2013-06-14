@@ -13,8 +13,8 @@
 include("./includes/header.php");
 $searchType = $_GET['type'];
 /*Search variable go here */
+if ($searchType == "sb"){
 include("./includes/config_sb.php");
-if ($searchType == "sb"){	
 $getAdmin = mysql_query("SELECT authid FROM sb_admins WHERE `srv_group` = 'admin' OR srv_group= 'SuperAdmin'");
 $multiResult = mysql_num_rows($getAdmin);
 }
