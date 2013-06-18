@@ -16,6 +16,9 @@ D_Kill_D = -20;
 Surviving_the_Round = 2;
 death = -1;
 
+// Only show !rank to the client who uses it.
+rankOnlyClient = true;
+
 
 function loadPlyStats( ply )
 
@@ -33,7 +36,7 @@ function loadPlyStats( ply )
 		ply.maxfrags = 0;
 		ply.headshots = 0;
 		ply.opKills = 0;
-		ply.ignore_messages = 0;
+		ply.ignore_messages = 1;
 		ply.dbReady = true;
 		ply.points = 0;
 		
@@ -46,7 +49,7 @@ function loadPlyStats( ply )
     tquery1.onSuccess = function(q)
         if not checkQuery(q) then
 
-			local tquery2 = db:query("INSERT INTO ttt_stats(steamid, nickname, playtime, roundsplayed, innocenttimes, detectivetimes, traitortimes, deaths, kills, maxfrags, headshots, last_seen, isadmin, points) VALUES ('" .. ply:SteamID() .. "', '" .. escpName .. "', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')")
+			local tquery2 = db:query("INSERT INTO ttt_stats(steamid, nickname, playtime, roundsplayed, innocenttimes, detectivetimes, traitortimes, deaths, kills, maxfrags, headshots, last_seen, isadmin, points, ignore_messages) VALUES ('" .. ply:SteamID() .. "', '" .. escpName .. "', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1')")
 			tquery2.onSuccess = function(q)  
 			
 				notifymessage("[Awesome Stats]Created: " .. ply:Nick()) 
@@ -61,7 +64,7 @@ function loadPlyStats( ply )
 				ply.maxfrags = 0;
 				ply.headshots = 0;
 				ply.opKills = 0;
-				ply.ignore_messages = 0;
+				ply.ignore_messages = 1;
 				ply.dbReady = true;
 				ply.points = 0;
 			end
@@ -403,7 +406,7 @@ function getRank(ply, caller)
 			anRankStat.onSuccess = function(q, stddata)
 				
 				RankRow = stddata[1];
-				if caller.ignore_messages == 1 then
+				if caller.ignore_messages == 1 or rankOnlyClient then
 					caller:ChatPrint(ply:Nick() .. " is currently rank " .. RankRow['cnt'] .. " out of " .. countRow['allcnt'] .. " with a score of " .. row['points'] .. "!"  )
 				else
 					for k,v in pairs(player.GetAll()) do
@@ -568,40 +571,6 @@ local function repCom( ply, text, toall )
 		
 		topTen(ply,10)
 		
-	elseif tab[1] == "!rtv" then
-	
-		ply:ConCommand( "voteforchange" )
-	
-	elseif tab[1] == "!resetkarma" then
-			
-		if not ply:IsSuperAdmin() then return; end
-		
-		for k,v in pairs(player.GetAll()) do
-			
-			if string.find(string.lower(v:Nick()),string.lower(tab[2])) then
-
-				if alFound then
-					ply:ChatPrint("Two 2 or more players found with that name")
-					return
-				end
-				
-				alFound = true;
-				rPly = v;
-			end	
-		end
-		
-		if alFound then
-
-			rPly:SetBaseKarma( 1000 )
-			rPly:SetLiveKarma( 1000 )
-
-		else	
-			ply:ChatPrint("Player not found!");			
-		end
-		
-		return false;
-		
-	
 	end
 end
 
