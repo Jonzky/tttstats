@@ -24,7 +24,7 @@ $statType = $_GET['type'];
 
 if(!isset($statType)){
 
-$var1 = mysql_query('SELECT * FROM `ttt_stats');
+$var1 = mysql_query('SELECT * FROM ttt_stats');
 $uniqueusers = mysql_num_rows($var1);
 
 $innocent = mysql_query('SELECT SUM(innocenttimes) AS innocent_sum FROM ttt_stats');
