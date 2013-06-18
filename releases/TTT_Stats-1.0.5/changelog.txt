@@ -8,6 +8,11 @@ Legend:
 ! = Fixed bug
 ? = Other stuff
 
+1.0.5 RC1 18/06/2013 12:29
+[+] - !rank is now clientside to start, this helps prevent ghosting. !ignore will make everyone's !rank visible again.
+[+] - Footer social media icons will no longer show if they are blank (so you don't use that particular social media)
+[!] - Typo that caused a rare error in the PHP code depending on your SQL server setup/ how strict your server is.
+
 1.0.4 RC1 13/06/2013 21:18
 [!] - how the hell did i remove search from the search.php page?
 
