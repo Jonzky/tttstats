@@ -1,8 +1,8 @@
 <?php 
-session_start();
+require("../includes/session_start.php");
 if (isset($_SESSION['myusername']) & isset($_SESSION['isadmin'])){
 $adminLevel = $_SESSION['isadmin'];
-	if($adminLevel == 2){
+	if($adminLevel >= 1){
 	//do nothing, we're happy that we're superadmin and won't get kicked.
 	}
 	else{
