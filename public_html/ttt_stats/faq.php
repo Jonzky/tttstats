@@ -3,7 +3,7 @@
 |        TTT STATS        |
 |          Beta           |
 |=========================|
-|© 2013 SNGaming.org      |
+|ï¿½ 2013 SNGaming.org      |
 |   All Rights Reserved   |
 |=========================|
 |   Website printout      |
@@ -21,7 +21,8 @@ include("./includes/header.php");
 	
 	
 	<p><b>Q:</b>I'm pretty sure that i've set everything up correctly, but i still don't see any stats on my website what could be wrong?</br>
-	<b>A:</b>Most website hosts limit remoteSQL interaction based on your IP address, not allowing users to connect to the SQL databse unless they're on the IP address whitelist. Make sure that your server is on this whitelist so that your gameserer can talk to your webSQL.</p>
+	<b>A:</b>Most website hosts limit remoteSQL interaction based on your IP address, not allowing users to connect to the SQL databse unless they're on the IP address whitelist. Make sure that your server is on this whitelist so that your gameserer can talk to your webSQL.</br>
+	<b>A:</b>Have you given your MYSQL user the correct permissions? Test out giving them all permissions and see what happens.</p>
 	
 	
 	</div>

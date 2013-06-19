@@ -1,5 +1,5 @@
 <?php 
-session_start();
+require("../includes/session_start.php");
 if (isset($_SESSION['myusername']) & isset($_SESSION['isadmin'])){
 $adminLevel = $_SESSION['isadmin'];
 	if($adminLevel >= 1){
