@@ -82,7 +82,7 @@ function hideDivNormal() {
   </script>
 
 <div id="primary_content">
-<h4>Search the other tables</h4>
+<h4>Search playtime (ttt [default], darkrp and morbus)</h4>
 <div id="normal-search" style="display:block;">
 <form id="advanced-show" name="input" action="search-all.php" method="get">
 <input type="text" name="STEAMID" placeholder="Your SteamID / Nickname" size="30" value required>
