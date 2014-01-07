@@ -16,6 +16,7 @@ include("./includes/config.php");
 
 if(isset($_POST['myemail'])){
 $verifyEmail = $_POST['myemail'];
+$verifyEmail = mysql_real_escape_string($verifyEmail);
 $checkemail = mysql_query("SELECT * FROM admin_users WHERE email='$verifyEmail' AND active = 0");
 $usersemail = mysql_num_rows($checkemail);
 
