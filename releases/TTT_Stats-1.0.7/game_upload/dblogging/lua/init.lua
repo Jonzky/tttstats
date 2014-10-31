@@ -3,7 +3,7 @@ local server_modules = file.Find( "dbmodules/sv/*.lua", "LUA" )
 local shared_modules = file.Find( "dbmodules/sh/*.lua", "LUA" )
 local client_modules = file.Find( "dbmodules/client/*.lua", "LUA" )
 
-Msg( "**Loading the datase module**" )	
+Msg( "**Loading the database module**" )	
 
 include("dbmodules/database/database.lua")
 
